@@ -5,11 +5,13 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Motif UI — TÜRKSAT e-Devlet Component Library",
+  title: "Motif UI — Design system and React component library by TÜRKSAT",
+  icons: {
+    icon: "/favicon.ico",
+  },
   description:
-    "A polished Next.js showcase website for Motif UI, the design system and React component library built by TÜRKSAT for e-Devlet projects.",
+    "Motif UI is a production-ready React design system initially designed by the e-Government Application Development Department of TÜRKSAT, now available as an open-source library for public-sector and enterprise projects. Motif UI offers a robust set of customizable and production-ready UI components built under the design system discipline of TÜRKSAT.",
 };
-
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {

@@ -2,11 +2,13 @@
   "name": "motif-ui-showcase",
   "private": true,
   "version": "0.1.0",
+  "engines": {
+    "node": "20.x"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "start": "next start"
   },
   "dependencies": {
     "framer-motion": "^12.35.2",
@@ -20,7 +22,6 @@
     "@types/node": "^24.3.0",
     "@types/react": "^19.1.11",
     "@types/react-dom": "^19.1.7",
-    "lightningcss": "^1.32.0",
     "tailwindcss": "^4.1.12",
     "typescript": "^5.9.2"
   }

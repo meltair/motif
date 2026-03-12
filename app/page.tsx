@@ -250,15 +250,35 @@ export default function Page() {
 							["Showcase", "#showcase"],
 							["Gallery", "#gallery"],
 							["Install", "#install"],
-							["Components", "#components"],
-						].map(([label, href]) => (
-							<Link
-								key={href}
-								href={href}
-								className="text-sm font-medium text-slate-600 transition hover:text-sky-600">
-								{label}
-							</Link>
-						))}
+							[
+								"Components",
+								"https://docs.motif-ui.com/?path=/docs/components",
+							],
+						].map(([label, href]) => {
+							const isExternal = href.startsWith("http");
+
+							if (isExternal) {
+								return (
+									<a
+										key={href}
+										href={href}
+										target="_blank"
+										rel="noopener noreferrer"
+										className="text-sm font-medium text-slate-600 transition hover:text-sky-600">
+										{label}
+									</a>
+								);
+							}
+
+							return (
+								<Link
+									key={href}
+									href={href}
+									className="text-sm font-medium text-slate-600 transition hover:text-sky-600">
+									{label}
+								</Link>
+							);
+						})}
 					</nav>
 
 					<div className="hidden items-center gap-3 lg:flex">
@@ -280,7 +300,6 @@ export default function Page() {
 						)}
 					</button>
 				</div>
-
 				{mobileMenu && (
 					<div className="border-t border-slate-200 bg-white px-4 py-4 lg:hidden">
 						<div className="flex flex-col gap-3 text-sm font-medium text-slate-600">
@@ -291,20 +310,57 @@ export default function Page() {
 								["Showcase", "#showcase"],
 								["Gallery", "#gallery"],
 								["Install", "#install"],
-								["Components", "#components"],
-							].map(([label, href]) => (
-								<Link
-									key={href}
-									href={href}
-									onClick={() => setMobileMenu(false)}>
-									{label}
-								</Link>
-							))}
-							<Link href="https://github.com/motif-ui/motifreact">GitHub</Link>
-							<Link href="https://storybook.motif-ui.com">Documentation</Link>
+								[
+									"Components",
+									"https://docs.motif-ui.com/?path=/docs/components",
+								],
+							].map(([label, href]) => {
+								const isExternal = href.startsWith("http");
+
+								if (isExternal) {
+									return (
+										<a
+											key={href}
+											href={href}
+											target="_blank"
+											rel="noopener noreferrer"
+											onClick={() => setMobileMenu(false)}
+											className="transition hover:text-sky-600">
+											{label}
+										</a>
+									);
+								}
+
+								return (
+									<Link
+										key={href}
+										href={href}
+										onClick={() => setMobileMenu(false)}
+										className="transition hover:text-sky-600">
+										{label}
+									</Link>
+								);
+							})}
+
+							<a
+								href="https://github.com/motif-ui/motifreact"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="transition hover:text-sky-600">
+								GitHub
+							</a>
+
+							<a
+								href="https://storybook.motif-ui.com"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="transition hover:text-sky-600">
+								Documentation
+							</a>
 						</div>
 					</div>
 				)}
+				
 			</header>
 
 			<section id="top">
@@ -417,29 +473,29 @@ export default function Page() {
 			<section id="showcase">
 				<ShowcaseSection />
 			</section>
-			 						
+			{/* 						
 			<section id="gallery" className="mx-auto max-w-7xl px-4 py-8 lg:px-8">
 				<GallerySection gallery={galleryItems} />
 			</section>
-				
+			*/}
 			<section id="install" className="mx-auto max-w-8xl px-4 py-8 lg:px-8">
 				<InstallSection />
 			</section>
-			 
+			{/* 
 			<section
 				id="components"
 				className="mx-auto max-w-12xl px-4 py-8 lg:px-12">
 				<ComponentsSection />
 			</section>
-				
+		    */}
 			<section className="mt-20">
 				<PitchSection />
 			</section>
-			
+
 			<section className="mt-20">
 				<TrustSection />
 			</section>
- 			
+
 			<footer className="border-t border-slate-200/80 bg-white/70">
 				<div className="mx-auto flex max-w-7xl flex-col gap-6 px-4 py-8 lg:flex-row lg:items-center lg:justify-between lg:px-8">
 					<div>

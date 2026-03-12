@@ -417,29 +417,29 @@ export default function Page() {
 			<section id="showcase">
 				<ShowcaseSection />
 			</section>
-			{/* 						
+			 						
 			<section id="gallery" className="mx-auto max-w-7xl px-4 py-8 lg:px-8">
 				<GallerySection gallery={galleryItems} />
 			</section>
-			*/}		
+				
 			<section id="install" className="mx-auto max-w-8xl px-4 py-8 lg:px-8">
 				<InstallSection />
 			</section>
-			{/* 
+			 
 			<section
 				id="components"
 				className="mx-auto max-w-12xl px-4 py-8 lg:px-12">
 				<ComponentsSection />
 			</section>
-			*/}	
+				
 			<section className="mt-20">
 				<PitchSection />
 			</section>
-			{/* 
+			
 			<section className="mt-20">
 				<TrustSection />
 			</section>
- 			*/}
+ 			
 			<footer className="border-t border-slate-200/80 bg-white/70">
 				<div className="mx-auto flex max-w-7xl flex-col gap-6 px-4 py-8 lg:flex-row lg:items-center lg:justify-between lg:px-8">
 					<div>

@@ -46,14 +46,14 @@ const adminMenu: SidebarItem[] = [
 ];
 
 const semanticColors = [
-	{ name: "primary", hex: "#0083cb" },
-	{ name: "secondary", hex: "#88929b" },
-	{ name: "accent", hex: "#2d1e42" },
+	{ name: "primary", hex: "#0083CB" },
+	{ name: "secondary", hex: "#88929B" },
+	{ name: "accent", hex: "#2D1E42" },
 	{ name: "neutral", hex: "#535558" },
-	{ name: "info", hex: "#3684d1" },
-	{ name: "success", hex: "#04ae56" },
-	{ name: "warning", hex: "#ffc800" },
-	{ name: "danger", hex: "#d00000" },
+	{ name: "info", hex: "#3684D1" },
+	{ name: "success", hex: "#04AE56" },
+	{ name: "warning", hex: "#FFC800" },
+	{ name: "danger", hex: "#D00000" },
 ];
 
 const buttonSamples = [

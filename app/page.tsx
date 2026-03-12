@@ -3,48 +3,18 @@
 import Image from "next/image";
 import Link from "next/link";
 import DateRangeShowcase from "@/components/date-range";
+import HeaderSection from "@/components/header-section";
 import InstallSection from "@/components/install-section";
 import TrustSection from "@/components/trust-section";
 import PitchSection from "@/components/pitch-section";
 import GallerySection from "@/components/gallery-section";
+import FeaturesSection from "@/components/features-section";
 import ComponentsSection from "@/components/components-section";
 import TopSection from "@/components/top-section";
 import ShowcaseSection from "@/components/showcase-section";
 import CompactDesignToCodeSection from "@/components/design-to-code-section";
 import MotifComponentMatrixSection from "@/components/theming-matrix-section";
 import { useMemo, useState } from "react";
-import {
-	ArrowRight,
-	BookOpen,
-	Boxes,
-	Building2,
-	CalendarRange,
-	Check,
-	ChevronRight,
-	ChevronDown,
-	ChevronsRight,
-	Code2,
-	Component,
-	Copy,
-	FileText,
-	Github,
-	Home,
-	Layers3,
-	Menu,
-	MoonStar,
-	MousePointerClick,
-	Palette,
-	PanelRightClose,
-	PanelTop,
-	Play,
-	ShieldCheck,
-	SlidersHorizontal,
-	Sparkles,
-	SwatchBook,
-	TerminalSquare,
-	User,
-	Workflow,
-} from "lucide-react";
 
 type TabKey = "forms" | "feedback" | "navigation" | "data";
 
@@ -231,235 +201,14 @@ export default function Page() {
 	return (
 		<main className="min-h-screen text-slate-900">
 			<header className="sticky top-0 z-50 border-b border-slate-200/70 glass">
-				<div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 lg:px-8">
-					<Link href="#top" className="flex items-center gap-3">
-						<Image
-							src="/motiflogo.svg"
-							alt="Motif UI logo"
-							width={164}
-							height={46}
-							priority
-						/>
-					</Link>
-
-					<nav className="hidden items-center gap-6 lg:flex">
-						{[
-							["Features", "#features"],
-							["Playground", "#playground"],
-							["Design to Code", "#design-to-code"],
-							["Showcase", "#showcase"],
-							["Gallery", "#gallery"],
-							["Install", "#install"],
-							[
-								"Components",
-								"https://docs.motif-ui.com/?path=/docs/components",
-							],
-						].map(([label, href]) => {
-							const isExternal = href.startsWith("http");
-
-							if (isExternal) {
-								return (
-									<a
-										key={href}
-										href={href}
-										target="_blank"
-										rel="noopener noreferrer"
-										className="text-sm font-medium text-slate-600 transition hover:text-sky-600">
-										{label}
-									</a>
-								);
-							}
-
-							return (
-								<Link
-									key={href}
-									href={href}
-									className="text-sm font-medium text-slate-600 transition hover:text-sky-600">
-									{label}
-								</Link>
-							);
-						})}
-					</nav>
-
-					<div className="hidden items-center gap-3 lg:flex">
-						<Link
-							href="https://storybook.motif-ui.com"
-							className="inline-flex items-center gap-2 rounded-full bg-sky-600 px-4 py-2 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(17,134,201,0.26)] transition hover:bg-sky-700">
-							Documentation <ArrowRight className="h-4 w-4" />
-						</Link>
-					</div>
-
-					<button
-						onClick={() => setMobileMenu((v) => !v)}
-						className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-700 lg:hidden"
-						aria-label="Toggle menu">
-						{mobileMenu ? (
-							<PanelRightClose className="h-5 w-5" />
-						) : (
-							<Menu className="h-5 w-5" />
-						)}
-					</button>
-				</div>
-				{mobileMenu && (
-					<div className="border-t border-slate-200 bg-white px-4 py-4 lg:hidden">
-						<div className="flex flex-col gap-3 text-sm font-medium text-slate-600">
-							{[
-								["Features", "#features"],
-								["Playground", "#playground"],
-								["Design to Code", "#design-to-code"],
-								["Showcase", "#showcase"],
-								["Gallery", "#gallery"],
-								["Install", "#install"],
-								[
-									"Components",
-									"https://docs.motif-ui.com/?path=/docs/components",
-								],
-							].map(([label, href]) => {
-								const isExternal = href.startsWith("http");
-
-								if (isExternal) {
-									return (
-										<a
-											key={href}
-											href={href}
-											target="_blank"
-											rel="noopener noreferrer"
-											onClick={() => setMobileMenu(false)}
-											className="transition hover:text-sky-600">
-											{label}
-										</a>
-									);
-								}
-
-								return (
-									<Link
-										key={href}
-										href={href}
-										onClick={() => setMobileMenu(false)}
-										className="transition hover:text-sky-600">
-										{label}
-									</Link>
-								);
-							})}
-
-							<a
-								href="https://github.com/motif-ui/motifreact"
-								target="_blank"
-								rel="noopener noreferrer"
-								className="transition hover:text-sky-600">
-								GitHub
-							</a>
-
-							<a
-								href="https://storybook.motif-ui.com"
-								target="_blank"
-								rel="noopener noreferrer"
-								className="transition hover:text-sky-600">
-								Documentation
-							</a>
-						</div>
-					</div>
-				)}
-				
+				<HeaderSection />
 			</header>
-
 			<section id="top">
 				<TopSection />
 			</section>
 
-			<section
-				id="features"
-				className="mt-20 mx-auto max-w-7xl px-4 py-14 lg:px-8">
-				<div className="mx-auto mb-10 max-w-5xl text-center">
-					<h2 className="text-balance text-4xl font-semibold tracking-[-0.04em] text-slate-950 sm:text-5xl">
-						Features
-					</h2>
-					<p className="mx-auto mt-4 max-w-3xl text-lg leading-8 text-slate-600">
-						PrimeReact is the most complete solution for your UI requirements.
-					</p>
-				</div>
-				<div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-					<div className="rounded-[32px] border border-slate-200 bg-white p-7 shadow-sm">
-						<h2 className="mt-4 text-3xl font-black text-slate-950">
-							Designed inside the discipline of e-Devlet.
-						</h2>
-						<p className="mt-4 text-base leading-8 text-slate-600">
-							Motif UI began as a practical response to a very real problem:
-							product teams building important interfaces need reusable
-							patterns, not perpetual reinvention. Inside the Turkish
-							e-Government ecosystem, that means disciplined forms, sturdy
-							states, clear navigation, and a visual system calm enough to
-							handle complexity without descending into bureaucratic sludge.
-						</p>
-						<p className="mt-4 text-base leading-8 text-slate-600">
-							The result is not just another box of components. It is a system
-							layer intended to help internal products, service portals and
-							operational tools move faster while staying consistent with a
-							shared interaction language.
-						</p>
-						<div className="mt-6 grid gap-3 sm:grid-cols-2">
-							{[
-								"Internal project foundations",
-								"Production-ready UI primitives",
-								"Themeable token architecture",
-								"Storybook-driven documentation",
-							].map((item) => (
-								<div
-									key={item}
-									className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-medium text-slate-700">
-									<Check className="h-4 w-4 text-sky-600" /> {item}
-								</div>
-							))}
-						</div>
-					</div>
-
-					<div className="grid gap-5 sm:grid-cols-2">
-						<div className="rounded-[32px] border border-slate-200 bg-gradient-to-br from-sky-50 to-white p-6 shadow-sm">
-							<PanelTop className="h-8 w-8 text-sky-700" />
-							<h3 className="mt-6 text-xl font-bold text-slate-900">
-								Docs-first presentation
-							</h3>
-							<p className="mt-3 text-sm leading-7 text-slate-600">
-								A clean, MUI-inspired information hierarchy with large breathing
-								room, compact code moments and obvious next steps for
-								developers.
-							</p>
-						</div>
-						<div className="rounded-[32px] border border-slate-200 bg-gradient-to-br from-violet-50 to-white p-6 shadow-sm">
-							<Component className="h-8 w-8 text-violet-700" />
-							<h3 className="mt-6 text-xl font-bold text-slate-900">
-								Interactive component stories
-							</h3>
-							<p className="mt-3 text-sm leading-7 text-slate-600">
-								Inspired by Reshaped and HeroUI style demos, components should
-								feel alive on the page rather than sitting there like laminated
-								museum potatoes.
-							</p>
-						</div>
-						<div className="rounded-[32px] border border-slate-200 bg-gradient-to-br from-amber-50 to-white p-6 shadow-sm">
-							<SwatchBook className="h-8 w-8 text-amber-700" />
-							<h3 className="mt-6 text-xl font-bold text-slate-900">
-								Token-driven consistency
-							</h3>
-							<p className="mt-3 text-sm leading-7 text-slate-600">
-								Palette, spacing, radius and motion choices stay centralized,
-								reducing the delightful little chaos goblins that usually infest
-								large front-end projects.
-							</p>
-						</div>
-						<div className="rounded-[32px] border border-slate-200 bg-gradient-to-br from-emerald-50 to-white p-6 shadow-sm">
-							<BookOpen className="h-8 w-8 text-emerald-700" />
-							<h3 className="mt-6 text-xl font-bold text-slate-900">
-								Grounded in documentation
-							</h3>
-							<p className="mt-3 text-sm leading-7 text-slate-600">
-								The library already has Storybook documentation; this site
-								amplifies that with narrative sections, use-case framing and
-								credibility anchors.
-							</p>
-						</div>
-					</div>
-				</div>
+			<section id="features" className="mt-20 mx-auto max-w-7xl px-4 py-14 lg:px-8">
+				<FeaturesSection />
 			</section>
 
 			<section id="playground">
@@ -473,11 +222,11 @@ export default function Page() {
 			<section id="showcase">
 				<ShowcaseSection />
 			</section>
-			{/* 						
+
 			<section id="gallery" className="mx-auto max-w-7xl px-4 py-8 lg:px-8">
 				<GallerySection gallery={galleryItems} />
 			</section>
-			*/}
+
 			<section id="install" className="mx-auto max-w-8xl px-4 py-8 lg:px-8">
 				<InstallSection />
 			</section>
@@ -488,12 +237,13 @@ export default function Page() {
 				<ComponentsSection />
 			</section>
 		    */}
-			<section className="mt-20">
-				<PitchSection />
-			</section>
 
 			<section className="mt-20">
 				<TrustSection />
+			</section>
+
+			<section className="mt-20">
+				<PitchSection />
 			</section>
 
 			<footer className="border-t border-slate-200/80 bg-white/70">

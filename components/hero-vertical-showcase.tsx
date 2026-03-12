@@ -66,13 +66,13 @@ export default function HeroVerticalShowcase() {
         <ShowcaseColumn
           items={leftItems}
           direction="up"
-          duration={30}
+          duration={60}
           isMobileStatic={isMobileStatic}
         />
         <ShowcaseColumn
           items={rightItems}
           direction="down"
-          duration={30}
+          duration={60}
           isMobileStatic={isMobileStatic}
         />
       </div>

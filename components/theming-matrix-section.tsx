@@ -195,7 +195,7 @@ function FormsMatrix() {
 												? "border-sky-600 bg-sky-600"
 												: "border-slate-300 bg-white",
 										].join(" ")}>
-										<span className="h-3 w-3 rounded-full bg-white" />
+										<span className="h-3 w-3 rounded-full" />
 									</span>
 									<span className="text-lg font-medium capitalize text-slate-800">
 										{value}

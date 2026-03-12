@@ -792,22 +792,22 @@ function TreeRow({
 
 function BusinessCardSurface() {
 	return (
-		<div className="w-full max-w-[420px] rounded-[22px] bg-sky-600 px-8 py-10 text-white shadow-[0_10px_30px_rgba(2,132,199,0.18)]">
-			<div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-white/95">
-				<Check className="h-11 w-11 text-sky-600" strokeWidth={3} />
+		<div className="w-full max-w-[420px] rounded-[22px] bg-sky-600 px-4 py-6 text-white shadow-[0_10px_30px_rgba(2,132,199,0.18)]">
+			<div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-white/95">
+				<Check className="h-6 w-6 text-sky-600" strokeWidth={3} />
 			</div>
 
-			<div className="mt-9 text-center">
-				<h4 className="text-[22px] font-semibold tracking-[-0.02em]">
+			<div className="mt-10 text-center">
+				<h4 className="text-[20px] font-semibold tracking-[-0.02em]">
 					Card Title
 				</h4>
-				<p className="mt-3 text-[18px] font-light text-white/90">
+				<p className="mt-3 text-[16px] font-light text-white/90">
 					EDK Card Description
 				</p>
 			</div>
 
-			<div className="mt-12 flex justify-center">
-				<button className="flex h-14 w-14 items-center justify-center rounded-full text-white/95 transition hover:bg-white/10">
+			<div className="mt-8 flex justify-center">
+				<button className="flex h-8 w-8 items-center justify-center rounded-full text-white/95 transition hover:bg-white/10">
 					<Download className="h-10 w-10" strokeWidth={2.2} />
 				</button>
 			</div>
@@ -817,8 +817,8 @@ function BusinessCardSurface() {
 
 function EditorSurface() {
 	const toolbarButton =
-		"flex h-11 w-11 items-center justify-center rounded-md text-slate-600 transition hover:bg-slate-100";
-	const divider = <div className="mx-1 h-9 w-px bg-slate-300" />;
+		"flex h-8 w-8 items-center justify-center rounded-md text-slate-600 transition hover:bg-slate-100";
+	const divider = <div className="mx-1 h-6 w-px bg-slate-300" />;
 
 	return (
 		<div className="w-full max-w-[780px] overflow-hidden rounded-[14px] border border-slate-400 bg-white shadow-sm">
@@ -882,83 +882,63 @@ function EditorSurface() {
 				<button className={toolbarButton}>
 					<Strikethrough className="h-5 w-5" />
 				</button>
-				<button className={toolbarButton}>
-					<Undo2 className="h-5 w-5" />
-				</button>
-				<button className={toolbarButton}>
-					<Redo2 className="h-5 w-5" />
-				</button>
 			</div>
 
 			<div className="relative bg-white p-5">
-				<div className="space-y-7 text-slate-900">
+				<div className="space-y-4 text-slate-900">
 					<div>
-						<h4 className="text-[28px] font-bold tracking-[-0.03em]">Title</h4>
-						<p className="mt-4 max-w-[92%] text-[17px] leading-8 text-slate-800">
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-							quis risus tempus, ornare libero eget, sodales lectus. Vestibulum
-							vitae molestie nibh, sit amet hendrerit risus.
+						<h4 className="text-[18px] font-bold tracking-[-0.03em]">Title</h4>
+						<p className="mt-4 max-w-[92%] text-[12px] leading-6 text-slate-800">
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
 						</p>
 					</div>
 
 					<div>
-						<h5 className="text-[20px] font-bold tracking-[-0.02em]">
+						<h5 className="text-[18px] font-bold tracking-[-0.02em]">
 							Subtitle
 						</h5>
 
-						<div className="relative mt-4 w-full max-w-[320px] overflow-hidden rounded-sm bg-slate-800">
-							<div className="aspect-[4/2.65] bg-[linear-gradient(135deg,#111827_0%,#6b7280_40%,#1f2937_70%,#000_100%)]" />
+						<div className="relative mt-4 w-full max-w-[240px] overflow-hidden rounded-sm bg-slate-800">
+							<div className="aspect-[4/2.5] bg-[linear-gradient(135deg,#111827_0%,#6b7280_40%,#1f2937_70%,#000_100%)]" />
 							<div className="absolute inset-0 flex items-center justify-center text-[72px] font-semibold text-white/95">
 								3:2
 							</div>
 						</div>
-
-						<p className="mt-4 text-[17px] leading-8 text-slate-800">
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-							quis risus tempus, ornare libero eget, sodales lectus. Fusce
-							molestie ut dolor quis tincidunt.
-						</p>
-
-						<p className="mt-6 text-[17px] leading-8 text-slate-800">
-							Donec sit amet posuere quam. Nullam justo mi, efficitur quis quam
-							vitae, ultrices varius est. Vestibulum ante ipsum primis in
-							faucibus orci luctus et ultrices posuere cubilia curae.
-						</p>
 					</div>
 				</div>
 
-				<div className="pointer-events-none absolute left-[48%] top-[18px] hidden rounded-xl border border-slate-300 bg-white shadow-lg lg:block">
+				<div className="pointer-events-none absolute left-[10%] -top-[18px] hidden rounded-xl border border-slate-300 bg-white shadow-lg lg:block">
 					<div className="flex flex-col divide-y divide-slate-200">
-						<div className="flex h-14 w-[78px] items-center justify-center">
-							<AlignLeft className="h-7 w-7 text-slate-600" />
+						<div className="flex h-10 w-[48px] items-center justify-center">
+							<AlignLeft className="h-5 w-5 text-slate-600" />
 						</div>
-						<div className="flex h-14 w-[78px] items-center justify-center">
-							<AlignCenter className="h-7 w-7 text-slate-600" />
+						<div className="flex h-10 w-[48px] items-center justify-center">
+							<AlignCenter className="h-5 w-5 text-slate-600" />
 						</div>
-						<div className="flex h-14 w-[78px] items-center justify-center">
-							<AlignRight className="h-7 w-7 text-slate-600" />
+						<div className="flex h-10 w-[48px] items-center justify-center">
+							<AlignRight className="h-5 w-5 text-slate-600" />
 						</div>
 					</div>
-					<div className="absolute left-8 top-[-8px] h-4 w-4 rotate-45 border-l border-t border-slate-300 bg-white" />
+					<div className="absolute left-4 top-[-8px] h-4 w-4 rotate-45 border-l border-t border-slate-300 bg-white" />
 				</div>
 
-				<div className="pointer-events-none absolute right-[20px] top-[26px] hidden w-[190px] overflow-hidden rounded-xl border border-slate-300 bg-white shadow-lg lg:block">
-					<div className="border-b border-slate-200 px-5 py-4 text-[16px] text-slate-600">
+				<div className="pointer-events-none absolute right-[5px] -top-[70px] hidden w-[190px] overflow-hidden rounded-xl border border-slate-300 bg-white shadow-lg lg:block">
+					<div className="border-b border-slate-200 px-3 py-2 text-[12px] text-slate-600">
 						Text Menu Sample
 					</div>
-					<div className="border-b border-slate-200 px-5 py-3 text-[22px] font-bold text-slate-700">
+					<div className="border-b border-slate-200 px-3 py-2 text-[16px] font-bold text-slate-700">
 						Header 2
 					</div>
-					<div className="border-b border-slate-200 px-5 py-3 text-[18px] font-semibold text-slate-700">
+					<div className="border-b border-slate-200 px-3 py-2 text-[14px] font-semibold text-slate-700">
 						Header 3
 					</div>
-					<div className="border-b border-slate-200 px-5 py-3 text-[16px] font-semibold text-slate-700">
+					<div className="border-b border-slate-200 px-3 py-2 text-[12px] font-semibold text-slate-700">
 						Header 4
 					</div>
-					<div className="px-5 py-3 text-[16px] text-slate-500">Paragraph</div>
+					<div className="px-3 py-3 text-[12px] text-slate-500">Paragraph</div>
 				</div>
 
-				<div className="pointer-events-none absolute left-[43%] top-[228px] hidden rounded-xl border border-slate-300 bg-white shadow-lg lg:flex">
+				<div className="pointer-events-none absolute left-[25%] top-[140px] hidden rounded-xl border border-slate-300 bg-white shadow-lg lg:flex">
 					<div className="flex items-center gap-2 px-4 py-3">
 						<AlignLeft className="h-5 w-5 text-slate-600" />
 						<AlignCenter className="h-5 w-5 text-slate-600" />
@@ -978,38 +958,30 @@ function EditorSurface() {
 
 function PopoverSurface() {
 	return (
-		<div className="grid w-full max-w-[760px] grid-cols-1 gap-6 md:grid-cols-2">
-			<div className="flex flex-col items-start gap-6">
-				<div className="relative rounded-2xl bg-sky-600 px-6 py-7 text-[18px] leading-9 text-white shadow-[0_10px_22px_rgba(15,23,42,0.12)]">
-					Lorem ipsum dolor sit amet,
-					<br />
-					consectetur adipiscing elit.
+		<div className="grid w-full max-w-[360px] grid-cols-1 gap-6 md:grid-cols-2">
+			<div className="flex flex-col items-start gap-4">
+				<div className="relative rounded-lg bg-sky-600 px-4 py-4 text-[12px] leading-5 text-white shadow-[0_10px_22px_rgba(15,23,42,0.12)]">
+					Lorem ipsum dolor sit amet,	consectetur adipiscing elit.
 					<div className="absolute bottom-[-10px] left-8 h-5 w-5 rotate-45 bg-sky-600" />
 				</div>
 
-				<div className="flex h-36 w-36 items-center justify-center rounded-full bg-sky-600 text-[52px] font-semibold tracking-[-0.03em] text-white">
+				<div className="mt-2 flex h-21 w-21 items-center justify-center rounded-full bg-sky-600 text-[24px] font-semibold tracking-[-0.03em] text-white">
 					AB
 				</div>
 			</div>
 
 			<div className="flex flex-col gap-5">
-				<div className="rounded-2xl bg-slate-200 px-7 py-7 shadow-[0_8px_18px_rgba(15,23,42,0.06)]">
+				<div className="rounded-2xl bg-slate-200 px-4 py-4 shadow-[0_8px_18px_rgba(15,23,42,0.06)]">
 					<div className="flex items-center gap-4 text-slate-600">
-						<House className="h-12 w-12" strokeWidth={1.8} />
-						<span className="text-[34px] font-semibold tracking-[-0.03em]">
+						<House className="h-6 w-6" strokeWidth={1.8} />
+						<span className="text-[14px] font-medium tracking-[-0.03em]">
 							Back to Home
 						</span>
 					</div>
 				</div>
 
-				<div className="relative rounded-2xl bg-sky-600 px-7 py-7 text-[18px] leading-9 text-white shadow-[0_10px_22px_rgba(15,23,42,0.12)]">
-					Lorem ipsum dolor sit amet,
-					<br />
-					consectetur adipiscing elit.
-					<br />
-					Nullam lacinia ipsum vitae lacus
-					<br />
-					finibus ornare.
+				<div className="mt-2 relative rounded-2xl bg-sky-600 px-4 py-4 text-[12px] leading-5 text-white shadow-[0_10px_22px_rgba(15,23,42,0.12)]">
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 					<div className="absolute left-9 top-[-10px] h-5 w-5 rotate-45 bg-sky-600" />
 				</div>
 			</div>
@@ -1019,27 +991,27 @@ function PopoverSurface() {
 
 function ResultSurface() {
 	return (
-		<div className="w-full max-w-[520px] rounded-[24px] bg-[#f3f4f6] px-8 py-10 text-center">
-			<div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-emerald-500">
-				<Check className="h-14 w-14 text-white" strokeWidth={3.5} />
+		<div className="w-full max-w-[520px] rounded-[24px] bg-[#f3f4f6] px-4 py-6 text-center">
+			<div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-emerald-500">
+				<Check className="h-6 w-6 text-white" strokeWidth={3.5} />
 			</div>
 
-			<h4 className="mt-8 text-[28px] font-semibold tracking-[-0.03em] text-slate-700 sm:text-[34px]">
+			<h4 className="mt-4 text-[12px] font-semibold tracking-[-0.03em] text-slate-700 sm:text-[16px]">
 				Thank you for your purchase!
 			</h4>
 
-			<p className="mt-3 text-[18px] text-slate-500 sm:text-[22px]">
+			<p className="mt-1 text-[12px] text-slate-500 sm:text-[12px]">
 				Your order was completed successfully.
 			</p>
 
-			<div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
-				<button className="inline-flex min-w-[250px] items-center justify-center gap-3 rounded-xl bg-sky-600 px-6 py-4 text-[18px] font-semibold text-white shadow-sm transition hover:bg-sky-700">
-					<Download className="h-7 w-7" />
+			<div className="mt-4 flex flex-col items-center justify-center gap-2 sm:flex-row">
+				<button className="inline-flex min-w-[160px] items-center justify-center gap-2 rounded-xl bg-sky-600 px-2 py-2 text-[12px] font-semibold text-white shadow-sm transition hover:bg-sky-700">
+					<Download className="h-6 w-6" />
 					Download Invoice
 				</button>
 
-				<button className="inline-flex min-w-[210px] items-center justify-center gap-3 rounded-xl bg-slate-200 px-6 py-4 text-[18px] font-semibold text-slate-600 transition hover:bg-slate-300">
-					<RotateCcw className="h-7 w-7" />
+				<button className="inline-flex min-w-[160px] items-center justify-center gap-2 rounded-xl bg-slate-200 px-2 py-2 text-[12px] font-semibold text-slate-600 transition hover:bg-slate-300">
+					<RotateCcw className="h-6 w-6" />
 					Buy Again
 				</button>
 			</div>

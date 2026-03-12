@@ -1,6 +1,6 @@
 import { Boxes, Code2, TerminalSquare } from "lucide-react";
 
-const installCode = `npm i @motif-ui/react @fontsource/inter
+const installCode = `npm i @motif-ui/react
 
 import { MotifProvider } from "@motif-ui/react";
 import "@motif-ui/react/themes/default-theme.css";
@@ -19,7 +19,7 @@ import "@motif-ui/react/themes/default-theme.css";
 export default function App() {
   return (
     <MotifProvider>
-      <Button variant="primary">Motif Button</Button>
+      <Button variant="primary">Click Me</Button>
     </MotifProvider>
   );
 }`;

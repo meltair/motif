@@ -425,13 +425,13 @@ export default function Page() {
 			<section id="install" className="mx-auto max-w-8xl px-4 py-8 lg:px-8">
 				<InstallSection />
 			</section>
-
+			{/* 
 			<section
 				id="components"
 				className="mx-auto max-w-12xl px-4 py-8 lg:px-12">
 				<ComponentsSection />
 			</section>
-
+			*/}	
 			<section className="mt-20">
 				<PitchSection />
 			</section>

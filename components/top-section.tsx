@@ -25,13 +25,13 @@ export default function TopSection() {
 					<div className="mt-8 flex flex-wrap items-center justify-center gap-4 min-[1024px]:justify-start">
 						<Link
 							href="https://storybook.motif-ui.com"
-							className="inline-flex items-center gap-2 rounded-2xl bg-[#975a9d] px-6 py-3.5 text-sm font-bold text-white shadow-[0_18px_50px_rgba(17,134,201,0.28)] transition hover:bg-[#6e3b73]">
+							className="inline-flex items-center gap-2 rounded-[14px] bg-[#975a9d] px-6 py-3.5 text-sm font-bold text-white shadow-[0_18px_50px_rgba(17,134,201,0.28)] transition hover:bg-[#6e3b73]">
 							Explore Storybook <ChevronsRight className="h-4 w-4" />
 						</Link>
 
 						<Link
 							href="https://github.com/motif-ui/motifreact"
-							className="inline-flex items-center gap-2 rounded-2xl border border-slate-200 bg-white px-6 py-3.5 text-sm font-bold text-slate-700 shadow-sm transition hover:border-slate-300">
+							className="inline-flex items-center gap-2 rounded-[14px] border border-slate-200 bg-white px-6 py-3.5 text-sm font-bold text-slate-700 shadow-sm transition hover:border-slate-300">
 							<Github className="h-4 w-4" />
 							View source
 						</Link>
@@ -44,7 +44,7 @@ export default function TopSection() {
 								setCopied(true);
 								setTimeout(() => setCopied(false), 2000);
 							}}
-							className="flex w-full items-center gap-2 rounded-xl border border-slate-200 bg-white/80 px-4 py-3 text-left text-sm font-mono text-slate-700 shadow-sm transition hover:border-sky-200 hover:bg-sky-50">
+							className="flex w-full items-center gap-2 rounded-[14px] border border-slate-200 bg-white/80 px-4 py-3 text-left text-sm font-mono text-slate-700 shadow-sm transition hover:border-sky-200 hover:bg-sky-50">
 							<span className="text-slate-500">$</span>
 
 							<span className="flex-1">

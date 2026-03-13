@@ -45,7 +45,6 @@ export default function Navbar() {
 		["Playground", "#playground"],
 		["Design to Code", "#design-to-code"],
 		["Showcase", "#showcase"],
-		["Gallery", "#gallery"],
 		["Install", "#install"],
 		["Components", "https://docs.motif-ui.com/?path=/docs/components"],
 	];

@@ -5,7 +5,7 @@ export default function TrustSection() {
 			<div className="overflow-hidden rounded-[32px] border border-slate-200 bg-[linear-gradient(180deg,#ffffff_0%,#f8fbfe_100%)] shadow-[0_20px_60px_rgba(15,23,42,0.06)]">
 				<div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr]">
 					{/* LEFT SIDE */}
-					<div className="relative p-8 sm:p-10 lg:p-14">
+					<div className="relative p-8 sm:p-10 lg:p-14 content-center">
 						<h2 className="mt-6 max-w-[18ch] text-3xl font-semibold tracking-[-0.04em] text-slate-950 sm:text-4xl lg:text-5xl">
 							Built for the scale of national digital services.
 						</h2>
@@ -41,17 +41,6 @@ export default function TrustSection() {
 									Clearer interfaces create confidence in critical interactions.
 								</p>
 							</div>
-						</div>
-						{/* MOCKUP */}
-						<div className="relative mt-14 w-full overflow-hidden rounded-[28px]">
-							<Image
-								src="/gallery/edevlet-mockup-platform.png"
-								alt="e-Devlet platform mockup"
-								width={1800}
-								height={900}
-								className="h-auto w-full object-contain"
-								priority
-							/>
 						</div>
 					</div>
 					{/* RIGHT SIDE */}

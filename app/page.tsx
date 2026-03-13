@@ -8,6 +8,7 @@ import InstallSection from "@/components/install-section";
 import TrustSection from "@/components/trust-section";
 import PitchSection from "@/components/pitch-section";
 import GallerySection from "@/components/gallery-section";
+import FooterSection from "@/components/footer-section";
 import FeaturesSection from "@/components/features-section";
 import ComponentsSection from "@/components/components-section";
 import TopSection from "@/components/top-section";
@@ -15,6 +16,7 @@ import ShowcaseSection from "@/components/showcase-section";
 import CompactDesignToCodeSection from "@/components/design-to-code-section";
 import MotifComponentMatrixSection from "@/components/theming-matrix-section";
 import { useMemo, useState } from "react";
+import BackToTop from "@/components/back-to-top";
 
 type TabKey = "forms" | "feedback" | "navigation" | "data";
 
@@ -182,11 +184,11 @@ export default function Page() {
 			<section id="showcase">
 				<ShowcaseSection />
 			</section>
-
+			{/* 
 			<section id="gallery" className="mx-auto max-w-7xl px-4 py-8 lg:px-8">
 				<GallerySection/>
 			</section>
-
+			*/}	
 			<section id="install" className="mx-auto max-w-8xl px-4 py-8 lg:px-8">
 				<InstallSection />
 			</section>
@@ -207,27 +209,9 @@ export default function Page() {
 			</section>
 
 			<footer className="border-t border-slate-200/80 bg-white/70">
-				<div className="mx-auto flex max-w-7xl flex-col gap-6 px-4 py-8 lg:flex-row lg:items-center lg:justify-between lg:px-8">
-					<div>
-						<div className="flex items-center gap-3">
-							<Image
-								src="/motiflogo.svg"
-								alt="Motif UI logo"
-								width={132}
-								height={38}
-							/>
-						</div>
-						<p className="mt-3 max-w-2xl text-sm leading-7 text-slate-500">
-							Copyright © 2026 Motif UI, TÜRKSAT.
-						</p>
-					</div>
-					<div className="flex flex-wrap gap-4 text-sm font-semibold text-slate-600">
-						<Link href="https://github.com/motif-ui/motifreact">GitHub</Link>
-						<Link href="https://storybook.motif-ui.com">Storybook</Link>
-						<Link href="#top">Back to top</Link>
-					</div>
-				</div>
+				<FooterSection />
 			</footer>
+			<BackToTop />
 		</main>
 	);
 }

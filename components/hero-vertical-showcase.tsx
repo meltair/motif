@@ -60,7 +60,7 @@ export default function HeroVerticalShowcase() {
 
   return (
     <div className="relative mx-auto -mt-20 -mb-18 h-[900px] w-full">
-      <div className="pointer-events-none absolute inset-0 rounded-[24px] [background-size:18px_18px]" />
+      <div className="pointer-events-none absolute inset-0 rounded-[12px] [background-size:18px_18px]" />
 
       <div className="relative z-10 flex h-full gap-[20px]">
         <ShowcaseColumn
@@ -92,7 +92,7 @@ function ShowcaseColumn({
   isMobileStatic: boolean;
 }) {
   return (
-    <div className="relative h-full min-w-[260px] flex-1 overflow-hidden rounded-[16px]">
+    <div className="relative h-full min-w-[260px] flex-1 overflow-hidden rounded-[12px]">
       <motion.div
         className="relative flex w-full flex-col gap-6"
         animate={
@@ -127,7 +127,7 @@ function ShowcaseColumn({
             }
             className="relative w-full"
           >
-            <div className="relative w-full overflow-hidden rounded-[24px] border border-white/80">
+            <div className="relative w-full overflow-hidden rounded-[12px] border border-white/80">
               {item.node}
             </div>
           </motion.div>
@@ -147,7 +147,7 @@ function SectionTitle({ children }: { children: ReactNode }) {
 
 function MiniCardPreview() {
   return (
-    <div className="overflow-hidden rounded-[22px] border border-slate-50 bg-white p-2">
+    <div className="overflow-hidden rounded-[12px] border border-slate-50 bg-white p-2">
       <SectionTitle>Card</SectionTitle>
 
       <div className="flex items-center justify-between px-4 pb-3">
@@ -184,7 +184,7 @@ function MiniCardPreview() {
 
 function MiniTimePickerPreview() {
   return (
-    <div className="rounded-[22px] border border-slate-50 bg-white p-4">
+    <div className="rounded-[12px] border border-slate-50 bg-white p-4">
       <SectionTitle>Timepicker</SectionTitle>
 
       <div className="text-center text-3xl font-semibold tracking-[-0.04em] text-sky-600">
@@ -249,7 +249,7 @@ function MiniTimePickerPreview() {
 
 function MiniUploadPreview() {
   return (
-    <div className="rounded-[22px] border border-slate-50 bg-white p-2">
+    <div className="rounded-[12px] border border-slate-50 bg-white p-2">
       <SectionTitle>Upload</SectionTitle>
 
       <div className="flex min-h-[150px] flex-col items-center justify-center px-5 py-6 text-center">
@@ -279,7 +279,7 @@ function MiniUploadPreview() {
 
 function MiniAccordionPreview() {
   return (
-    <div className="overflow-hidden rounded-[22px] border border-slate-50 bg-white p-2">
+    <div className="overflow-hidden rounded-[12px] border border-slate-50 bg-white p-2">
       <SectionTitle>Accordion</SectionTitle>
 
       {[
@@ -307,7 +307,7 @@ function MiniAccordionPreview() {
 
 function MiniSelectPreview() {
   return (
-    <div className="rounded-[22px] border border-slate-50 bg-white p-4">
+    <div className="rounded-[12px] border border-slate-50 bg-white p-4">
       <SectionTitle>Select</SectionTitle>
 
       <button className="flex w-full items-center justify-between rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-700">
@@ -344,7 +344,7 @@ function MiniSelectPreview() {
 
 function MiniRadioGroupPreview() {
   return (
-    <div className="rounded-[22px] border border-slate-50 bg-white p-4">
+    <div className="rounded-[12px] border border-slate-50 bg-white p-4">
       <SectionTitle>Radio group</SectionTitle>
 
       <div className="space-y-3">
@@ -382,7 +382,7 @@ function MiniRadioGroupPreview() {
 
 function MiniTabsPreview() {
   return (
-    <div className="rounded-[22px] border border-slate-50 bg-white p-4">
+    <div className="rounded-[12px] border border-slate-50 bg-white p-4">
       <SectionTitle>Tabs</SectionTitle>
 
       <div className="flex items-center gap-6 border-b border-slate-200 pb-3">
@@ -426,7 +426,7 @@ function MiniTabsPreview() {
 
 function MiniToastPreview() {
   return (
-    <div className="rounded-[22px] border border-slate-50 bg-white p-4">
+    <div className="rounded-[12px] border border-slate-50 bg-white p-4">
       <SectionTitle>Toast / Alert</SectionTitle>
 
       <div className="rounded-2xl border border-sky-200 bg-sky-50 p-4 shadow-sm">
@@ -474,7 +474,7 @@ function MiniTokenPreview() {
   ];
 
   return (
-    <div className="rounded-[22px] border border-slate-50 bg-white p-4">
+    <div className="rounded-[12px] border border-slate-50 bg-white p-4">
       <SectionTitle>Token scale</SectionTitle>
 
       <div className="space-y-2">
@@ -515,7 +515,7 @@ function MiniBadgePreview() {
   ];
 
   return (
-    <div className="rounded-[22px] border border-slate-50 bg-white p-4">
+    <div className="rounded-[12px] border border-slate-50 bg-white p-4">
       <SectionTitle>Badge</SectionTitle>
 
       <div className="space-y-3">
@@ -546,7 +546,7 @@ function MiniStatusPreview() {
   ];
 
   return (
-    <div className="rounded-[22px] border border-slate-50 bg-white p-4">
+    <div className="rounded-[12px] border border-slate-50 bg-white p-4">
       <SectionTitle>Status</SectionTitle>
 
       <div className="flex flex-wrap items-center gap-5">
@@ -578,7 +578,7 @@ function MiniListViewPreview() {
   ];
 
   return (
-    <div className="rounded-[22px] border border-slate-50 bg-white p-4">
+    <div className="rounded-[12px] border border-slate-50 bg-white p-4">
       <SectionTitle>Listview</SectionTitle>
 
       <div className="divide-y divide-slate-200 rounded-xl border border-slate-200">
@@ -638,7 +638,7 @@ function MiniTextInputPreview() {
   ];
 
   return (
-    <div className="rounded-[22px] border border-slate-50 bg-white p-4">
+    <div className="rounded-[12px] border border-slate-50 bg-white p-4">
       <SectionTitle>Text Input</SectionTitle>
 
       <div className="space-y-4">
@@ -662,7 +662,7 @@ function MiniTextInputPreview() {
 
 function MiniPagerPreview() {
   return (
-    <div className="rounded-[22px] border border-slate-50 bg-white p-4">
+    <div className="rounded-[12px] border border-slate-50 bg-white p-4">
       <SectionTitle>Pager</SectionTitle>
 
       <div className="space-y-5 text-slate-600">
@@ -691,7 +691,7 @@ function MiniPagerPreview() {
 
 function MiniTooltipPreview() {
   return (
-    <div className="rounded-[22px] border border-slate-50 bg-white p-4">
+    <div className="rounded-[12px] border border-slate-50 bg-white p-4">
       <SectionTitle>Tooltip</SectionTitle>
 
       <div className="grid grid-cols-2 gap-4">
@@ -715,7 +715,7 @@ function MiniTooltipPreview() {
 
 function MiniEmptyPreview() {
   return (
-    <div className="rounded-[22px] border border-slate-50 bg-white p-4">
+    <div className="rounded-[12px] border border-slate-50 bg-white p-4">
       <SectionTitle>Empty</SectionTitle>
 
       <div className="space-y-6">
@@ -749,7 +749,7 @@ function MiniStepperPreview() {
   ];
 
   return (
-    <div className="rounded-[22px] border border-slate-50 bg-white p-4">
+    <div className="rounded-[12px] border border-slate-50 bg-white p-4">
       <SectionTitle>Stepper</SectionTitle>
 
       <div className="space-y-5">

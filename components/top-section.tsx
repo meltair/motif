@@ -25,7 +25,7 @@ export default function TopSection() {
 					<div className="mt-8 flex flex-wrap items-center gap-4">
 						<Link
 							href="https://storybook.motif-ui.com"
-							className="inline-flex items-center gap-2 rounded-2xl bg-sky-600 px-6 py-3.5 text-sm font-bold text-white shadow-[0_18px_50px_rgba(17,134,201,0.28)] transition hover:bg-sky-700">
+							className="inline-flex items-center gap-2 rounded-2xl bg-[#975a9d] px-6 py-3.5 text-sm font-bold text-white shadow-[0_18px_50px_rgba(17,134,201,0.28)] transition hover:bg-[#6e3b73]">
 							Explore Storybook <ChevronsRight className="h-4 w-4" />
 						</Link>
 

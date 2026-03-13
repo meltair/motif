@@ -3,11 +3,11 @@ import { ArrowRight, Github, X, Linkedin, Youtube } from "lucide-react";
 export default function PitchSection() {
 	return (
 		<section className="border-t border-slate-200 bg-[linear-gradient(135deg,#f8f8f8_0%,#f2f2f2_40%,#ffffff_100%)] text-gray-900">
-			<div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+			<div className="mx-auto max-w-7xl px-4 py-12 lg:px-8">
 				<div className="mx-auto flex max-w-4xl flex-col items-center text-center">
 					<h2 className="max-w-3xl text-4xl font-medium tracking-[-0.04em] text-orange sm:text-5xl">
 						Join our &nbsp;
-						<span className="font-black text-orange-400">
+						<span className="font-black text-[#975a9d]">
 							Motif UI ecosystem
 						</span>
 					</h2>
@@ -22,7 +22,7 @@ export default function PitchSection() {
 							href="https://storybook.motif-ui.com"
 							target="_blank"
 							rel="noopener noreferrer"
-							className="inline-flex items-center gap-2 rounded-xl bg-sky-600 px-5 py-3 text-sm font-bold text-white shadow-[0_10px_24px_rgba(2,132,199,0.28)] transition hover:bg-sky-500">
+							className="inline-flex items-center gap-2 rounded-xl bg-[#975a9d] px-5 py-3 text-sm font-bold text-white shadow-[0_10px_24px_rgba(2,132,199,0.28)] transition hover:bg-[#6e3b73]">
 							Open docs <ArrowRight className="h-4 w-4" />
 						</Link>
 						<Link

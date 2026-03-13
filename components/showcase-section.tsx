@@ -303,7 +303,7 @@ export default function ThemeSystemShowcaseSection() {
 								<Link
 									href="https://www.figma.com/"
 									target="_blank"
-									className="inline-flex items-center gap-2 rounded-2xl bg-indigo-600 px-8 py-4 text-lg font-semibold text-white shadow-[0_12px_30px_rgba(79,70,229,0.28)] transition hover:bg-indigo-700 hover:shadow-[0_16px_38px_rgba(79,70,229,0.34)]">
+									className="inline-flex items-center gap-2 rounded-2xl bg-[#975a9d] px-8 py-4 text-lg font-semibold text-white shadow-[0_12px_30px_rgba(79,70,229,0.28)] transition hover:bg-[#6e3b73] hover:shadow-[0_16px_38px_rgba(79,70,229,0.34)]">
 									Explore the Figma library
 									<ArrowRight className="h-5 w-5" />
 								</Link>

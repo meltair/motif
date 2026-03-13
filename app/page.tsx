@@ -102,46 +102,6 @@ const componentGroups: Record<
 	},
 };
 
-const galleryItems = [
-	{
-		src: "/gallery/motif-1.png",
-		title: "Navigation surfaces",
-		caption: "Real Motif UI navigation patterns used across product flows.",
-	},
-	{
-		src: "/gallery/motif-9.png",
-		title: "Buttons and actions",
-		caption: "Action hierarchy and button treatments from the design system.",
-	},
-	{
-		src: "/gallery/motif-10.png",
-		title: "Date & Time Pickers",
-		caption:
-			"Flexible selection components for dates, time values, and ranges,designed for scheduling flows and data-driven interfaces.",
-	},
-	{
-		src: "/gallery/motif-5.png",
-		title: "Controls",
-		caption: "Selection patterns with helper text and visual state feedback.",
-	},
-	{
-		src: "/gallery/motif-4.png",
-		title: "Color foundations",
-		caption: "Core semantic and palette decisions behind the system.",
-	},
-	{
-		src: "/gallery/motif-3.png",
-		title: "Form composition",
-		caption: "Structured field groupings and enterprise-ready layouts.",
-	},
-];
-
-const statCards = [
-	{ value: "50+", label: "Production-oriented components" },
-	{ value: "TS", label: "Typed from edge to edge" },
-	{ value: "ESM + CJS", label: "Dual package output" },
-];
-
 const installCode = `npm i @motif-ui/react @fontsource/inter
 
 import { MotifProvider } from "@motif-ui/react";
@@ -224,7 +184,7 @@ export default function Page() {
 			</section>
 
 			<section id="gallery" className="mx-auto max-w-7xl px-4 py-8 lg:px-8">
-				<GallerySection gallery={galleryItems} />
+				<GallerySection/>
 			</section>
 
 			<section id="install" className="mx-auto max-w-8xl px-4 py-8 lg:px-8">
@@ -238,7 +198,7 @@ export default function Page() {
 			</section>
 		    */}
 
-			<section className="mt-20">
+			<section>
 				<TrustSection />
 			</section>
 

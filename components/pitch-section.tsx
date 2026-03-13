@@ -19,7 +19,7 @@ export default function PitchSection() {
 							href="https://storybook.motif-ui.com"
 							target="_blank"
 							rel="noopener noreferrer"
-							className="inline-flex items-center gap-2 rounded-xl bg-[#975a9d] px-5 py-3 text-sm font-bold text-white shadow-[0_10px_24px_rgba(2,132,199,0.28)] transition hover:bg-[#6e3b73]">
+							className="inline-flex items-center gap-2 rounded-xl bg-[#975a9d] px-5 py-3 text-sm font-bold text-white shadow-[0_10px_24px_rgba(130, 2, 199, 0.28)] transition hover:bg-[#6e3b73]">
 							Open docs <ArrowRight className="h-4 w-4" />
 						</Link>
 						<Link

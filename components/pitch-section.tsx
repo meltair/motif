@@ -32,13 +32,6 @@ export default function PitchSection() {
 					</div>
 					<div className="mt-6 flex flex-wrap items-center justify-center gap-3">
 						<Link
-							href="https://github.com/motif-ui"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="inline-flex items-center gap-2 rounded-xl border border-gray-500/30 bg-white px-4 py-2 text-sm font-semibold text-gray-700 transition hover:bg-slate-50">
-							<Github className="h-4 w-4" /> GitHub
-						</Link>
-						<Link
 							href="https://twitter.com"
 							target="_blank"
 							rel="noopener noreferrer"

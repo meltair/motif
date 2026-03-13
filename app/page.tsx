@@ -167,7 +167,7 @@ export default function Page() {
 				<TopSection />
 			</section>
 
-			<section id="features" className="mt-20 mx-auto max-w-7xl px-4 py-14 lg:px-8">
+			<section id="features" className="mt-20 mx-auto max-w-7xl py-10">
 				<FeaturesSection />
 			</section>
 

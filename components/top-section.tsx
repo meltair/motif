@@ -8,21 +8,21 @@ export default function TopSection() {
 	const [copied, setCopied] = useState(false);
 
 	return (
-		<div className="mx-auto grid max-w-7xl gap-10 px-4 pb-12 pt-12 lg:grid-cols-[1.1fr_1fr] lg:px-8 lg:pb-18 lg:pt-18">
+		<div className="mx-auto grid max-w-7xl gap-10 px-4 pb-12 pt-12 text-center min-[1024px]:text-left lg:grid-cols-[1.1fr_1fr] lg:px-8 lg:pb-18 lg:pt-18">
 			<HeroOrnaments />
 			<div className="relative">
 				<div className="relative z-10">
-					<h2 className="max-w-4xl text-4xl font-black tracking-tight text-slate-950 sm:text-5xl lg:text-6xl">
+					<h2 className="mx-auto max-w-4xl text-4xl font-black tracking-tight text-slate-950 sm:text-5xl lg:text-6xl min-[1024px]:mx-0">
 						<span className="mt-10 block text-slate-800">
 							A production-ready React design system with 50+ components
 						</span>
 					</h2>
 
-					<p className="mt-10 max-w-2xl text-lg leading-8 text-slate-600 sm:text-xl">
+					<p className="mx-auto mt-10 max-w-2xl text-lg leading-8 text-slate-600 sm:text-xl min-[1024px]:mx-0">
 						A comprehensive React design system initially designed by the e-Government Application Development Department of TÜRKSAT, now available as an open-source library for public-sector and enterprise projects. Motif UI offers a robust set of customizable and production-ready UI components built under the design system discipline of TÜRKSAT.
 					</p>
 
-					<div className="mt-8 flex flex-wrap items-center gap-4">
+					<div className="mt-8 flex flex-wrap items-center justify-center gap-4 min-[1024px]:justify-start">
 						<Link
 							href="https://storybook.motif-ui.com"
 							className="inline-flex items-center gap-2 rounded-2xl bg-[#975a9d] px-6 py-3.5 text-sm font-bold text-white shadow-[0_18px_50px_rgba(17,134,201,0.28)] transition hover:bg-[#6e3b73]">
@@ -37,7 +37,7 @@ export default function TopSection() {
 						</Link>
 					</div>
 
-					<div className="mt-10 flex w-full max-w-xl">
+					<div className="mx-auto mt-10 flex w-full max-w-xl min-[1024px]:mx-0">
 						<button
 							onClick={() => {
 								navigator.clipboard.writeText("npm i @motif-ui/react");
@@ -60,7 +60,7 @@ export default function TopSection() {
 					</div>
 				</div>
 			</div>
-			<div className="relative hidden min-[1080px]:block">
+			<div className="relative hidden min-[1024px]:block">
 				<div className="grid items-center lg:grid-cols-[1fr_520px]">
 					<div>{/* sol metin alanı */}</div>
 					<div className="lg:row-span-2 lg:col-start-2 lg:row-start-2">

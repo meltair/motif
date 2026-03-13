@@ -5,17 +5,14 @@ export default function PitchSection() {
 		<section className="border-t border-slate-200 bg-[linear-gradient(135deg,#f8f8f8_0%,#f2f2f2_40%,#ffffff_100%)] text-gray-900">
 			<div className="mx-auto max-w-7xl px-4 py-12 lg:px-8">
 				<div className="mx-auto flex max-w-4xl flex-col items-center text-center">
-					<h2 className="max-w-3xl text-4xl font-medium tracking-[-0.04em] text-orange sm:text-5xl">
+					<h2 className="max-w-3xl text-3xl font-small tracking-[-0.04em] sm:text-3xl">
 						Join our &nbsp;
 						<span className="font-black text-[#975a9d]">
 							Motif UI ecosystem
 						</span>
 					</h2>
-					<p className="mt-5 max-w-3xl text-lg leading-9 text-gray-900">
-						Motif UI is shaped for serious public-sector and enterprise
-						products. Explore the documentation, inspect the source, and build
-						consistent interfaces without wrestling the same UI problems for the
-						900th time.
+					<p className="mt-5 max-w-3xl text-md leading-7 text-gray-900">
+						Motif UI is more than a component library — it’s a growing ecosystem for teams building serious digital products. Explore the documentation, contribute to the source, and help shape the future of large-scale public and enterprise interfaces.
 					</p>
 					<div className="mt-8 flex flex-wrap items-center justify-center gap-3">
 						<Link

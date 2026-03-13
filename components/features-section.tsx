@@ -7,8 +7,8 @@ export default function FeaturesSection() {
 		"Storybook-driven documentation",
 	];
 	return (
-		<section className="mx-auto max-w-7xl px-6 py-20">
-			<div className="mx-auto mb-10 max-w-5xl text-center">
+		<div>
+			<div className="mx-auto mb-10 max-w-6xl text-center">
 				<h2 className="text-balance text-4xl font-semibold tracking-[-0.04em] text-slate-950 sm:text-5xl">
 					Features
 				</h2>
@@ -92,6 +92,6 @@ export default function FeaturesSection() {
 					</div>
 				</div>
 			</div>
-		</section>
+		</div>
 	);
 }

@@ -20,6 +20,7 @@ import {
 	ShoppingBag,
 	User,
 } from "lucide-react";
+import ShowcaseImage from "./showcase-image";
 
 type SidebarItem = {
 	id: string;
@@ -231,7 +232,7 @@ export default function ThemeSystemShowcaseSection() {
 						</div>
 					</aside>
 
-					<div className="border-b border-slate-200 p-6 xl:border-b-0">
+					<div className="border-b border-slate-200 xl:border-b-0">
 						<div className="rounded-[24px] bg-slate-50 p-4">
 							<div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
 								<div className="flex items-center gap-4">
@@ -287,14 +288,14 @@ export default function ThemeSystemShowcaseSection() {
 							</div>
 						</div>
 
-						<div className="px-2 py-4 text-center">
+						<div className="py-4 text-center">
 							<br />
 							<br />
 							<h3 className="mx-auto max-w-3xl text-balance text-5xl font-semibold tracking-[-0.05em] text-slate-950 sm:text-6xl">
 								{heroTitle}
 							</h3>
 
-							<p className="mx-auto mt-6 max-w-3xl text-xl leading-9 text-slate-600">
+							<p className="mx-auto mt-6 max-w-2xl text-xl leading-9 text-slate-600">
 								Build interfaces that stay coherent while colors, navigation,
 								and control states evolve across teams and products.
 							</p>
@@ -309,18 +310,7 @@ export default function ThemeSystemShowcaseSection() {
 								</Link>
 							</div>
 
-							<div className="mt-20 flex justify-center">
-								<div className="relative w-full max-w-[1080px] overflow-hidden rounded-[24px]">
-									<Image
-										src="/showcase/showcase.png"
-										alt="Motif UI showcase preview"
-										width={1920}
-										height={1080}
-										className="h-auto w-full object-cover"
-										priority
-									/>
-								</div>
-							</div>
+							<ShowcaseImage />
 						</div>
 					</div>
 

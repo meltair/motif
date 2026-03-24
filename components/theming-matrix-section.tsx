@@ -43,6 +43,7 @@ export default function MotifComponentMatrixSection() {
 		{ id: "feedback", label: "Feedback", icon: Info },
 		{ id: "surfaces", label: "Surfaces", icon: Boxes },
 	] as const;
+	
 
 	const [activeTab, setActiveTab] =
 		useState<(typeof tabs)[number]["id"]>("forms");
@@ -115,7 +116,7 @@ function Cell({
 }) {
 	return (
 		<div
-			className={`border-b border-r border-slate-200 bg-white p-6
+			className={`border-b border-r rounded-md border-slate-200 bg-white p-6
       [background-image:radial-gradient(#e5e7eb_1px,transparent_1px)]
       [background-size:16px_16px] ${className}`}>
 			<div className="mb-5">
@@ -634,11 +635,14 @@ function ToastItem({
 			</div>
 
 			<div className="flex-1">
-				<p className={`text-[16px] font-semibold tracking-[-0.03em] ${toneMap.title}`}>
+				<p
+					className={`text-[16px] font-semibold tracking-[-0.03em] ${toneMap.title}`}>
 					{title}
 				</p>
 				{showContent && (
-					<p className="mt-2 text-[12px] font-light text-slate-800">{content}</p>
+					<p className="mt-2 text-[12px] font-light text-slate-800">
+						{content}
+					</p>
 				)}
 			</div>
 
@@ -665,8 +669,8 @@ function ModalSurface() {
 				<div className="mt-6 flex gap-4">
 					<p className="max-w-[560px] text-[13px] leading-[1.55] text-slate-800">
 						Modal Content Text Lorem ipsum dolor sit amet, consectetur
-						adipiscing elit. Proin sed tristique tellus. Morbi vel sodales
-						urna. Duis felis leo, lacinia id imperdiet ac, molestie ut neque.
+						adipiscing elit. Proin sed tristique tellus. Morbi vel sodales urna.
+						Duis felis leo, lacinia id imperdiet ac, molestie ut neque.
 					</p>
 				</div>
 			</div>
@@ -686,14 +690,7 @@ function ModalSurface() {
 function TreeViewSurface() {
 	return (
 		<div className="w-full max-w-[520px] space-y-1 text-[12px] text-slate-700">
-			<TreeRow
-				level={0}
-				label="Guitars"
-				expanded
-				checked
-				folder
-				highlight
-			/>
+			<TreeRow level={0} label="Guitars" expanded checked folder highlight />
 			<TreeRow level={1} label="Classic Guitars" checked={false} />
 			<TreeRow
 				level={1}
@@ -759,7 +756,10 @@ function TreeRow({
 			].join(" ")}
 			style={{ paddingLeft: `${16 + level * 44}px` }}>
 			<div className="w-6 shrink-0">
-				{level === 0 || folder || label.includes("Guitars") || label.includes("Collection") ? (
+				{level === 0 ||
+				folder ||
+				label.includes("Guitars") ||
+				label.includes("Collection") ? (
 					expanded ? (
 						<ChevronDown className="h-4 w-4 text-slate-600" />
 					) : (
@@ -771,9 +771,7 @@ function TreeRow({
 			<div
 				className={[
 					"relative flex h-6 w-6 shrink-0 items-center justify-center rounded-md border-2",
-					checked
-						? "border-sky-600 bg-sky-600"
-						: "border-slate-300 bg-white",
+					checked ? "border-sky-600 bg-sky-600" : "border-slate-300 bg-white",
 				].join(" ")}>
 				{focus && (
 					<div className="absolute inset-[-6px] rounded-xl border-2 border-sky-400" />
@@ -889,7 +887,7 @@ function EditorSurface() {
 					<div>
 						<h4 className="text-[18px] font-bold tracking-[-0.03em]">Title</h4>
 						<p className="mt-4 max-w-[92%] text-[12px] leading-6 text-slate-800">
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 						</p>
 					</div>
 
@@ -961,7 +959,7 @@ function PopoverSurface() {
 		<div className="grid w-full max-w-[360px] grid-cols-1 gap-6 md:grid-cols-2">
 			<div className="flex flex-col items-start gap-4">
 				<div className="relative rounded-lg bg-sky-600 px-4 py-4 text-[12px] leading-5 text-white shadow-[0_10px_22px_rgba(15,23,42,0.12)]">
-					Lorem ipsum dolor sit amet,	consectetur adipiscing elit.
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 					<div className="absolute bottom-[-10px] left-8 h-5 w-5 rotate-45 bg-sky-600" />
 				</div>
 
@@ -1313,6 +1311,7 @@ function RangeBetween() {
 
 			<div className="relative h-10">
 				<div className="absolute left-0 right-0 top-4 h-2 rounded-full bg-slate-200" />
+
 				<div
 					className="absolute top-4 h-2 rounded-full bg-sky-600"
 					style={{
@@ -1325,6 +1324,7 @@ function RangeBetween() {
 					className="absolute top-1.5 h-7 w-7 -translate-x-1/2 rounded-full border-4 border-sky-600 bg-white shadow"
 					style={{ left: `${leftPercent}%` }}
 				/>
+
 				<div
 					className="absolute top-1.5 h-7 w-7 -translate-x-1/2 rounded-full border-4 border-sky-600 bg-white shadow"
 					style={{ left: `${rightPercent}%` }}
@@ -1336,15 +1336,16 @@ function RangeBetween() {
 					max={MAX}
 					value={minVal}
 					onChange={(e) => handleMinChange(Number(e.target.value))}
-					className="absolute inset-0 z-20 h-10 w-full cursor-pointer opacity-0"
+					className="range-thumb absolute inset-0 h-10 w-full opacity-0"
 				/>
+
 				<input
 					type="range"
 					min={MIN}
 					max={MAX}
 					value={maxVal}
 					onChange={(e) => handleMaxChange(Number(e.target.value))}
-					className="absolute inset-0 z-30 h-10 w-full cursor-pointer opacity-0"
+					className="range-thumb absolute inset-0 h-10 w-full opacity-0"
 				/>
 			</div>
 
@@ -1354,6 +1355,36 @@ function RangeBetween() {
 			</div>
 
 			<p className="mt-3 text-sm text-slate-500">Please choose an age range</p>
+
+			<style jsx>{`
+				.range-thumb {
+					-webkit-appearance: none;
+					appearance: none;
+					background: transparent;
+					pointer-events: none;
+				}
+
+				.range-thumb::-webkit-slider-thumb {
+					-webkit-appearance: none;
+					appearance: none;
+					height: 28px;
+					width: 28px;
+					border-radius: 9999px;
+					background: transparent;
+					cursor: pointer;
+					pointer-events: auto;
+				}
+
+				.range-thumb::-moz-range-thumb {
+					height: 28px;
+					width: 28px;
+					border: none;
+					border-radius: 9999px;
+					background: transparent;
+					cursor: pointer;
+					pointer-events: auto;
+				}
+			`}</style>
 		</div>
 	);
 }

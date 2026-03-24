@@ -111,11 +111,11 @@ export default function ThemeSystemShowcaseSection() {
 				</p>
 			</div>
 
-			<div className="overflow-hidden rounded-[32px] border border-slate-200 bg-white shadow-[0_20px_80px_rgba(15,23,42,0.08)]">
+			<div className="overflow-hidden rounded-[12px] border border-slate-200 bg-white shadow-[0_20px_80px_rgba(15,23,42,0.08)]">
 				<div className="grid xl:grid-cols-[360px_minmax(0,1fr)_360px]">
 					<aside className="border-b border-slate-200 p-6 xl:border-b-0 xl:border-r">
 						<div className="grid grid-cols-[72px_1fr] gap-5">
-							<div className="rounded-[24px] bg-slate-50 p-4">
+							<div className="rounded-[12px] bg-slate-50 p-4">
 								<div className="flex flex-col items-center gap-5">
 									{railItems.map((item) => {
 										const Icon = item.icon;
@@ -139,7 +139,7 @@ export default function ThemeSystemShowcaseSection() {
 								</div>
 							</div>
 
-							<div className="rounded-[24px] bg-slate-50 p-6">
+							<div className="rounded-[12px] bg-slate-50 p-6">
 								<div className="space-y-6">
 									{adminMenu.map((item) => {
 										const Icon = item.icon;
@@ -174,7 +174,7 @@ export default function ThemeSystemShowcaseSection() {
 							</div>
 						</div>
 
-						<div className="mt-6 rounded-[28px] bg-slate-50 p-6">
+						<div className="mt-6 rounded-[12px] bg-slate-50 p-6">
 							<div className="grid grid-cols-2 gap-3">
 								<button className="rounded-xl bg-[#e6f3fa] py-3 text-sm font-semibold text-slate-900 hover:scale-[1.02] transition">
 									primary-50
@@ -217,7 +217,7 @@ export default function ThemeSystemShowcaseSection() {
 								</button>
 							</div>
 						</div>
-						<div className="mt-5 rounded-[24px] bg-slate-50 p-5">
+						<div className="mt-5 rounded-[12px] bg-slate-50 p-5">
 							<div className="grid grid-cols-2 gap-4">
 								{buttonSamples.map((button) => (
 									<button
@@ -233,7 +233,7 @@ export default function ThemeSystemShowcaseSection() {
 					</aside>
 
 					<div className="border-b border-slate-200 xl:border-b-0">
-						<div className="rounded-[24px] bg-slate-50 p-4">
+						<div className="bg-slate-50 p-4">
 							<div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
 								<div className="flex items-center gap-4">
 									<div className="flex h-12 w-28 items-center justify-center rounded-full">
@@ -315,7 +315,7 @@ export default function ThemeSystemShowcaseSection() {
 					</div>
 
 					<aside className="p-6 xl:border-l xl:border-slate-200">
-						<div className="rounded-[24px] bg-slate-50 p-6">
+						<div className="rounded-[12px] bg-slate-50 p-6">
 							<h4 className="text-3xl font-semibold tracking-[-0.03em] text-slate-950">
 								Semantic colors
 							</h4>
@@ -337,7 +337,7 @@ export default function ThemeSystemShowcaseSection() {
 								))}
 							</div>
 						</div>
-						<div className="mt-5 rounded-[24px] bg-slate-50 p-5">
+						<div className="mt-5 rounded-[12px] bg-slate-50 p-5">
 							<div className="space-y-4">
 								{[
 									{ id: "default", label: "Radio Label", state: "default" },

@@ -168,19 +168,12 @@ export default function Page() {
 			<section id="top">
 				<TopSection />
 			</section>
-
-			<section id="features" className="mt-20 mx-auto max-w-7xl py-10">
-				<FeaturesSection />
-			</section>
-
 			<section id="playground">
 				<MotifComponentMatrixSection />
 			</section>
-
 			<section id="design-to-code">
 				<CompactDesignToCodeSection />
 			</section>
-
 			<section id="showcase">
 				<ShowcaseSection />
 			</section>
@@ -188,7 +181,7 @@ export default function Page() {
 			<section id="gallery" className="mx-auto max-w-7xl px-4 py-8 lg:px-8">
 				<GallerySection/>
 			</section>
-			*/}	
+			*/}
 			<section id="install" className="mx-auto max-w-8xl px-4 py-8 lg:px-8">
 				<InstallSection />
 			</section>
@@ -199,15 +192,16 @@ export default function Page() {
 				<ComponentsSection />
 			</section>
 		    */}
-
+			
+			<section id="features" className="mt-20 mx-auto max-w-7xl py-10">
+				<FeaturesSection />
+			</section>
 			<section>
 				<TrustSection />
 			</section>
-
 			<section className="mt-20">
 				<PitchSection />
 			</section>
-
 			<footer className="border-t border-slate-200/80 bg-white/70">
 				<FooterSection />
 			</footer>

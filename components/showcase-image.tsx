@@ -59,7 +59,7 @@ export default function ShowcaseCarousel() {
 		<div className="mt-20 flex justify-center py-10 px-4">
 			<div className="relative w-full max-w-[960px] overflow-hidden rounded-[12px] border border-slate-200 bg-slate-50 shadow-[0_16px_50px_rgba(15,23,42,0.08)]">
 				<div
-					className={`relative flex max-h-[460px] items-end justify-center bg-gradient-to-br ${activeSlide.gradient} px-12 py-16 transition-all duration-700 sm:min-h-[460px]`}>
+					className={`relative flex max-h-[460px] items-end justify-center bg-gradient-to-br ${activeSlide.gradient} px-16 py-16 transition-all duration-700 sm:min-h-[460px]`}>
 					<div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.22),transparent_45%)]" />
 					<div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(15,23,42,0.30),rgba(15,23,42,0.06),transparent)]" />
 
@@ -77,8 +77,8 @@ export default function ShowcaseCarousel() {
 						<ChevronRight className="h-7 w-7" />
 					</button>
 
-					<div className="relative z-10 max-w-3xl text-center text-white">
-						<h3 className="text-3xl font-semibold tracking-[-0.04em] sm:text-3xl">
+					<div className="relative z-10 max-w-2xl text-center text-white">
+						<h3 className="text-2xl font-semibold tracking-[-0.04em] sm:text-2xl">
 							{activeSlide.label}
 						</h3>
 						<p className="mx-auto mt-3 max-w-2xl text-md leading-6 text-white/90 sm:text-md">

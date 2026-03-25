@@ -14,7 +14,7 @@ export default function TopSection() {
 				<div className="relative z-10">
 					<h2 className="mx-auto max-w-4xl text-4xl font-black tracking-tight text-slate-950 sm:text-5xl lg:text-6xl min-[1024px]:mx-0">
 						<span className="mt-10 block text-slate-800">
-							A production-ready React design system with 50+ components
+							A production-ready React design system with <span className="pb-2 bg-[linear-gradient(30deg,#1a1220_0%,#975a9d_35%,#6f3c7a_100%)] bg-clip-text text-transparent">50+ components</span>
 						</span>
 					</h2>
 

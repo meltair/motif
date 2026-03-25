@@ -192,8 +192,11 @@ export default function CompactDesignToCodeSection() {
 	return (
 		<section className="mx-auto w-full max-w-6xl px-4 py-16 lg:px-8">
 			<div className="mx-auto mb-8 max-w-3xl text-center">
-				<h2 className="text-3xl font-semibold tracking-[-0.03em] text-slate-950 sm:text-4xl">
-					Design and code stay in sync
+				<h2 className="text-balance text-4xl font-semibold tracking-[-0.05em] text-slate-950 sm:text-5xl md:text-6xl">
+					Compare design and code
+					<span className="block pb-2 bg-[linear-gradient(90deg,#1a1220_0%,#975a9d_35%,#6f3c7a_100%)] bg-clip-text text-transparent">
+						side by side, pixel-perfect
+					</span>
 				</h2>
 				<p className="mt-3 text-base leading-7 text-slate-600">
 					Browse Motif UI components as interactive design previews and inspect

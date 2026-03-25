@@ -101,8 +101,11 @@ export default function ThemeSystemShowcaseSection() {
 	return (
 		<section className="mx-auto w-full max-w-[1520px] px-4 py-20 lg:px-8">
 			<div className="mx-auto mb-10 max-w-5xl text-center">
-				<h2 className="mt-3 text-balance text-4xl font-semibold tracking-[-0.04em] text-slate-950 sm:text-5xl">
-					Build themes that stay consistent everywhere
+				<h2 className="text-balance text-4xl font-semibold tracking-[-0.05em] text-slate-950 sm:text-5xl md:text-6xl">
+					Build themes that 
+					<span className="block pb-2 bg-[linear-gradient(90deg,#1a1220_0%,#975a9d_35%,#6f3c7a_100%)] bg-clip-text text-transparent">
+						stay consistent everywhere
+					</span>
 				</h2>
 				<p className="mx-auto mt-4 max-w-3xl text-lg leading-8 text-slate-600">
 					Motif UI keeps navigation, semantic colors, actions, and control

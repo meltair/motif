@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { TreeViewSurface } from "./tree-view";
 import {
 	Home,
 	User,
@@ -51,8 +52,11 @@ export default function MotifComponentMatrixSection() {
 	return (
 		<section className="mx-auto w-full max-w-[1480px] px-4 py-16 lg:px-8">
 			<div className="mx-auto mb-8 max-w-4xl text-center">
-				<h2 className="text-3xl font-semibold tracking-[-0.03em] text-slate-950 sm:text-4xl">
-					Define your theme. The system adapts.
+				<h2 className="mt-6 text-balance text-4xl font-semibold tracking-[-0.05em] text-slate-950 sm:text-5xl md:text-6xl">
+					Define your theme 
+					<span className="block pb-2 bg-[linear-gradient(90deg,#1a1220_0%,#975a9d_35%,#6f3c7a_100%)] bg-clip-text text-transparent">
+						and the system adapts
+					</span>
 				</h2>
 				<p className="mt-3 text-base leading-7 text-slate-600">
 					Motif UI components adapt seamlessly across themes, variants, and
@@ -493,7 +497,7 @@ function SurfacesMatrix() {
 			</Cell>
 
 			<Cell
-				title="Card Header"
+				title="Simple Card"
 				description="Icon, title, subtitle, and actions arranged in a single row.">
 				<div className="w-full max-w-[420px] rounded-2xl bg-slate-100 px-6 py-5">
 					<div className="flex items-center justify-between gap-4">
@@ -687,49 +691,6 @@ function ModalSurface() {
 	);
 }
 
-function TreeViewSurface() {
-	return (
-		<div className="w-full max-w-[520px] space-y-1 text-[12px] text-slate-700">
-			<TreeRow level={0} label="Guitars" expanded checked folder highlight />
-			<TreeRow level={1} label="Classic Guitars" checked={false} />
-			<TreeRow
-				level={1}
-				label="Electro Guitars"
-				expanded
-				checked={false}
-				folder
-				highlight
-				focus
-			/>
-			<TreeRow level={2} label="6 String Electro Guitars" checked />
-			<TreeRow level={2} label="7&8 String Electro Guitars" checked={false} />
-			<TreeRow level={2} label="Hollow Body Electro Guitars" checked />
-			<TreeRow
-				level={1}
-				label="Gibson Collection"
-				expanded
-				checked
-				folder
-				highlight
-			/>
-			<TreeRow level={2} label="Gibson 1957 Les Paul Custom" checked={false} />
-			<TreeRow
-				level={2}
-				label="Gibson 1959 Les Paul Standard..."
-				checked
-				folder
-			/>
-			<TreeRow
-				level={2}
-				label="Gibson Custom 1968 Les Paul..."
-				checked={false}
-				folder
-				highlight
-			/>
-			<TreeRow level={1} label="Acoustic Guitars" checked={false} />
-		</div>
-	);
-}
 
 function TreeRow({
 	level,

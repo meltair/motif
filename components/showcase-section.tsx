@@ -99,12 +99,12 @@ export default function ThemeSystemShowcaseSection() {
 	}, [activeTop]);
 
 	return (
-		<section className="mx-auto w-full max-w-[1520px] px-4 py-20 lg:px-8">
+		<section className="mx-auto w-full max-w-[1520px] px-4 py-16 lg:px-8">
 			<div className="mx-auto mb-10 max-w-5xl text-center">
-				<h2 className="text-balance text-4xl font-semibold tracking-[-0.05em] text-slate-950 sm:text-5xl md:text-6xl">
-					Build themes that 
+				<h2 className="mt-6 text-balance text-4xl font-semibold tracking-[-0.05em] text-slate-950 sm:text-5xl md:text-6xl">
+					Themes that stay
 					<span className="block pb-2 bg-[linear-gradient(90deg,#1a1220_0%,#975a9d_35%,#6f3c7a_100%)] bg-clip-text text-transparent">
-						stay consistent everywhere
+						consistent everywhere
 					</span>
 				</h2>
 				<p className="mx-auto mt-4 max-w-3xl text-lg leading-8 text-slate-600">
@@ -305,10 +305,9 @@ export default function ThemeSystemShowcaseSection() {
 
 							<div className="mt-8 flex justify-center">
 								<Link
-									href="https://www.figma.com/"
-									target="_blank"
+									href="https://docs.motif-ui.com/?path=/docs/design-themes--docs"
 									className="inline-flex items-center gap-2 rounded-2xl bg-[#975a9d] px-8 py-4 text-lg font-semibold text-white shadow-[0_12px_30px_rgba(79,70,229,0.28)] transition hover:bg-[#6e3b73] hover:shadow-[0_16px_38px_rgba(79,70,229,0.34)]">
-									Explore the Figma library
+									Explore themes
 									<ArrowRight className="h-5 w-5" />
 								</Link>
 							</div>

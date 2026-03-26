@@ -1,4 +1,4 @@
-import { ChevronsRight, Copy, Github, Check } from "lucide-react";
+import { ChevronsRight, Copy, Github, Check, Rocket } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import HeroVerticalShowcase from "@/components/hero-vertical-showcase";
@@ -14,24 +14,26 @@ export default function TopSection() {
 				<div className="relative z-10">
 					<h2 className="mx-auto max-w-4xl text-4xl font-black tracking-tight text-slate-950 sm:text-5xl lg:text-6xl min-[1024px]:mx-0">
 						<span className="mt-10 block text-slate-800">
-							A production-ready React design system with <span className="pb-2 bg-[linear-gradient(30deg,#1a1220_0%,#975a9d_35%,#6f3c7a_100%)] bg-clip-text text-transparent">50+ components</span>
+							A production-ready React design system with <span className="pb-2 bg-[linear-gradient(30deg,#1a1220_0%,#975a9d_35%,#6f3c7a_100%)] bg-clip-text text-transparent">60+ components</span>
 						</span>
 					</h2>
 
 					<p className="mx-auto mt-10 max-w-2xl text-lg leading-8 text-slate-600 sm:text-xl min-[1024px]:mx-0">
-						A comprehensive React design system initially designed by the e-Government Application Development Department of TÜRKSAT, now available as an open-source library for public-sector and enterprise projects. Motif UI offers a robust set of customizable and production-ready UI components built under the design system discipline of TÜRKSAT.
+						A comprehensive React design system initially designed by the e-Government Application Development Department of TÜRKSAT, now available as an open-source library for public-sector and enterprise projects. Motif UI offers a robust set of customizable and production-ready UI components for React built under the design system discipline.
 					</p>
 
 					<div className="mt-8 flex flex-wrap items-center justify-center gap-4 min-[1024px]:justify-start">
 						<Link
-							href="https://storybook.motif-ui.com"
+							href="https://docs.motif-ui.com"
 							className="inline-flex items-center gap-2 rounded-[14px] bg-[#975a9d] px-6 py-3.5 text-sm font-bold text-white shadow-[0_18px_50px_rgba(17,134,201,0.28)] transition hover:bg-[#6e3b73]">
-							Explore Storybook <ChevronsRight className="h-4 w-4" />
-						</Link>
+							<Rocket className="h-4 w-4" /> Get started
+                        </Link>
 
 						<Link
 							href="https://github.com/motif-ui/motifreact"
-							className="inline-flex items-center gap-2 rounded-[14px] border border-slate-200 bg-white px-6 py-3.5 text-sm font-bold text-slate-700 shadow-sm transition hover:border-slate-300">
+							className="inline-flex items-center gap-2 rounded-[14px] border border-slate-200 bg-white px-6 py-3.5 text-sm font-bold text-slate-700 shadow-sm transition hover:border-slate-300"
+                            target="_blank"
+                            rel="noopener noreferrer">
 							<Github className="h-4 w-4" />
 							View source
 						</Link>

@@ -10,43 +10,46 @@ import {
 	Sparkles,
 	SwatchBook,
 	WandSparkles,
+    Puzzle,
+    FileText,
+    TypeOutline,
 } from "lucide-react";
 
 export default function FeaturesSection() {
 	const highlights: string[] = [
-		"Internal project foundations",
-		"Production-ready UI primitives",
-		"Themeable token architecture",
-		"Storybook-driven documentation",
+		"Figma as the source of truth",
+		"Design tokens",
+		"Style Dictionary to convert",
+		"CSS modules",
 	];
 
 	const featureCards = [
 		{
-			icon: PanelTop,
+			icon: FileText,
 			title: "Docs that feel alive",
 			description:
-				"Readable structure, clearer hierarchy, and component guidance that actually helps people move instead of trapping them in dead-end documentation.",
+				"Storybook-driven, readable structure, clearer hierarchy, and component guidance that helps people move instead of trapping them in dead-end documentation.",
 			tone: "from-sky-100 via-white to-cyan-50 text-sky-700 border-sky-200/70",
 		},
 		{
-			icon: Component,
-			title: "Real component behavior",
+			icon: TypeOutline,
+			title: "Type safe",
 			description:
-				"States, interactions, and composition patterns are shown like a working product system, not like a dead screenshot museum.",
+				"Types are there for us to stay consistent, and for you to develop easily. Typescript is what only used in Motif UI.",
 			tone: "from-violet-100 via-white to-fuchsia-50 text-violet-700 border-violet-200/70",
 		},
 		{
-			icon: SwatchBook,
+			icon: Component,
 			title: "Tokens with discipline",
 			description:
 				"Color, spacing, motion, and radius stay centralized so the system scales without quietly turning into front-end sludge.",
 			tone: "from-amber-100 via-white to-orange-50 text-amber-700 border-amber-200/70",
 		},
 		{
-			icon: BookOpen,
-			title: "Built around usage",
+			icon: Puzzle,
+			title: "All in one components",
 			description:
-				"Documentation is not decorative. It supports real implementation work with patterns, framing, and consistency across teams.",
+				"Components like Table and Form provide built-in features commonly found in third-party libs, avoiding the need for extra dependencies.",
 			tone: "from-emerald-100 via-white to-teal-50 text-emerald-700 border-emerald-200/70",
 		},
 	];
@@ -55,7 +58,7 @@ export default function FeaturesSection() {
 		<section className="relative ">
 			<div className="mx-auto max-w-7xl">
 				<div className="mx-auto max-w-4xl text-center">
-					<h2 className="text-balance text-4xl font-semibold tracking-[-0.05em] text-slate-950 sm:text-5xl md:text-6xl">
+                    <h2 className="mt-12 text-balance text-4xl font-semibold tracking-[-0.05em] text-slate-950 sm:text-5xl md:text-6xl">
 						Features that actually
 						<span className="block bg-[linear-gradient(90deg,#1a1220_0%,#975a9d_35%,#6f3c7a_100%)] bg-clip-text text-transparent">
 							pull people deeper in
@@ -79,25 +82,21 @@ export default function FeaturesSection() {
 							<div className="flex flex-wrap items-center gap-3">
 							</div>
 
-							<h3 className="mt-8 max-w-[14ch] text-3xl font-semibold tracking-[-0.05em] sm:text-4xl">
-								Designed inside the discipline of e-Devlet.
-							</h3>
+                            <h3 className="mt-8 text-3xl font-semibold tracking-[-0.05em] sm:text-4xl">
+                                Styling at its best.
+                            </h3>
 
-							<p className="mt-5 max-w-2xl text-base leading-8 text-white/75">
-								Motif UI began as a response to a boring but expensive problem:
-								serious products cannot afford perpetual reinvention. In the
-								Turkish e-Government context, that means disciplined forms,
-								stable navigation, predictable states, and a visual system calm
-								enough to handle complexity without becoming bureaucratic
-								sludge.
-							</p>
+                            <p className="mt-5 max-w-2xl text-base leading-8 text-white/75">
+                                Motif UI approaches styling with a design-first mindset. Styles are defined
+                                through design tokens and structured conventions like BEM, then translated
+                                into scalable foundations using rem units and SCSS. This ensures clarity,
+                                consistency, and a shared language across the system.
+                            </p>
 
-							<p className="mt-5 max-w-2xl text-base leading-8 text-white/75">
-								So this is not just another pile of components. It is a system
-								layer built to help internal tools, service portals, and
-								operational products move faster while speaking the same design
-								language.
-							</p>
+                            <p className="mt-5 max-w-2xl text-base leading-8 text-white/75">
+                                With CSS Modules, styles stay modular yet aligned with a single source of
+                                truth, enabling flexible customization while preserving consistency.
+                            </p>
 
 							<div className="mt-8 grid gap-3 sm:grid-cols-2">
 								{highlights.map((item) => (
@@ -124,7 +123,7 @@ export default function FeaturesSection() {
 									className={[
 										"group relative overflow-hidden rounded-[30px] border bg-white p-6 shadow-[0_12px_40px_rgba(15,23,42,0.06)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_22px_50px_rgba(15,23,42,0.10)]",
 										card.tone,
-										index % 2 === 0 ? "sm:translate-y-8" : "",
+										index % 2 === 0 ? "sm:translate-y-3" : "sm:-translate-y-0",
 									].join(" ")}>
 									<div className="absolute -right-10 -top-10 h-28 w-28 rounded-full bg-current/10 blur-2xl transition duration-500 group-hover:scale-125" />
 

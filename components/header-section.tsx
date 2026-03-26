@@ -4,7 +4,6 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
-	ArrowRight,
 	BookOpen,
 	Boxes,
 	Building2,
@@ -41,11 +40,11 @@ export default function Navbar() {
 	const [mobileMenu, setMobileMenu] = useState<boolean>(false);
 
 	const navItems: NavItem[] = [
-		["Features", "#features"],
-		["Playground", "#playground"],
-		["Design to Code", "#design-to-code"],
-		["Showcase", "#showcase"],
-		["Install", "#install"],
+        ["Playground", "#playground"],
+        ["Features", "#features"],
+        ["Design", "#design"],
+        ["Themes", "#themes"],
+        ["The Story", "#story"],
 		["Components", "https://docs.motif-ui.com/?path=/docs/components"],
 	];
 
@@ -66,24 +65,12 @@ export default function Navbar() {
 					{navItems.map(([label, href]) => {
 						const isExternal = href.startsWith("http");
 
-						if (isExternal) {
-							return (
-								<a
-									key={href}
-									href={href}
-									target="_blank"
-									rel="noopener noreferrer"
-									className="text-sm font-medium text-slate-600 transition hover:text-[#975a9d]">
-									{label}
-								</a>
-							);
-						}
-
 						return (
 							<Link
 								key={href}
 								href={href}
-								className="text-sm font-medium text-slate-600 transition hover:text-[#975a9d]">
+								className={`text-sm font-medium transition hover:text-[#975a9d] ${label==="Components" ? "text-amber-600" : "text-slate-600"}`}
+                                {...(isExternal ? {target:"_blank", rel:"noopener noreferrer"}: {})}>
 								{label}
 							</Link>
 						);
@@ -96,7 +83,7 @@ export default function Navbar() {
 						target="_blank"
 						rel="noopener noreferrer"
 						className="inline-flex items-center gap-2 rounded-[14px] bg-[#975a9d] px-4 py-2 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(17,134,201,0.26)] transition hover:bg-[#6e3b73]">
-						Documentation <ArrowRight className="h-4 w-4" />
+						Docs <FileText className="h-4 w-4" />
 					</a>
 				</div>
 

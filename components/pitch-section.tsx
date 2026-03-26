@@ -16,9 +16,7 @@ export default function PitchSection() {
 					</p>
 					<div className="mt-8 flex flex-wrap items-center justify-center gap-3">
 						<Link
-							href="https://storybook.motif-ui.com"
-							target="_blank"
-							rel="noopener noreferrer"
+							href="https://docs.motif-ui.com"
 							className="inline-flex items-center gap-2 rounded-xl bg-[#975a9d] px-5 py-3 text-sm font-bold text-white shadow-[0_10px_24px_rgba(130, 2, 199, 0.28)] transition hover:bg-[#6e3b73]">
 							Open docs <ArrowRight className="h-4 w-4" />
 						</Link>
@@ -32,21 +30,21 @@ export default function PitchSection() {
 					</div>
 					<div className="mt-6 flex flex-wrap items-center justify-center gap-3">
 						<Link
-							href="https://twitter.com"
+							href="https://x.com/turksat"
 							target="_blank"
 							rel="noopener noreferrer"
 							className="inline-flex items-center gap-2 rounded-xl border border-gray-500/30 bg-white px-4 py-2 text-sm font-semibold text-gray-700 transition hover:bg-slate-50">
 							<X className="h-4 w-4" /> X
 						</Link>
 						<Link
-							href="https://www.linkedin.com"
+							href="https://www.linkedin.com/company/turksat"
 							target="_blank"
 							rel="noopener noreferrer"
 							className="inline-flex items-center gap-2 rounded-xl border border-gray-500/30 bg-white px-4 py-2 text-sm font-semibold text-gray-700 transition hover:bg-slate-50">
 							<Linkedin className="h-4 w-4" /> LinkedIn
 						</Link>
 						<Link
-							href="https://www.youtube.com"
+							href="https://www.youtube.com/@turksat"
 							target="_blank"
 							rel="noopener noreferrer"
 							className="inline-flex items-center gap-2 rounded-xl border border-gray-500/30 bg-white px-4 py-2 text-sm font-semibold text-gray-700 transition hover:bg-slate-50">

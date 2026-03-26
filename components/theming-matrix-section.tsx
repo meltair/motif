@@ -53,9 +53,9 @@ export default function MotifComponentMatrixSection() {
 		<section className="mx-auto w-full max-w-[1480px] px-4 py-16 lg:px-8">
 			<div className="mx-auto mb-8 max-w-4xl text-center">
 				<h2 className="mt-6 text-balance text-4xl font-semibold tracking-[-0.05em] text-slate-950 sm:text-5xl md:text-6xl">
-					Define your theme 
+					Choose the components
 					<span className="block pb-2 bg-[linear-gradient(90deg,#1a1220_0%,#975a9d_35%,#6f3c7a_100%)] bg-clip-text text-transparent">
-						and the system adapts
+						and build your app
 					</span>
 				</h2>
 				<p className="mt-3 text-base leading-7 text-slate-600">

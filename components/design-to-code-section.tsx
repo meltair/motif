@@ -192,15 +192,14 @@ export default function CompactDesignToCodeSection() {
 	return (
 		<section className="mx-auto w-full max-w-6xl px-4 py-16 lg:px-8">
 			<div className="mx-auto mb-8 max-w-3xl text-center">
-				<h2 className="text-balance text-4xl font-semibold tracking-[-0.05em] text-slate-950 sm:text-5xl md:text-6xl">
-					Compare design and code
+				<h2 className="mt-6 text-balance text-4xl font-semibold tracking-[-0.05em] text-slate-950 sm:text-5xl md:text-6xl">
 					<span className="block pb-2 bg-[linear-gradient(90deg,#1a1220_0%,#975a9d_35%,#6f3c7a_100%)] bg-clip-text text-transparent">
-						side by side, pixel-perfect
+						Design to code, pixel-perfect
 					</span>
 				</h2>
 				<p className="mt-3 text-base leading-7 text-slate-600">
-					Browse Motif UI components as interactive design previews and inspect
-					the matching React implementation beside them.
+                    React components are the precise reflection of Motif UI design. It is this easy to check out
+                    the interactive design previews and inspect the matching React implementation beside them.
 				</p>
 			</div>
 			<div className="grid gap-5 lg:grid-cols-[0.92fr_1.08fr]">
@@ -208,7 +207,7 @@ export default function CompactDesignToCodeSection() {
 					<div className="mb-4 flex items-center justify-between gap-3">
 						<div className="text-center lg:text-left">
 							<p className="text-xs font-semibold uppercase tracking-[0.18em] text-sky-700">
-								Figma Library
+								Figma Design
 							</p>
 							<p className="mt-1 text-sm font-medium text-slate-500">
 								{componentLabels[activeComponent]}

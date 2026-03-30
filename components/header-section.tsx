@@ -79,7 +79,7 @@ export default function Navbar() {
 
 				<div className="hidden items-center gap-3 lg:flex">
 					<a
-						href="https://storybook.motif-ui.com"
+						href="https://docs.motif-ui.com"
 						target="_blank"
 						rel="noopener noreferrer"
 						className="inline-flex items-center gap-2 rounded-[14px] bg-[#975a9d] px-4 py-2 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(17,134,201,0.26)] transition hover:bg-[#6e3b73]">
@@ -139,7 +139,7 @@ export default function Navbar() {
 						</a>
 
 						<a
-							href="https://storybook.motif-ui.com"
+							href="https://docs.motif-ui.com"
 							target="_blank"
 							rel="noopener noreferrer"
 							className="transition hover:text-sky-600">

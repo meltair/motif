@@ -1,26 +1,28 @@
 "use client";
 import { useMemo, useState } from "react";
 import {
-	ArrowRight,
 	ChevronLeft,
 	ChevronRight,
-	Download,
-	Folder,
-	Upload as UploadIcon,
-	FileUp,
-	X,
-	Eye,
-	Trash2,
-	ChevronDown,
+
 } from "lucide-react";
+import {
+    Accordion,
+    Card,
+    DataView,
+    Pagination,
+    PinCode,
+    Select, Table,
+    TimePicker,
+    UploadDragger
+} from "@motif-ui/react";
 type ComponentKey =
 	| "card"
 	| "dataview"
 	| "timepicker"
 	| "upload"
 	| "accordion"
-	| "autocomplete"
-	| "uploadImage"
+	| "select"
+	| "table"
 	| "pincode"
 	| "pagination";
 const componentOrder: ComponentKey[] = [
@@ -29,8 +31,8 @@ const componentOrder: ComponentKey[] = [
 	"timepicker",
 	"upload",
 	"accordion",
-	"autocomplete",
-	"uploadImage",
+	"select",
+	"table",
 	"pincode",
 	"pagination",
 ];
@@ -38,28 +40,18 @@ const componentLabels: Record<ComponentKey, string> = {
 	card: "Card",
 	dataview: "DataView",
 	timepicker: "TimePicker",
-	upload: "Upload",
+	upload: "UploadDragger",
 	accordion: "Accordion",
-	autocomplete: "Autocomplete",
-	uploadImage: "Upload Image",
+	select: "Select",
+	table: "Table",
 	pincode: "PinCode",
 	pagination: "Pagination",
 };
 export default function CompactDesignToCodeSection() {
 	const [activeIndex, setActiveIndex] = useState(0);
-	const [timepickerHour, setTimepickerHour] = useState(19);
-	const [timepickerMinute, setTimepickerMinute] = useState(3);
-	const [uploadUploaded, setUploadUploaded] = useState(true);
-	const [accordionOpenIndex, setAccordionOpenIndex] = useState(1);
-	const [autocompleteItems, setAutocompleteItems] = useState<string[]>([
-		"item 2",
-		"item 1",
-	]);
-	const [uploadImageState, setUploadImageState] = useState<
-		"empty" | "uploading" | "done"
-	>("empty");
-	const [pinValues, setPinValues] = useState(["1", "5", "", ""]);
-	const [paginationPage, setPaginationPage] = useState(1);
+	const [selectItems, setSelectItems] = useState<string[]>(["06", "34", "golbasi", "cankaya" ]);
+	const [pinValues, setPinValues] = useState(["X", "Y", "", "", "T", "M"]);
+	const [paginationPage, setPaginationPage] = useState(3);
 	const activeComponent = componentOrder[activeIndex];
 	const goPrev = () => {
 		setActiveIndex((prev) =>
@@ -73,119 +65,156 @@ export default function CompactDesignToCodeSection() {
 	};
 	const reactCode = useMemo(() => {
 		const codeMap: Record<ComponentKey, string> = {
-			card: `export default function Example() {
-			return (
-				<Card>
-				<CardHeader
-					title="Card Header Title"
-					subtitle="Motif Card Subtitle"
-					icon="folder"
-					actionIcon="download"
-				/>
-
-				<CardContent
-					title="Card Content Title"
-					subtitle="Card Content Subtitle"
-					supportingText="Motif Card Supporting Text"
-					image="/images/card-preview.jpg"
-				/>
-
-				<CardFooter>
-					<Button variant="primary">Action</Button>
-					<Button variant="secondary">Alternate</Button>
-					<Link href="#">Motif Link</Link>
-				</CardFooter>
-				</Card>
-			);}`,
-			dataview: `export default function Example() {
-			return (
-				<DataView
-				rows={[
-					{ label: "Name", value: "Motif" },
-					{ label: "Platform", value: "Web, mobile" },
-					{ label: "Founded", value: "2008" },
-					{ label: "Website", value: "https://www.motif-ui.com" },
-					{ label: "Country", value: "Türkiye" },
-					{ label: "Developer", value: "Türksat" },
-				]}
-				/>
-			);
-			}`,
-			timepicker: `export default function Example() {
-			return (
-				<TimePicker
-				hour={${timepickerHour}}
-				minute={${timepickerMinute}}
-				onClear={() => console.log("clear")}
-				onConfirm={() => console.log("confirm")}
-				/>
-			);}`,
-			upload: `export default function Example() {
-			return (
-				<Upload
-				title="Click here to upload files or drag files here."
-				helperText="You can add maximum 1 file."
-				fileName=${uploadUploaded ? `"showcase.png"` : `""`}
-				status=${uploadUploaded ? `"success"` : `"idle"`}
-				/>
-			);}`,
-			accordion: `export default function Example() {
-			return (
-				<Accordion
-				items={[
-					{ title: "Accordion 1", content: "" },
-
-					{
-					title: "Accordion 2",
-					content:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae fermentum arcu."
-					},
-
-					{ title: "Accordion 3", content: "" },
-				]}
-				defaultOpenIndex={${accordionOpenIndex}}
-				/>
-			);}`,
-			autocomplete: `export default function Example() {
-			return (
-				<Autocomplete
-				items={[${autocompleteItems.map((i) => `"${i}"`).join(", ")}]}
-				onRemove={(item) => {}}
-				onClear={() => {}}
-				/>
-			);}`,
-			uploadImage: `export default function Example() {
-			return (
-				<UploadImage
-				state="${uploadImageState}"
-				onUpload={() => {}}
-				onRemove={() => {}}
-				/>
-			);}`,
-			pincode: `export default function Example() {
-			return (
-				<PinCode
-				values={[${pinValues.map((i) => `"${i}"`).join(", ")}]}
-				onChange={(vals) => {}}
-				/>
-			);}`,
-			pagination: `export default function Example() {
-			return (
-				<Pagination
-				page={${paginationPage}}
-				total={9}
-				onChange={(page) => {}}
-				/>
-			);}`,
+			card: `export default CardUse = () => {
+   return (
+      <Card
+        title="Card Header Title"
+        subtitle="Motif Card Subtitle"
+        icon="folder"
+        action={{icon: "download", onClick: () => {}}}
+        contentImage="https://picsum.photos/500/220"
+        contentTitle="Card Content Title"
+        contentSubtitle="Card Content Subtitle"
+        contentText="Motif Card Supporting Text"
+        contentLink={{text: "Motif Link", href: "#"}}
+        contentActionButton={{text: "Action", onClick: ()=>{}}}
+        contentAlternateButton={{text: "Alternate", onClick: ()=>{}}}
+        contentActionLink={{text: "Motif Link", href: "#"}}
+        elevated />
+   );
+};`,
+			dataview: `export default DataViewUse = () => {
+    return (
+        <DataView rowVariant="solid">
+            <DataView.Item label="Name" value="Motif" />
+            <DataView.Item label="Platform" value="Web, mobile" />
+            <DataView.Item label="Founded" value="2008" />
+            <DataView.Item label="Website" value="motif-ui.com" />
+            <DataView.Item label="Country" value="Türkiye" />
+            <DataView.Item label="Developer" value="Türksat" />
+            <DataView.Item label="Failure" value="N/A" />
+        </DataView>
+    );
+};`,
+			timepicker: `export default TimePickerUse = () => {
+    return (
+        <TimePicker
+            value={{hours: 12, minutes: 12, seconds: 8}}
+            secondsEnabled
+            size="md"
+            onOkClick={time => alert(JSON.stringify(time))}
+            onClearClick={() => console.log("cleared...")}
+            variant="bordered"
+            format="12h" />
+    );
+};`,
+			upload: `export default UploadUse = () => {
+    return (
+        <UploadDragger
+            size="lg"
+            uploadRequest={{method: "POST", url: "https://my.url"}}
+            deleteRequest={{method: "POST", url: "https://my.url"}}
+            maxSize={10}
+            maxFile={1}
+            autoUpload={false} />
+    );
+};`,
+			accordion: `export default AccordionUse = () => {
+    return (
+        <Accordion.Group multiExpand={false} condensed>
+            <Accordion 
+                index={0} 
+                icon="folder" 
+                title="Accordion 1" 
+                text="Lorem ipsum dolor..." />
+            <Accordion 
+                index={1} 
+                expanded 
+                title="Accordion 2" 
+                text="Lorem ipsum dolor..." />
+            <Accordion 
+                index={2} 
+                title="Accordion 3">
+                <div className="py-12 font-bold text-amber-700 bg-purple-100 text-center">
+                    Custom HTML content
+                </div>
+            </Accordion>
+        </Accordion.Group>
+    );
+};`,
+			select: `export default SelectUse = () => {
+    return (
+        <Select
+            multiple
+            filterable
+            value={[${selectItems.map((i) => `"${i}"`).join(", ")}]}
+            size="lg"
+            onChange={values => ...}
+            data={[
+              { groupLabel: "Cities", groupKey: "cities", 
+                items: [
+                  { label: "İstanbul", value: "34" },
+                  { label: "Ankara", value: "06" },
+                  { label: "İzmir", value: "35" }]
+              },
+              { groupLabel: "Districts", groupKey: "districs", 
+                items: [
+                  { label: "Gölbaşı", value: "golbasi" },
+                  { label: "Polatlı", value: "polatli" },
+                  { label: "Çankaya", value: "cankaya" }]
+               }
+            ]}/>
+	);
+};`,
+			table: `export default TableUse = () => {
+ return (
+   <Table
+    fluid
+    hoverable
+    selectable
+    data={userData}
+    columns={[
+     {title: "Name", dataKey:"name", sorting: {} },
+     {title: "Surname", dataKey:"surname" },
+     {title: "Age", dataKey:"age", footer:{type:"avg", title:"Avg"}},
+     {title: "City", dataKey:"address.city" }
+     ]} />
+ );
+};`,
+			pincode: `export default PinCodeUse = () => {
+    return (
+        <PinCode 
+            size="lg" 
+            circle 
+            value={[${pinValues.map((i) => `"${i}"`).join(", ")}]} 
+            onChange={newVals => setValues(newVals as string[])}
+            style={{padding: 12}}>
+            
+            <PinCode.Item />
+            <PinCode.Item masked />
+            <PinCode.Item />
+            <PinCode.Item space />
+            <PinCode.Item disabled />
+            <PinCode.Item />
+            
+        </PinCode>
+    );
+};`,
+			pagination: `export default PaginationUse = () => {
+    return (
+        <Pagination 
+            total={50} 
+            current={${paginationPage}} 
+            pageSize={10} 
+            size="lg" 
+            onChange={page => setPage(page)} />
+    );
+};`,
 		};
 		return codeMap[activeComponent];
 	}, [
 		activeComponent,
-		timepickerHour,
-		timepickerMinute,
-		uploadUploaded,
-		accordionOpenIndex,
-		autocompleteItems,
-		uploadImageState,
+		selectItems,
 		pinValues,
 		paginationPage,
 	]);
@@ -242,44 +271,30 @@ export default function CompactDesignToCodeSection() {
 							)}
 							{activeComponent === "timepicker" && (
 								<PreviewFrame>
-									<LiveMotifTimePicker
-										selectedHour={timepickerHour}
-										selectedMinute={timepickerMinute}
-										setSelectedHour={setTimepickerHour}
-										setSelectedMinute={setTimepickerMinute}
-									/>
+									<LiveMotifTimePicker />
 								</PreviewFrame>
 							)}
 							{activeComponent === "upload" && (
 								<PreviewFrame>
-									<LiveMotifUpload
-										uploaded={uploadUploaded}
-										setUploaded={setUploadUploaded}
-									/>
+									<LiveMotifUpload />
 								</PreviewFrame>
 							)}
 							{activeComponent === "accordion" && (
 								<PreviewFrame>
-									<LiveMotifAccordion
-										openIndex={accordionOpenIndex}
-										setOpenIndex={setAccordionOpenIndex}
+									<LiveMotifAccordion />
+								</PreviewFrame>
+							)}
+							{activeComponent === "select" && (
+								<PreviewFrame>
+									<LiveSelect
+										values={selectItems}
+										setValues={setSelectItems}
 									/>
 								</PreviewFrame>
 							)}
-							{activeComponent === "autocomplete" && (
+							{activeComponent === "table" && (
 								<PreviewFrame>
-									<LiveAutocomplete
-										items={autocompleteItems}
-										setItems={setAutocompleteItems}
-									/>
-								</PreviewFrame>
-							)}
-							{activeComponent === "uploadImage" && (
-								<PreviewFrame>
-									<LiveUploadImage
-										state={uploadImageState}
-										setState={setUploadImageState}
-									/>
+									<LiveTable />
 								</PreviewFrame>
 							)}
 							{activeComponent === "pincode" && (
@@ -320,7 +335,7 @@ export default function CompactDesignToCodeSection() {
 								React Library
 							</p>
 							<p className="mt-1 text-sm font-medium text-slate-500">
-								{componentLabels[activeComponent]}.tsx
+								{componentLabels[activeComponent]}Use.tsx
 							</p>
 						</div>
 					</div>
@@ -335,71 +350,43 @@ export default function CompactDesignToCodeSection() {
 	);
 }
 function LiveMotifCard() {
-	return (
-		<div className="mx-auto w-full max-w-[420px] overflow-hidden rounded-[22px] border border-slate-200 bg-white shadow-[0_12px_28px_rgba(15,23,42,0.08)]">
-			<div className="flex items-center justify-between gap-4 px-5 py-4">
-				<div className="flex items-center gap-4">
-					<div className="flex h-12 w-12 items-center justify-center rounded-full bg-sky-600 text-white">
-						<Folder className="h-6 w-6 fill-white text-white" />
-					</div>
-					<div>
-						<h4 className="text-xl font-semibold tracking-[-0.03em] text-slate-900">
-							Card Header Title
-						</h4>
-						<p className="text-base text-slate-500">Motif Card Subtitle</p>
-					</div>
-				</div>
-				<button className="text-slate-400 transition hover:text-slate-600">
-					<Download className="h-8 w-8" />
-				</button>
-			</div>
-			<div className="h-[180px] w-full bg-[linear-gradient(135deg,#3d2a1f,#241c19_38%,#674228_72%,#1b1b1b)]" />
-			<div className="px-5 py-5">
-				<h5 className="text-xl font-semibold tracking-[-0.03em] text-slate-900">
-					Card Content Title
-				</h5>
-				<p className="mt-1 text-base text-slate-500">Card Content Subtitle</p>
-				<p className="mt-5 text-base text-slate-800">
-					Motif Card Supporting Text
-				</p>
-				<button className="mt-5 text-base font-medium text-sky-600 transition hover:text-sky-700">
-					Motif Link
-				</button>
-			</div>
-			<div className="flex flex-wrap items-center gap-3 border-t border-slate-200 px-5 py-4">
-				<button className="rounded-full bg-sky-600 px-6 py-3 text-base font-semibold text-white transition hover:bg-sky-700">
-					Action
-				</button>
-				<button className="rounded-full border border-slate-300 bg-white px-6 py-3 text-base font-semibold text-slate-700 transition hover:bg-slate-50">
-					Alternate
-				</button>
-				<button className="inline-flex items-center gap-2 text-base font-medium text-sky-600 transition hover:text-sky-700">
-					Motif Link <ArrowRight className="h-4 w-4" />
-				</button>
-			</div>
-		</div>
-	);
+	return (<div className="mx-auto w-full max-w-[420px]">
+        <Card
+        title="Card Header Title"
+        subtitle="Motif Card Subtitle"
+        icon="folder"
+        action={{icon: "download", onClick: () => {}}}
+        contentImage="https://picsum.photos/500/220"
+        contentTitle="Card Content Title"
+        contentSubtitle="Card Content Subtitle"
+        contentText="Motif Card Supporting Text"
+        contentLink={{text: "Motif Link", href: "#"}}
+        contentActionButton={{text: "Action", onClick: () => {}}}
+        contentAlternateButton={{text: "Alternate", onClick: () => {}}}
+        contentActionLink={{text: "Motif Link", href: "#"}}
+        elevated />
+    </div>);
 }
 function LiveMotifDataView() {
 	const rows = [
 		["Name", "Motif"],
 		["Platform", "Web, mobile"],
 		["Founded", "2008"],
-		["Website", "https://www.motif-ui.com"],
-		["Platform Failures", ""],
+		["Website", "motif-ui.com"],
 		["Country", "Türkiye"],
 		["Developer", "Türksat"],
+        ["Failure", "N/A"],
 	];
 	return (
-		<div className="mx-auto w-full max-w-[520px] overflow-hidden rounded-[18px] border border-slate-300 bg-white">
-			{rows.map(([label, value], index) => (
-				<div
-					key={`${label}-${index}`}
-					className="grid grid-cols-[180px_1fr] border-b border-slate-300 px-5 py-4 last:border-b-0">
-					<div className="text-[18px] text-slate-500">{label}</div>
-					<div className="text-[18px] text-slate-800">{value}</div>
-				</div>
-			))}
+		<div className="mx-auto w-full max-w-[520px] overflow-hidden border border-slate-300 ">
+            <DataView rowVariant="solid">
+                {rows.map(([label, value], index) => (
+                    <DataView.Item
+                        key={`${label}-${index}`}
+                        label={label}
+                        value={value} />
+                ))}
+            </DataView>
 		</div>
 	);
 }
@@ -410,368 +397,112 @@ function PreviewFrame({ children }: { children: React.ReactNode }) {
 		</div>
 	);
 }
-function LiveMotifTimePicker({
-	selectedHour,
-	selectedMinute,
-	setSelectedHour,
-	setSelectedMinute,
-}: {
-	selectedHour: number;
-	selectedMinute: number;
-	setSelectedHour: (value: number) => void;
-	setSelectedMinute: (value: number) => void;
-}) {
-	const hours = [14, 15, 16, 17, 18, 19];
-	const minutes = [3, 4, 5, 6, 7, 8];
+function LiveMotifTimePicker() {
 	return (
-		<div className="flex justify-center">
-			<div className="origin-top">
-				<div className="mx-auto w-full max-w-[720px] overflow-hidden rounded-[18px] border border-slate-200 bg-white shadow-[0_10px_24px_rgba(15,23,42,0.08)]">
-					<div className="px-2 pt-2 text-center text-[36px] font-semibold tracking-[-0.04em] text-sky-600">
-						{String(selectedHour).padStart(2, "0")} :
-						{String(selectedMinute).padStart(2, "0")}
-					</div>
-					<div className="px-6 pb-6 pt-4">
-						<div className="rounded-md bg-slate-50 px-4 py-4">
-							<div className="grid grid-cols-2 gap-4">
-								<div className="text-center">
-									<div className="mb-2 text-[14px] text-slate-500">Hr</div>
-									<div className="space-y-2">
-										{hours.map((hour) => (
-											<button
-												key={hour}
-												onClick={() => setSelectedHour(hour)}
-												className={[
-													"flex h-11 w-full items-center justify-center rounded-xl text-[20px] font-semibold transition",
-													selectedHour === hour
-														? "border-2 border-blue-700 bg-sky-600 text-white"
-														: "text-slate-600 hover:bg-slate-100",
-												].join(" ")}>
-												{String(hour).padStart(2, "0")}
-											</button>
-										))}
-									</div>
-								</div>
-								<div className="text-center">
-									<div className="mb-2 text-[14px] text-slate-500">Mn</div>
-									<div className="space-y-2">
-										{minutes.map((minute) => (
-											<button
-												key={minute}
-												onClick={() => setSelectedMinute(minute)}
-												className={[
-													"flex h-11 w-full items-center justify-center rounded-xl text-[20px] font-semibold transition",
-													selectedMinute === minute
-														? "bg-sky-600 text-white"
-														: "text-slate-600 hover:bg-slate-100",
-												].join(" ")}>
-												{String(minute).padStart(2, "0")}
-											</button>
-										))}
-									</div>
-								</div>
-							</div>
-						</div>
-						<div className="mt-4 flex items-center justify-between border-t border-slate-300 pt-4">
-							<button
-								onClick={() => {
-									setSelectedHour(19);
-									setSelectedMinute(3);
-								}}
-								className="rounded-xl bg-slate-200 px-8 py-3 text-[16px] font-semibold text-slate-700 transition hover:bg-slate-300">
-								Clear
-							</button>
-							<button className="rounded-xl ml-6 bg-sky-600 px-8 py-3 text-[16px] font-semibold text-white transition hover:bg-sky-700">
-								OK
-							</button>
-						</div>
-					</div>
-				</div>
-			</div>
+        <TimePicker
+            value={{hours: 12, minutes: 12, seconds: 8}}
+            secondsEnabled
+            size="md"
+            onOkClick={time => alert(JSON.stringify(time))}
+            onClearClick={() => console.log("cleared...")}
+            variant="bordered"
+            format="12h"
+        />
+	);
+}
+function LiveMotifUpload() {
+	return (
+		<div className="mx-auto w-full max-w-[520px] overflow-hidden">
+			<UploadDragger
+                size="lg"
+                uploadRequest={{method: "POST", url: "https://my.url"}}
+                deleteRequest={{method: "POST", url: "https://my.url"}}
+                maxSize={10}
+                maxFile={1}
+                autoUpload={false} />
 		</div>
 	);
 }
-function LiveMotifUpload({
-	uploaded,
-	setUploaded,
-}: {
-	uploaded: boolean;
-	setUploaded: (value: boolean) => void;
-}) {
+function LiveMotifAccordion() {
 	return (
-		<div className="mx-auto w-full max-w-[520px] overflow-hidden rounded-[12px] border border-slate-400 bg-white">
-			<div
-				className="flex min-h-[300px] cursor-pointer flex-col items-center justify-center px-8 py-10 text-center transition hover:bg-slate-50"
-				onClick={() => setUploaded(true)}>
-				<FileUp className="h-16 w-16 text-slate-400" />
-				<p className="mt-6 text-[20px] text-slate-700">
-					Click here to upload files or drag files here.
-				</p>
-				<p className="mt-3 text-[16px] text-slate-500">
-					You can add maximum 1 file.
-				</p>
-			</div>
-			{uploaded && (
-				<div className="flex items-center justify-between border-t border-slate-400 px-5 py-4">
-					<div className="flex items-center gap-4">
-						<UploadIcon className="h-8 w-8 text-slate-400" />
-						<div>
-							<p className="text-[18px] text-slate-800">showcase.png</p>
-							<p className="text-[14px] text-emerald-600">
-								Uploaded Successfully
-							</p>
-						</div>
-					</div>
-					<button
-						onClick={() => setUploaded(false)}
-						className="text-slate-400 transition hover:text-red-500">
-						<Trash2 className="h-8 w-8" />
-					</button>
-				</div>
-			)}
-		</div>
+        <Accordion.Group multiExpand={false} condensed>
+            <Accordion index={0} icon="folder" title="Accordion 1" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae fermentum arcu, vitae dignissim quam. Suspendisse eu nisi semper, congue augue tincidunt, porttitor dui." />
+            <Accordion index={1} expanded title="Accordion 2" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque porta eu orci non varius. Sed ac orci suscipit turpis tristique feugiat. Maecenas vitae diam elit. Donec ac mi blandit, vehicula tellus sed, iaculis turpis. Integer in odio ut metus imperdiet pulvinar. Sed lobortis, sem in egestas ornare, lectus metus ultrices erat, vel interdum ante libero vitae ante. Morbi ut interdum eros, ac sollicitudin turpis. Nullam augue metus, blandit ut ligula vitae, posuere condimentum purus. Ut facilisis dui a sapien pharetra facilisis. Fusce placerat sem ut magna mattis, sit amet porta purus pretium. Quisque libero turpis, facilisis non tempor nec, egestas vitae odio." />
+            <Accordion index={2} title="Accordion 3">
+                <div className="py-12 font-bold text-amber-700 bg-purple-100 text-center">Custom HTML content</div>
+            </Accordion>
+        </Accordion.Group>
 	);
 }
-function LiveMotifAccordion({
-	openIndex,
-	setOpenIndex,
-}: {
-	openIndex: number;
-	setOpenIndex: (value: number) => void;
-}) {
-	const items = [
-		{ title: "Accordion 1", content: "" },
-		{
-			title: "Accordion 2",
-			content:
-				"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae fermentum arcu, vitae dignissim quam. Suspendisse eu nisi semper, congue augue tincidunt, porttitor dui.",
-		},
-		{ title: "Accordion 3", content: "" },
-	];
+function LiveSelect({values, setValues }: {values: string[]; setValues: (value: string[]) => void;}) {
 	return (
-		<div className="mx-auto w-full max-w-[460px] overflow-hidden rounded-[10px] border border-slate-400 bg-white">
-			{items.map((item, index) => {
-				const open = openIndex === index;
-				return (
-					<div
-						key={item.title}
-						className="border-b border-slate-400 last:border-b-0">
-						<button
-							onClick={() => setOpenIndex(open ? -1 : index)}
-							className="flex w-full items-center justify-between px-4 py-3 text-left">
-							<span className="text-[18px] font-semibold text-slate-900">
-								{item.title}
-							</span>
-							<ChevronDown
-								className={`h-6 w-6 text-slate-900 transition ${open ? "rotate-180" : ""}`}
-							/>
-						</button>
-						{open && item.content && (
-							<div className="px-4 pb-6 text-[14px] leading-8 text-slate-600">
-								{item.content}
-							</div>
-						)}
-					</div>
-				);
-			})}
-		</div>
+        <Select
+            className="mx-auto w-full max-w-[560px] relative"
+            multiple
+            filterable
+            value={values}
+            size="lg"
+            onChange={val => setValues((val as {value: string}[]).map((v:{value: string}) => v.value) )}
+            data={[
+                {groupLabel: "Cities", groupKey: "cities",
+                    items: [
+                        { label: "İstanbul", value: "34" },
+                        { label: "Ankara", value: "06" },
+                        { label: "İzmir", value: "35" }
+                    ]
+                },
+                {groupLabel: "Districts", groupKey: "districs",
+                    items: [
+                        { label: "Gölbaşı", value: "golbasi" },
+                        { label: "Polatlı", value: "polatli" },
+                        { label: "Çankaya", value: "cankaya" }
+                    ]
+                }
+            ]}/>
 	);
 }
-function LiveAutocomplete({
-	items,
-	setItems,
-}: {
-	items: string[];
-	setItems: (value: string[]) => void;
-}) {
-	const options = [
-		"item 1",
-		"item 2",
-		"item 3",
-		"item 4",
-		"item 5",
-		"item 6",
-		"item 7",
-	];
-	const [open, setOpen] = useState(false);
-	const addItem = (item: string) => {
-		if (!items.includes(item)) {
-			setItems([...items, item]);
-		}
-	};
-	const removeItem = (item: string) => {
-		setItems(items.filter((i) => i !== item));
-	};
-	const clearAll = () => {
-		setItems([]);
-	};
+function LivePagination({ page, setPage,}: { page: number; setPage: (value: number) => void; }) {
 	return (
-		<div className="mx-auto w-full max-w-[560px] relative">
-			<div className="rounded-[16px] bg-slate-200 px-4 py-4 flex items-center gap-2">
-			
-				<div className="ml-2 flex flex-wrap items-center gap-2 flex-1">
-					{items.map((item) => (
-						<div
-							key={item}
-							className="flex items-center gap-2 rounded-full bg-slate-100 px-4 py-2 text-[16px] text-slate-600">
-							{item}
-							<button onClick={() => removeItem(item)}>
-								<X className="h-5 w-5 text-slate-500" />
-							</button>
-						</div>
-					))}
-				</div>
-				<button
-					onClick={clearAll}
-					className="flex h-6 w-6 items-center justify-center rounded-full bg-slate-400 text-white shrink-0">
-					<X className="h-4 w-4" />
-				</button>
-				<button onClick={() => setOpen(!open)} className="shrink-0">
-					<ChevronDown className="h-6 w-6 text-slate-600 ml-1" />
-				</button>
-			</div>
-			{open && (
-				<div className="absolute mt-2 w-full rounded-xl border border-slate-300 bg-white shadow-lg z-20 overflow-hidden">
-					{options.map((option) => (
-						<button
-							key={option}
-							onClick={() => addItem(option)}
-							className="w-full px-4 py-2 text-left text-[16px] hover:bg-slate-100">
-							{option}
-						</button>
-					))}
-				</div>
-			)}
-		</div>
+        <div className="mx-auto w-full max-w-[420px] text-center">
+            <Pagination total={50} current={page} pageSize={10} size="lg" onChange={setPage} />
+        </div>
 	);
 }
-function LivePagination({
-	page,
-	setPage,
-}: {
-	page: number;
-	setPage: (value: number) => void;
-}) {
-	const pages = [1, 2, 3];
-	return (
-		<div className="flex items-center gap-6 text-[20px] text-slate-700">
-			<button onClick={() => setPage(Math.max(1, page - 1))}>
-				<ChevronLeft className="h-12 w-12 cursor-pointer" />
-			</button>
-			{pages.map((p) => (
-				<button
-					key={p}
-					onClick={() => setPage(p)}
-					className={[
-						"flex h-12 w-12 items-center justify-center rounded-xl",
-						page === p
-							? "bg-sky-700 text-white"
-							: "bg-slate-200 text-slate-700",
-					].join(" ")}>
-					{p}
-				</button>
-			))}
-			<span className="px-2">...</span> <span>9</span>
-			<button onClick={() => setPage(Math.min(9, page + 1))}>
-				<ChevronRight className="h-8 w-8 cursor-pointer" />
-			</button>
-		</div>
+function LivePinCode({values, setValues,}: { values: string[]; setValues: (value: string[]) => void; }) {
+	return (<PinCode style={{padding: 12}} size="lg" circle value={values} onChange={newVals => setValues(newVals as string[])}>
+            <PinCode.Item />
+            <PinCode.Item masked />
+            <PinCode.Item />
+            <PinCode.Item space />
+            <PinCode.Item disabled />
+            <PinCode.Item />
+        </PinCode>
 	);
 }
-function LivePinCode({
-	values,
-	setValues,
-}: {
-	values: string[];
-	setValues: (value: string[]) => void;
-}) {
-	const update = (index: number, val: string) => {
-		const copy = [...values];
-		copy[index] = val;
-		setValues(copy);
-	};
+function LiveTable() {
 	return (
-		<div className="flex gap-4">
-			{values.map((v, i) => (
-				<input
-					key={i}
-					value={v}
-					maxLength={1}
-					onChange={(e) => update(i, e.target.value)}
-					className={[
-						"h-20 w-20 rounded-xl border text-center text-[32px] font-semibold outline-none",
-						i === 1
-							? "border-4 border-sky-500 ring-4 ring-sky-200"
-							: "border-slate-300",
-					].join(" ")}
-				/>
-			))}
-		</div>
-	);
-}
-function LiveUploadImage({
-	state,
-	setState,
-}: {
-	state: "empty" | "uploading" | "done";
-	setState: (value: "empty" | "uploading" | "done") => void;
-}) {
-	const [viewing, setViewing] = useState(false);
-	if (state === "empty") {
-		return (
-			<div
-				onClick={() => {
-					setState("uploading");
-					setTimeout(() => setState("done"), 1500);
-				}}
-				className="flex h-[360px] w-[360px] cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed border-slate-300 bg-slate-100 text-center">
-				<div className="text-[80px] text-slate-400">+</div>
-				<p className="mt-4 text-[28px] text-slate-500">
-					Choose or Drag <br /> an Image
-				</p>
-			</div>
-		);
-	}
-	if (state === "uploading") {
-		return (
-			<div className="flex h-[360px] w-[360px] flex-col items-center justify-center rounded-xl border-2 border-dashed border-slate-300 bg-slate-100">
-				<p className="text-[28px] text-slate-500">Uploading</p>
-				<div className="mt-6 h-3 w-64 rounded-full bg-slate-300">
-					<div className="h-3 w-40 rounded-full bg-sky-600" />
-				</div>
-			</div>
-		);
-	}
-	return (
-		<>
-			<div className="relative h-[360px] w-[360px] overflow-hidden rounded-xl border bg-white">
-				<img
-					src="/gallery/card-preview.png"
-					className="h-full w-full object-cover"
-				/>
-				<div className="absolute inset-0 flex items-center justify-center gap-6 bg-white/70">
-					<button
-						onClick={() => setViewing(true)}
-						className="flex h-20 w-20 items-center justify-center rounded-xl bg-white shadow">
-						<Eye className="h-10 w-10 text-sky-600" />
-					</button>
-					<button
-						onClick={() => setState("empty")}
-						className="flex h-20 w-20 items-center justify-center rounded-xl bg-white shadow">
-						<Trash2 className="h-10 w-10 text-red-600" />
-					</button>
-				</div>
-			</div>
-			{viewing && (
-				<div
-					onClick={() => setViewing(false)}
-					className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-10">
-					<img
-						src="/gallery/card-preview.png"
-						className="max-h-full max-w-full rounded-xl"
-					/>
-				</div>
-			)}
-		</>
+        <div className="flex h-full w-full">
+            <Table
+                fluid
+                hoverable
+                selectable
+                data={[
+                    { "name": "Ahmet", "surname": "Yılmaz", "age": 28, "address": { "city": "Istanbul" } },
+                    { "name": "Ayşe", "surname": "Demir", "age": 34, "address": { "city": "Ankara" } },
+                    { "name": "Mehmet", "surname": "Kaya", "age": 45, "address": { "city": "Izmir" } },
+                    { "name": "Elif", "surname": "Çelik", "age": 22, "address": { "city": "Bursa" } },
+                    { "name": "Can", "surname": "Şahin", "age": 31, "address": { "city": "Antalya" } },
+                    { "name": "Zeynep", "surname": "Koç", "age": 27, "address": { "city": "Adana" } },
+                    { "name": "Burak", "surname": "Aydın", "age": 39, "address": { "city": "Gaziantep" } },
+                    { "name": "Selin", "surname": "Arslan", "age": 25, "address": { "city": "Eskişehir" } }
+                ]}
+                columns={[
+                    { title: "Name", dataKey: "name", sorting: {} },
+                    { title: "Surname", dataKey: "surname" },
+                    { title: "Age", dataKey: "age", footer:{type: "avg", title:"Avg"} },
+                    { title: "City", dataKey: "address.city" },
+                ]}
+            />
+        </div>
 	);
 }

@@ -12,8 +12,6 @@ import {
 	Boxes,
 	FileText,
 	Info,
-	Search,
-	Eye,
 	Check,
 	House,
 	RotateCcw,
@@ -29,25 +27,34 @@ import {
 	Image as ImageIcon,
 	Table2,
 	Strikethrough,
-	Undo2,
-	Redo2,
 	X,
 	Mail,
 	Briefcase,
 	CircleHelp,
 } from "lucide-react";
+import {
+    DateRangePicker,
+    Form,
+    InputPassword,
+    InputText,
+    Radio,
+    RadioGroup, Slider, SliderRange,
+    Switch, Tab,
+    UploadInput, UploadList,
+    Validations
+} from "@motif-ui/react";
 
 export default function MotifComponentMatrixSection() {
 	const tabs = [
-		{ id: "forms", label: "Forms", icon: FileText },
-		{ id: "navigation", label: "Navigation", icon: Home },
-		{ id: "feedback", label: "Feedback", icon: Info },
-		{ id: "surfaces", label: "Surfaces", icon: Boxes },
+        { id: "forms", label: "Forms", icon: "description" },
+        { id: "navigation", label: "Navigation", icon: "home" },
+        { id: "feedback", label: "Feedback", icon: "info_outline" },
+        { id: "surfaces", label: "Surfaces", icon: "border_all" },
 	] as const;
-	
+
 
 	const [activeTab, setActiveTab] =
-		useState<(typeof tabs)[number]["id"]>("forms");
+		useState<string>("forms");
 
 	return (
 		<section className="mx-auto w-full max-w-[1480px] px-4 py-16 lg:px-8">
@@ -66,27 +73,9 @@ export default function MotifComponentMatrixSection() {
 			</div>
 
 			<div className="mb-8 flex justify-center">
-				<div className="inline-flex flex-wrap items-center gap-1 rounded-2xl border border-slate-200 bg-slate-50 p-1.5">
-					{tabs.map((tab) => {
-						const Icon = tab.icon;
-						const active = activeTab === tab.id;
-
-						return (
-							<button
-								key={tab.id}
-								onClick={() => setActiveTab(tab.id)}
-								className={[
-									"inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-medium transition-all",
-									active
-										? "bg-white text-slate-950 shadow-sm"
-										: "text-slate-600 hover:bg-white hover:text-slate-900",
-								].join(" ")}>
-								<Icon className="h-4 w-4" />
-								{tab.label}
-							</button>
-						);
-					})}
-				</div>
+                <Tab
+                    onTabChange={setActiveTab}
+                    tabs={tabs.map(({id, label, icon}) => ({id, icon, title: label}))} />
 			</div>
 
 			<div className="overflow-visible rounded-[28px] border border-slate-200 bg-white">
@@ -145,6 +134,9 @@ function FormsMatrix() {
 	const [radio, setRadio] = useState("black");
 	const [terms, setTerms] = useState(false);
 	const [distance, setDistance] = useState(35);
+    const today = new Date();
+    const tenDaysLater = new Date();
+    tenDaysLater.setDate(today.getDate() + 10);
 
 	return (
 		<MatrixShell>
@@ -152,159 +144,62 @@ function FormsMatrix() {
 				title="Date Range Picker"
 				description="Large date-range selection surfaces support filtering, scheduling, and reporting flows in enterprise interfaces."
 				className="md:col-span-2 xl:col-span-2">
-				<MiniDateRangePicker />
+                <DateRangePicker variant="bordered" value={[today, tenDaysLater]} />
 			</Cell>
 
 			<Cell
 				title="Selection Controls"
 				description="Radio buttons and switches present form decisions with a clean hierarchy and clear emphasis.">
-				<div className="w-full space-y-6">
-					<div>
-						<label className="mb-2 block text-sm font-semibold text-slate-700">
-							Username
-						</label>
-						<input
-							defaultValue="reshaped"
-							className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none"
-						/>
-					</div>
-
-					<div>
-						<label className="mb-2 block text-sm font-semibold text-slate-700">
-							Password
-						</label>
-						<div className="flex items-center rounded-xl border border-slate-300 bg-white px-4 py-3">
-							<input
-								type="password"
-								defaultValue="12345678"
-								className="w-full outline-none"
-							/>
-							<Eye className="h-5 w-5 text-slate-500" />
-						</div>
-					</div>
-
-					<div>
-						<p className="mb-3 text-sm font-semibold text-slate-800">
-							Black or White *
-						</p>
-						<div className="flex gap-8">
-							{["black", "white"].map((value) => (
-								<button
-									key={value}
-									onClick={() => setRadio(value)}
-									className="flex items-center gap-3">
-									<span
-										className={[
-											"flex h-7 w-7 items-center justify-center rounded-full border transition",
-											radio === value
-												? "border-sky-600 bg-sky-600"
-												: "border-slate-300 bg-white",
-										].join(" ")}>
-										<span className="h-3 w-3 rounded-full" />
-									</span>
-									<span className="text-lg font-medium capitalize text-slate-800">
-										{value}
-									</span>
-								</button>
-							))}
-						</div>
-						<p className="mt-3 text-sm text-slate-500">
-							You have to choose one
-						</p>
-					</div>
-
-					<div>
-						<p className="mb-3 text-sm font-semibold text-slate-800">
-							Terms and Conditions *
-						</p>
-						<button
-							onClick={() => setTerms((v) => !v)}
-							className={[
-								"relative inline-flex h-9 w-18 rounded-full transition",
-								terms ? "bg-sky-600" : "bg-slate-300",
-							].join(" ")}>
-							<span
-								className={[
-									"absolute top-1.5 h-6 w-6 rounded-full bg-white shadow transition",
-									terms ? "left-10" : "left-1.5",
-								].join(" ")}
-							/>
-						</button>
-						<p className="mt-3 text-sm text-slate-500">
-							I agree to the terms and conditions.
-						</p>
-					</div>
-				</div>
+                <Form onSubmit={() => {}} className="w-full">
+                    <Form.Field name="username" label="Username" helperText="Please enter your username.">
+                        <InputText value="Motif UI" />
+                    </Form.Field>
+                    <Form.Field name="password" label="Password" helperText="Please enter your password.">
+                        <InputPassword toggleMask value="password" />
+                    </Form.Field>
+                    <Form.Field name="blackwhite" label="Black or White" validations={[Validations.Required]} helperText="You have to choose one">
+                        <RadioGroup name="blackwhite" orientation="horizontal">
+                            <Radio value="black" label="Black" />
+                            <Radio value="white" label="White" />
+                        </RadioGroup>
+                    </Form.Field>
+                    <Form.Field name="terms" label="Terms and Conditions" validations={[Validations.Required]} helperText="I agree to the terms and conditions.">
+                        <Switch />
+                    </Form.Field>
+                </Form>
 			</Cell>
 
 			<Cell
 				title="Upload Inputs"
 				description="Browse and drag-and-drop file flows can live within the same visual language.">
-				<div className="w-full space-y-5">
-					<div>
-						<p className="mb-2 text-sm font-semibold text-slate-800">
-							Personal Document *
-						</p>
-						<div className="flex overflow-hidden rounded-xl border border-slate-300 bg-white">
-							<button className="flex items-center gap-2 border-r border-slate-300 px-4 py-3 font-medium text-slate-700">
-								<Search className="h-5 w-5" />
-								Browse...
-							</button>
-							<div className="flex flex-1 items-center px-4 text-slate-400">
-								Select a file
-							</div>
-						</div>
-						<p className="mt-2 text-sm text-slate-500">
-							Upload any type of personal document
-						</p>
-					</div>
-
-					<div>
-						<p className="mb-2 text-sm font-semibold text-slate-800">
-							Identity Register Copy *
-						</p>
-						<div className="rounded-xl border border-slate-300 bg-white p-4">
-							<div className="flex items-center gap-4">
-								<button className="rounded-xl bg-sky-600 px-5 py-3 font-semibold text-white">
-									Browse...
-								</button>
-								<p className="text-slate-600">
-									Drop the files you want to upload here
-								</p>
-							</div>
-						</div>
-						<p className="mt-2 text-sm text-slate-500">
-							Upload any type of file, max size 1 MB
-						</p>
-					</div>
-				</div>
+                <Form onSubmit={() => {}} submitButtonLabel="" className="w-full -mb-12" style={{minWidth: "auto"}}>
+                    <Form.Field name="personaldocument" label="Personal Document" helperText="Upload any type of personal document">
+                        <UploadInput uploadRequest={{method: "POST", url: "https://"}} deleteRequest={{method: "POST", url: "https://"}} maxSize={1} />
+                    </Form.Field>
+                    <Form.Field name="identityregister" label="Identitiy Register Copy" helperText="Upload any type of file, max size 1 MB"  validations={[Validations.RequiredUploadedFile]}>
+                        <UploadList uploadRequest={{method: "POST", url: "https://"}} deleteRequest={{method: "POST", url: "https://"}} maxSize={1} />
+                    </Form.Field>
+                </Form>
 			</Cell>
 
 			<Cell
 				title="Range Slider"
 				description="Single-value sliders remain clean and readable on dense data entry screens.">
-				<div className="w-full">
-					<p className="mb-4 text-sm font-semibold text-slate-800">
-						Minimum Distance
-					</p>
-					<input
-						type="range"
-						min={0}
-						max={100}
-						value={distance}
-						onChange={(e) => setDistance(Number(e.target.value))}
-						className="w-full accent-sky-600"
-					/>
-					<p className="mt-3 text-sm text-slate-500">
-						Please choose a minimum distance: {distance}
-					</p>
-				</div>
+                <Form onSubmit={() => {}} submitButtonLabel="" className="w-full -mb-12">
+                    <Form.Field name="slider" label="Minimum Distance" helperText="Please choose a minimum distance: 30">
+                        <Slider value={30} />
+                    </Form.Field>
+                </Form>
 			</Cell>
 
 			<Cell
 				title="Range Between"
 				description="Dual-handle range selection works well for filters such as age, price, or distance.">
-				<RangeBetween />
+                <Form onSubmit={() => {}} submitButtonLabel="" className="w-full -mb-12">
+                    <Form.Field name="range" label="Age Between" helperText="Please choose an age range">
+                        <SliderRange value={[30, 80]} min={20} max={90} />
+                    </Form.Field>
+                </Form>
 			</Cell>
 		</MatrixShell>
 	);

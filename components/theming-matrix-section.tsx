@@ -2,7 +2,6 @@ import { useState } from "react";
 import { TreeViewSurface } from "./tree-view";
 import {
 	Home,
-	User,
 	CalendarDays,
 	ChevronRight,
 	ChevronLeft,
@@ -10,7 +9,6 @@ import {
 	Folder,
 	Download,
 	Boxes,
-	FileText,
 	Info,
 	Check,
 	House,
@@ -33,12 +31,13 @@ import {
 	CircleHelp,
 } from "lucide-react";
 import {
-    DateRangePicker,
+    Breadcrumb,
+    DateRangePicker, Dropdown,
     Form,
     InputPassword,
-    InputText,
+    InputText, MenuList,
     Radio,
-    RadioGroup, Slider, SliderRange,
+    RadioGroup, Select, Slider, SliderRange,
     Switch, Tab,
     UploadInput, UploadList,
     Validations
@@ -222,47 +221,28 @@ function NavigationMatrix() {
 			<Cell
 				title="Sidebar Navigation"
 				description="Service-oriented side navigation supports active states, grouped actions, and status badges.">
-				<div className="w-full max-w-[360px] rounded-2xl border border-slate-200 bg-white p-4">
-					<div className="mb-5 text-center text-xl font-bold text-red-500">
-						turkiye.gov.tr
-					</div>
 
-					<div className="space-y-3">
-						<button
-							onClick={() => setActive("home")}
-							className={[
-								"flex w-full items-center gap-3 rounded-xl px-4 py-4 text-left text-xl font-medium",
-								active === "home" ? "bg-sky-600 text-white" : "text-slate-700",
-							].join(" ")}>
-							<Home className="h-6 w-6" />
-							Home
-						</button>
-
-						<button
-							onClick={() => setActive("about")}
-							className="flex w-full items-center gap-3 rounded-xl px-4 py-4 text-left text-xl font-medium text-slate-400">
-							<Info className="h-6 w-6" />
-							About
-						</button>
-
-						<button
-							onClick={() => setActive("contact")}
-							className="flex w-full items-center gap-3 rounded-xl bg-slate-100 px-4 py-4 text-left text-xl font-medium text-sky-600">
-							<User className="h-6 w-6" />
-							Contact
-							<span className="ml-1 rounded-full bg-green-500 px-3 py-1 text-sm text-white">
-								New
-							</span>
-						</button>
-
-						<button className="flex w-full items-center justify-between rounded-xl px-4 py-4 text-left text-xl font-medium text-slate-800">
-							<span className="flex items-center gap-3">
-								<Folder className="h-6 w-6" />
-								Submenu
-							</span>
-							<ChevronDown className="h-6 w-6 -rotate-90" />
-						</button>
-					</div>
+				<div className="w-full max-w-[360px] rounded-2xl border border-slate-200 bg-white p-1">
+                    <MenuList footerText="© All rights reserved." logo="https://cdn.e-devlet.gov.tr/downloads/kurumsal-kimlik/logo/e-devlet-logo.png"
+                              items={[
+                        { label: "Home", icon: "home", href: "/", active: true },
+                        { label: "About", icon: "info", disabled: true },
+                        {
+                            label: "Contact",
+                            icon: "person",
+                            targetBlank: true,
+                            href: "https://motif-ui.com/",
+                            chip: { label: "New", variant: "success" },
+                        },
+                        {
+                            label: "SubMenu",
+                            icon: "folder",
+                            items: [
+                                { label: "SubMenu 1", href: "#" },
+                                { label: "SubMenu 2", href: "#" },
+                            ],
+                        },
+                    ]} />
 				</div>
 			</Cell>
 
@@ -286,29 +266,12 @@ function NavigationMatrix() {
 				title="Breadcrumb"
 				description="Hierarchy links arranged inline help users understand location and navigate upward.">
 				<div className="w-full max-w-[800px] rounded-2xl bg-slate-100 px-4 py-5">
-					<div className="flex flex-wrap items-center gap-x-2 gap-y-2">
-						<div className="flex items-center gap-2 text-sky-600">
-							<Home className="h-4 w-4" />
-							<span className="text-lg font-semibold">Link</span>
-						</div>
-
-						<div className="flex items-center gap-2">
-							<ChevronRight className="h-4 w-4 text-slate-400" />
-							<span className="text-lg font-semibold text-slate-400">...</span>
-						</div>
-
-						<div className="flex items-center gap-2">
-							<ChevronRight className="h-4 w-4 text-slate-400" />
-							<span className="text-lg font-semibold text-sky-600">Link</span>
-						</div>
-
-						<div className="flex items-center gap-2">
-							<ChevronRight className="h-4 w-4 text-slate-400" />
-							<span className="text-lg font-semibold text-slate-900">
-								Current Page
-							</span>
-						</div>
-					</div>
+                    <Breadcrumb items={[
+                        { label: "Link", path: "#" },
+                        { label: "Link", path: "#" },
+                        { label: "Link", path: "#" },
+                        { label: "Current Page", path: "#" },
+                    ]} />
 				</div>
 			</Cell>
 		</MatrixShell>
@@ -949,41 +912,32 @@ function WideTopTabs() {
 	return (
 		<div className="w-full max-w-[920px]">
 			<div className="overflow-x-auto">
-				<div className="flex min-w-max items-center gap-8 border-b border-slate-300 px-1 pb-2">
-					{[
-						{ id: "tab1", label: "Tab 1", icon: Home },
-						{ id: "tab2", label: "Tab 2", icon: User },
-						{ id: "tab3", label: "Tab 3", icon: Boxes },
-						{ id: "tab4", label: "Tab 4", icon: FileText },
-					].map((tab) => {
-						const Icon = tab.icon;
-						const isActive = topTab === tab.id;
-
-						return (
-							<button
-								key={tab.id}
-								onClick={() => setTopTab(tab.id)}
-								className={[
-									"flex items-center gap-2 border-b-[3px] pb-3 whitespace-nowrap text-[16px] font-semibold transition",
-									isActive
-										? "border-sky-600 text-sky-600"
-										: "border-transparent text-slate-400 hover:text-slate-700",
-								].join(" ")}>
-								<Icon className="h-5 w-5" />
-								{tab.label}
-							</button>
-						);
-					})}
-				</div>
-			</div>
-
-			<div className="mt-4 flex flex-col gap-4 md:flex-row md:items-start">
-				<div
-					className={`h-[120px] w-full max-w-[180px] rounded-md ${current.visual}`}
-				/>
-				<p className="max-w-[620px] text-[14px] leading-7 text-slate-800">
-					{current.title}
-				</p>
+                <style>
+                    {`
+                    .tabsPlayground > div:last-child {
+                        display: flex;
+                        align-self: stretch;
+                        margin-top: .5rem;
+                        border-top: solid 1px #DDD;
+                        border-b border-slate-300 px-1 pb-2"
+                    }
+                    `}
+                </style>
+                <Tab type="solid" position="left" onTabChange={setTopTab} className="tabsPlayground" tabs={[
+                    { id: "tab1", label: "Tab 1", icon: "home" },
+                    { id: "tab2", label: "Tab 2", icon: "person" },
+                    { id: "tab3", label: "Tab 3", icon: "border_all" },
+                    { id: "tab4", label: "Tab 4", icon: "description" },
+                ].map(({id, label, icon}) => ({id, icon, title: label}))}>
+                    {["1", "2", "3", "4"].map(item => <Tab.Panel id={`tab${item}`}>
+                        <div className="mt-4 flex flex-1 flex-col gap-4 md:flex-row md:items-start">
+                            <div className={`h-[120px] w-full max-w-[180px] rounded-md ${current.visual}`} />
+                            <p className="max-w-[620px] text-[14px] leading-7 text-slate-800">
+                                {current.title}
+                            </p>
+                        </div>
+                    </Tab.Panel>)}
+                </Tab>
 			</div>
 		</div>
 	);
@@ -1003,143 +957,43 @@ function DropdownShowcase() {
 	];
 
 	return (
-		<div className="relative w-[320px]">
-			<button
-				onClick={() => setOpen((v) => !v)}
-				className={[
-					"relative z-20 flex h-[52px] w-full items-center justify-between rounded-xl border bg-white px-4 text-left shadow-sm transition",
-					open
-						? "border-sky-300 ring-4 ring-sky-200"
-						: "border-slate-300 hover:border-slate-400",
-				].join(" ")}>
-				<span className="flex items-center gap-3 text-[14px] text-slate-800">
-					<User className="h-5 w-5 text-slate-800" />
-					Dropdown Menu
-				</span>
-				<ChevronDown
-					className={`h-4 w-4 text-slate-700 transition ${open ? "rotate-180" : ""}`}
-				/>
-			</button>
-
-			{open && (
-				<div className="absolute left-0 right-0 top-[calc(100%+10px)] z-30 overflow-hidden rounded-xl border border-slate-300 bg-white shadow-xl">
-					<div className="absolute right-6 top-[-6px] h-3 w-3 rotate-45 border-l border-t border-slate-300 bg-white" />
-
-					{items.map((item) => {
-						if (item.type === "header") {
-							return (
-								<div
-									key={item.id}
-									className="border-b border-slate-300 px-4 py-4 text-[14px] text-slate-400">
-									{item.label}
-								</div>
-							);
-						}
-
-						const Icon = item.icon;
-
-						return (
-							<button
-								key={item.id}
-								disabled={item.disabled}
-								onClick={() => {
-									if (item.disabled) return;
-									setSelected(item.id);
-									setOpen(false);
-								}}
-								className={[
-									"flex w-full items-center justify-between border-b border-slate-300 px-4 py-4 text-left transition last:border-b-0",
-									item.disabled
-										? "cursor-not-allowed text-slate-400"
-										: "text-slate-700 hover:bg-slate-50",
-									selected === item.id ? "bg-slate-50" : "",
-								].join(" ")}>
-								<span className="flex items-center gap-3 text-[14px]">
-									{Icon && (
-										<Icon
-											className={[
-												"h-5 w-5",
-												item.disabled ? "text-slate-400" : "text-slate-700",
-											].join(" ")}
-										/>
-									)}
-
-									{item.color === "red" && (
-										<span className="flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-[11px] text-white">
-											✓
-										</span>
-									)}
-
-									{item.color === "green" && (
-										<span className="flex h-5 w-5 items-center justify-center rounded-full bg-green-600 text-[11px] text-white">
-											✓
-										</span>
-									)}
-
-									<span>{item.label}</span>
-								</span>
-
-								{selected === item.id && !item.disabled && (
-									<span className="text-sky-600">✓</span>
-								)}
-							</button>
-						);
-					})}
-				</div>
-			)}
-		</div>
+        <Dropdown className="w-[320px]"
+                  label="Dropdown Menu"
+                  variant="secondary"
+                  items={[
+                      { header: "This Is A Header" },
+                      { label: "Item With Icon", icon: "home" },
+                      { label: "Item With Action", action: () => alert("Item Clicked") },
+                      { label: "Item Disabled", icon: "home", disabled: true },
+                      { label: "Item With Colored Icon", icon: "warning", iconColor: "red" },
+                      { label: "Item Success", icon: "check_circle", iconColor: "green" },
+                  ]}
+        />
 	);
 }
 
 function SelectShowcase() {
-	const [open, setOpen] = useState(false);
-	const [selected, setSelected] = useState("Item 3");
-
-	const options = ["Item 1", "Item 2", "Item 3", "Cities", "Istanbul"];
-
 	return (
-		<div className="relative w-[320px]">
-			<button
-				onClick={() => setOpen((v) => !v)}
-				className="flex h-[52px] w-[320px] items-center justify-between rounded-xl border border-slate-400 bg-white px-6 text-left text-[16px] text-slate-800">
-				<span>{selected}</span>
-				<ChevronDown
-					className={`h-4 w-4 text-slate-700 transition ${open ? "rotate-180" : ""}`}
-				/>
-			</button>
-
-			{open && (
-				<div className="absolute left-0 top-[calc(100%+8px)] z-30 w-[320px] max-h-[260px] overflow-y-auto rounded-xl border border-slate-400 bg-white shadow-lg">
-					{options.map((item) => {
-						const isGroup = item === "Cities";
-						const isSelected = selected === item;
-
-						return (
-							<button
-								key={item}
-								onClick={() => {
-									if (isGroup) return;
-									setSelected(item);
-									setOpen(false);
-								}}
-								className={[
-									"flex min-h-[56px] w-full items-center justify-between border-b border-slate-300 px-6 py-4 text-left text-[16px] last:border-b-0",
-									isGroup
-										? "cursor-default text-slate-400"
-										: isSelected
-											? "bg-slate-100 text-sky-600"
-											: "text-slate-800 hover:bg-slate-50",
-								].join(" ")}>
-								<span>{item}</span>
-								{isSelected && !isGroup && (
-									<span className="text-sky-600">✓</span>
-								)}
-							</button>
-						);
-					})}
-				</div>
-			)}
-		</div>
+        <Select className="w-[320px]" data={[
+            { label: "Item 1", value: "i1" },
+            { label: "Item 2", value: "i2" },
+            {
+                groupLabel: "Cities",
+                groupKey: "cities",
+                items: [
+                    { label: "İstanbul", value: "34" },
+                    { label: "Ankara", value: "06" },
+                ],
+            },
+            {
+                groupLabel: "Districts",
+                groupKey: "districs",
+                items: [
+                    { label: "Gölbaşı", value: "golbasi" },
+                    { label: "Çankaya", value: "cankaya" },
+                ],
+            },
+        ]} />
 	);
 }
 

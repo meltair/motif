@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {useRef, useState} from "react";
 import { ListViewSurface } from "./list-view";
 import {
 	Home,
@@ -32,16 +32,17 @@ import {
 } from "lucide-react";
 import {
     Accordion,
-    Alert,
-    Breadcrumb, Button,
+    Alert, Avatar,
+    Breadcrumb, BusinessCard, Button, Card,
     DateRangePicker, Dropdown,
-    Form,
+    Form, Grid,
     Icon,
     InputPassword,
-    InputText, MenuList,
+    InputText, MenuList, Panel, Popover,
     Radio,
     RadioGroup, Select, Slider, SliderRange,
-    Switch, Tab, Toast,
+    Switch, Tab,
+    Text,
     UploadInput, UploadList,
     Validations
 } from "@motif-ui/react";
@@ -74,7 +75,7 @@ export default function MotifComponentMatrixSection() {
 				</p>
 			</div>
 
-			<div className="mb-8 flex justify-center">
+			<div className="mb-2 flex justify-center">
                 <Tab
                     onTabChange={setActiveTab}
                     tabs={tabs.map(({id, label, icon}) => ({id, icon, title: label}))} />
@@ -336,51 +337,64 @@ function SurfacesMatrix() {
 	return (
 		<MatrixShell>
 			<Cell
-				title="Custom Card"
+				title="Card"
 				description="Custom card components serve as the primary surface for services, navigation, and content emphasis.">
-				<div className="w-full max-w-[360px] rounded-2xl border border-slate-300 bg-white p-8 text-center">
-					<Boxes className="mx-auto h-12 w-12 text-slate-500" />
-					<h4 className="mt-4 text-2xl font-semibold text-slate-900">
-						Custom Card Title
-					</h4>
-					<p className="mt-4 text-lg text-slate-500">
-						This is a small text to describe the card
-					</p>
-					<button className="mt-6 text-2xl text-sky-600">Link Item</button>
-				</div>
+                <Card
+                    className="w-full max-w-[360px]"
+                    contentText="Alternate text"
+                    contentTitle="Custom Card Title"
+                    contentSubtitle="This is a small text to describe the card"
+                    contentLink={{ text: "Link Item", href: "#" }}
+                    contentImage="https://picsum.photos/400/200"
+                    contentActionButton={{ text: "Action", onClick: () => {} }}
+                    contentAlternateButton={{ text: "Alternate", onClick: () => {} }}
+                />
 			</Cell>
 
 			<Cell
 				title="Simple Card"
 				description="Icon, title, subtitle, and actions arranged in a single row.">
-				<div className="w-full max-w-[420px] rounded-2xl bg-slate-100 px-6 py-5">
-					<div className="flex items-center justify-between gap-4">
-						<div className="flex items-center gap-4">
-							<div className="flex h-16 w-16 items-center justify-center rounded-full bg-sky-600 text-white">
-								<Folder className="h-8 w-8" />
-							</div>
-							<div>
-								<p className="text-2xl font-semibold text-slate-900">
-									Card Header Title
-								</p>
-								<p className="text-xl text-slate-500">Motif Card Subtitle</p>
-							</div>
-						</div>
-						<Download className="h-10 w-10 text-slate-400" />
-					</div>
-				</div>
+                <div className="w-full max-w-[420px] flex flex-col gap-6">
+                    <Card
+                        outlined
+                        title="Card Header Title"
+                        subtitle="Motif Card Subtitle"
+                        imagePosition="right"
+                        icon="folder"
+                        image="https://picsum.photos/100"
+                    />
+                    <Card
+                        elevated
+                        title="Card Header Title"
+                        subtitle="Motif Card Subtitle"
+                        imagePosition="left"
+                        avatarText="MA"
+                        image="https://picsum.photos/80"
+                        action={{ icon: "download", onClick: () => {} }}
+                    />
+                </div>
 			</Cell>
 
 			<Cell
 				title="Business Card"
 				description="A large call-to-action card combines iconography, strong hierarchy, and a single primary action within one branded surface.">
-				<BusinessCardSurface />
+                <BusinessCard
+                    className="w-full max-w-[420px]"
+                    title="Card Title"
+                    description="Business card description goes here. It can be a bit longer to show text wrapping behavior."
+                    solid
+                    variant="info"
+                    icon="check_circle"
+                    iconButton={{icon: "download", onClick: () => {}}}
+                />
 			</Cell>
 
 			<Cell
-				title="Editor"
-				description="Rich text editing surfaces bring together formatting, media actions, and structured content in a single working canvas.">
-				<EditorSurface />
+				title="Panel"
+				description="Panels help users organize related content and actions within a distinct container, providing clear separation and structure within the interface.">
+                <Panel type="solid" className="w-full max-w-[780px]" title="Panel Title" titleIcon="home" bordered>
+                    <Text text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." />
+                </Panel>
 			</Cell>
 
 			<Cell
@@ -390,9 +404,31 @@ function SurfacesMatrix() {
 			</Cell>
 
 			<Cell
-				title="Result"
-				description="Result screens communicate completion clearly, reinforce confidence, and guide the user toward the next action.">
-				<ResultSurface />
+				title="Grid"
+				description="Grids help users display and navigate structured data in rows and columns, enabling efficient scanning, comparison, and interaction across multiple items.">
+                <div className="w-full max-w-[520px] rounded-[4px] bg-[#f3f4f6] text-center">
+                    <Grid colProps={{ style: { border: "solid 1px #CCC" } }} fluid>
+                        <Grid.Row>
+                            <Grid.Col size={3}>4 Cols</Grid.Col>
+                            <Grid.Col size={3}>4 Cols</Grid.Col>
+                            <Grid.Col size={3}>4 Cols</Grid.Col>
+                            <Grid.Col size={3}>4 Cols</Grid.Col>
+                        </Grid.Row>
+                        <Grid.Row>
+                            <Grid.Col size={4}>3 Cols</Grid.Col>
+                            <Grid.Col size={4}>3 Cols</Grid.Col>
+                            <Grid.Col size={4}>3 Cols</Grid.Col>
+                        </Grid.Row>
+                        <Grid.Row>
+                            <Grid.Col size={6}>2 Cols</Grid.Col>
+                            <Grid.Col size={6}>2 Cols</Grid.Col>
+                        </Grid.Row>
+                        <Grid.Row>
+                            <Grid.Col size={12}>1 Column</Grid.Col>
+                        </Grid.Row>
+                    </Grid>
+                </div>
+
 			</Cell>
 		</MatrixShell>
 	);
@@ -565,31 +601,6 @@ function TreeRow({
 
 /* ---------------- SURFACE MINI COMPONENTS ---------------- */
 
-function BusinessCardSurface() {
-	return (
-		<div className="w-full max-w-[420px] rounded-[22px] bg-sky-600 px-4 py-6 text-white shadow-[0_10px_30px_rgba(2,132,199,0.18)]">
-			<div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-white/95">
-				<Check className="h-6 w-6 text-sky-600" strokeWidth={3} />
-			</div>
-
-			<div className="mt-10 text-center">
-				<h4 className="text-[20px] font-semibold tracking-[-0.02em]">
-					Card Title
-				</h4>
-				<p className="mt-3 text-[16px] font-light text-white/90">
-					EDK Card Description
-				</p>
-			</div>
-
-			<div className="mt-8 flex justify-center">
-				<button className="flex h-8 w-8 items-center justify-center rounded-full text-white/95 transition hover:bg-white/10">
-					<Download className="h-10 w-10" strokeWidth={2.2} />
-				</button>
-			</div>
-		</div>
-	);
-}
-
 function EditorSurface() {
 	const toolbarButton =
 		"flex h-8 w-8 items-center justify-center rounded-md text-slate-600 transition hover:bg-slate-100";
@@ -732,34 +743,23 @@ function EditorSurface() {
 }
 
 function PopoverSurface() {
+    const avatarRef = useRef(null);
+    const buttonRef = useRef(null);
 	return (
-		<div className="grid w-full max-w-[360px] grid-cols-1 gap-6 md:grid-cols-2">
-			<div className="flex flex-col items-start gap-4">
-				<div className="relative rounded-lg bg-sky-600 px-4 py-4 text-[12px] leading-5 text-white shadow-[0_10px_22px_rgba(15,23,42,0.12)]">
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-					<div className="absolute bottom-[-10px] left-8 h-5 w-5 rotate-45 bg-sky-600" />
-				</div>
-
-				<div className="mt-2 flex h-21 w-21 items-center justify-center rounded-full bg-sky-600 text-[24px] font-semibold tracking-[-0.03em] text-white">
-					AB
-				</div>
+		<div className="grid w-full max-w-[360px] grid-cols-1 gap-6 md:grid-cols-2 h-44">
+            <div className="flex flex-col justify-end items-center">
+                <Avatar letters="AB" ref={avatarRef} size="xxl" variant="primary" />
+                <Popover anchorRef={avatarRef} open placeOn="top" variant="primary">
+                    <div className="w-35 p-3">Lorem ipsum dolor sit amet, consectetur...</div>
+                </Popover>
 			</div>
 
-			<div className="flex flex-col gap-5">
-				<div className="rounded-2xl bg-slate-200 px-4 py-4 shadow-[0_8px_18px_rgba(15,23,42,0.06)]">
-					<div className="flex items-center gap-4 text-slate-600">
-						<House className="h-6 w-6" strokeWidth={1.8} />
-						<span className="text-[14px] font-medium tracking-[-0.03em]">
-							Back to Home
-						</span>
-					</div>
-				</div>
-
-				<div className="mt-2 relative rounded-2xl bg-sky-600 px-4 py-4 text-[12px] leading-5 text-white shadow-[0_10px_22px_rgba(15,23,42,0.12)]">
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-					<div className="absolute left-9 top-[-10px] h-5 w-5 rotate-45 bg-sky-600" />
-				</div>
-			</div>
+            <div className="flex flex-col justify-start items-center">
+                <Button label="Back to Home" icon="home" ref={buttonRef} variant="secondary" pill  />
+                <Popover anchorRef={buttonRef} open placeOn="bottom" variant="light">
+                    <div className="w-35 p-3">Lorem ipsum dolor sit amet, consectetur...</div>
+                </Popover>
+            </div>
 		</div>
 	);
 }

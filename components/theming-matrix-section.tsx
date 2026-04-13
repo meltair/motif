@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { TreeViewSurface } from "./tree-view";
+import { ListViewSurface } from "./list-view";
 import {
 	Home,
 	CalendarDays,
@@ -31,14 +31,17 @@ import {
 	CircleHelp,
 } from "lucide-react";
 import {
-    Breadcrumb,
+    Accordion,
+    Alert,
+    Breadcrumb, Button,
     DateRangePicker, Dropdown,
     Form,
+    Icon,
     InputPassword,
     InputText, MenuList,
     Radio,
     RadioGroup, Select, Slider, SliderRange,
-    Switch, Tab,
+    Switch, Tab, Toast,
     UploadInput, UploadList,
     Validations
 } from "@motif-ui/react";
@@ -286,19 +289,12 @@ function FeedbackMatrix() {
 			<Cell
 				title="Alert"
 				description="Information, warning, and status messages provide a simple feedback layer.">
-				<div className="w-full max-w-[420px] rounded-2xl bg-slate-100 px-6 py-5">
-					<div className="flex items-start gap-4">
-						<Info className="mt-1 h-8 w-8 text-slate-500" />
-						<div>
-							<p className="text-2xl font-semibold text-slate-800">
-								Alert Title
-							</p>
-							<p className="mt-2 text-lg text-slate-700">
-								This is a test message for the Alert component.
-							</p>
-						</div>
-					</div>
-				</div>
+                <Alert
+                    message="This is a test message for the Alert component."
+                    title="Alert Title"
+                    className="w-full max-w-[420px]"
+                    variant="info"
+                />
 			</Cell>
 
 			<Cell
@@ -326,9 +322,9 @@ function FeedbackMatrix() {
 			</Cell>
 
 			<Cell
-				title="Tree View"
-				description="Tree views help users browse nested structures, expand groups, and make selections across hierarchical content.">
-				<TreeViewSurface />
+				title="List View"
+				description="List views help users browse structured collections of items, scan content efficiently, and select or interact with individual entries.">
+				<ListViewSurface />
 			</Cell>
 		</MatrixShell>
 	);
@@ -406,159 +402,121 @@ function SurfacesMatrix() {
 
 function TooltipShowcase() {
 	return (
-		<div className="w-full max-w-[760px]">
-			<div className="flex items-center justify-center gap-10 text-slate-500">
-				<Home className="h-10 w-10" strokeWidth={1.8} />
-				<Mail className="h-10 w-10" strokeWidth={1.8} />
-				<Briefcase className="h-10 w-10" strokeWidth={1.8} />
-			</div>
+        <div className="w-full max-w-[760px]">
+            <div className="flex items-center justify-center gap-10 text-slate-500">
+                <Icon name="home" size="xxl" />
+                <Icon name="mail" size="xxl" />
+                <Icon name="cases" size="xxl" />
+            </div>
 
-			<div className="relative mx-auto mt-5 flex w-[290px] justify-center">
-				<div className="relative rounded-2xl bg-slate-100 px-8 py-4 text-[16px] font-light tracking-[-0.02em] text-slate-600">
-					Home
-					<div className="absolute left-1/2 top-[-10px] h-5 w-5 -translate-x-1/2 rotate-45 bg-slate-100" />
-				</div>
-			</div>
+            <div className="relative mx-auto mt-2 flex w-[290px] justify-center">
+                <div
+                    className="mtf-Tooltip mtf-Tooltip--lg mtf-Tooltip--bottom mtf-Tooltip--visible mtf-Tooltip--dark"
+                    role="tooltip"
+                    style={{position: "relative"}}
+                >
+                    <div className="mtf-Tooltip--triangle"></div>
+                    <div className="mtf-Tooltip--textWrapper"><span className="mtf-Tooltip--title">Icon Name</span><span
+                        className="mtf-Tooltip--text">Mail</span></div>
+                </div>
+            </div>
 
-			<div className="relative mt-10 flex justify-center">
-				<div className="relative rounded-2xl bg-slate-100 px-6 py-4 text-center text-[16px] leading-[1.35] text-slate-600">
-					This will submit your form information.
-					<div className="absolute left-1/2 top-full h-5 w-5 -translate-x-1/2 -translate-y-2 rotate-45 bg-slate-100" />
-				</div>
-			</div>
+            <div className="relative mt-10 flex justify-center">
+                <div
+                    className="mtf-Tooltip mtf-Tooltip--md mtf-Tooltip--top mtf-Tooltip--visible mtf-Tooltip--light relative"
+                    role="tooltip"
+                >
+                    <div className="mtf-Tooltip--triangle"></div>
+                    <div className="mtf-Tooltip--textWrapper">
+                        <span className="mtf-Tooltip--text">This will submit your form information.</span>
+                    </div>
+                </div>
+            </div>
 
-			<div className="mt-6 flex justify-center">
-				<button className="inline-flex min-w-[180px] items-center justify-center gap-2 rounded-2xl bg-emerald-500 px-5 py-4 text-[18px] font-semibold tracking-[-0.03em] text-white shadow-sm">
-					<span className="flex h-5 w-5 items-center justify-center rounded-full bg-white/90">
-						<Check className="h-6 w-6 text-emerald-500" strokeWidth={3} />
-					</span>
-					Submit Form
-				</button>
-			</div>
-		</div>
-	);
+            <div className="mt-12 flex justify-center">
+                <Button label="Submit Form" variant="success" size="xl" />
+            </div>
+        </div>
+    );
 }
 
 function ToastSurface() {
-	return (
-		<div className="w-full max-w-[520px] space-y-4">
-			<ToastItem
-				tone="danger"
-				title="Toast Title"
-				content="Toast Content"
-				showContent
-			/>
-			<ToastItem
-				tone="info"
-				title="Toast Title"
-				content="Toast Content"
-				showContent
-			/>
-			<ToastItem tone="neutral" title="Toast Title" content="" />
-		</div>
-	);
-}
-
-function ToastItem({
-	tone,
-	title,
-	content,
-	showContent = false,
-}: {
-	tone: "danger" | "info" | "neutral";
-	title: string;
-	content: string;
-	showContent?: boolean;
-}) {
-	const toneMap = {
-		danger: {
-			box: "bg-red-50",
-			iconWrap: "bg-red-600",
-			title: "text-red-700",
-		},
-		info: {
-			box: "bg-sky-50 shadow-[0_10px_24px_rgba(15,23,42,0.10)]",
-			iconWrap: "bg-blue-500",
-			title: "text-blue-700",
-		},
-		neutral: {
-			box: "bg-slate-100 shadow-[0_10px_24px_rgba(15,23,42,0.08)]",
-			iconWrap: "bg-slate-600",
-			title: "text-slate-700",
-		},
-	}[tone];
-
-	return (
-		<div
-			className={`flex items-start gap-5 rounded-2xl px-4 py-3 ${toneMap.box}`}>
-			<div
-				className={`mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full ${toneMap.iconWrap}`}>
-				<CircleHelp className="h-4 w-4 text-white" strokeWidth={2.5} />
-			</div>
-
-			<div className="flex-1">
-				<p
-					className={`text-[16px] font-semibold tracking-[-0.03em] ${toneMap.title}`}>
-					{title}
-				</p>
-				{showContent && (
-					<p className="mt-2 text-[12px] font-light text-slate-800">
-						{content}
-					</p>
-				)}
-			</div>
-
-			<X className="mt-1 h-5 w-5 shrink-0 text-slate-400" strokeWidth={1.8} />
-		</div>
-	);
+    const toasts = [
+        {variant: "danger", icon: "priority_high"},
+        {variant: "secondary", icon: "info"},
+        {variant: "success", icon: "check"},
+    ];
+    return (
+        <div className="w-full max-w-[520px] space-y-4">
+            {toasts.map(({variant, icon}) =>
+                <div className={`mtf-Toast mtf-Toast--${variant}`} style={{width: "auto"}}>
+                    <span className={`mtf-Icon mtf-Icon--xxl mtf-Icon--${variant} mtf-ui-icons mtf-Toast--icon`}>{icon}</span>
+                    <div className="mtf-Toast--contentContainer">
+                        <span className="mtf-Toast--title">Toast Title</span>
+                        <span className="mtf-Toast--content">Toast content</span>
+                    </div>
+                    <button className="mtf-IconButton mtf-IconButton--lg mtf-IconButton--secondary mtf-MotifIcon--motifIconsDefault"
+                            type="button">close
+                    </button>
+                </div>
+            )}
+        </div>
+    );
 }
 
 function ModalSurface() {
 	return (
-		<div className="w-full max-w-[720px] overflow-hidden rounded-[14px] border border-slate-300 bg-white shadow-sm">
-			<div className="flex items-center justify-between border-b border-slate-300 px-6 py-5">
-				<h4 className="text-[20px] font-semibold tracking-[-0.03em] text-slate-800">
-					EDKUI Modal Title
-				</h4>
-				<X className="h-6 w-6 text-slate-400" strokeWidth={2} />
-			</div>
-
-			<div className="border-b border-slate-300 px-6 py-6">
-				<h5 className="text-[16px] font-semibold tracking-[-0.02em] text-slate-800">
-					Modal Content Title
-				</h5>
-
-				<div className="mt-6 flex gap-4">
-					<p className="max-w-[560px] text-[13px] leading-[1.55] text-slate-800">
-						Modal Content Text Lorem ipsum dolor sit amet, consectetur
-						adipiscing elit. Proin sed tristique tellus. Morbi vel sodales urna.
-						Duis felis leo, lacinia id imperdiet ac, molestie ut neque.
-					</p>
-				</div>
-			</div>
-
-			<div className="flex justify-end gap-5 px-4 py-3">
-				<button className="rounded-full border border-slate-400 px-5 py-2 text-[16px] font-semibold text-slate-600">
-					Button
-				</button>
-				<button className="rounded-full bg-sky-600 px-5 py-2 text-[16px] font-semibold text-white">
-					Button
-				</button>
-			</div>
-		</div>
-	);
+        <div>
+            <div className="mtf-Modal--modal"
+            style={{
+                visibility: "visible",
+                opacity: 1,
+                transform: "none",
+                top: 0,
+                left: 0,
+                scale: 1,
+                position: "relative",
+                maxWidth: "initial",
+            }}>
+                <button className="mtf-IconButton mtf-IconButton--xxl mtf-IconButton--secondary mtf-MotifIcon--motifIconsDefault mtf-Modal--closeButton"
+                        type="button">close
+                </button>
+                <div className="mtf-Modal--header">
+                    <div className="mtf-Modal--headerContent"><span
+                        className="mtf-Modal--headerTitle">Modal Title</span><span
+                        className="mtf-Modal--headerSubtitle">Modal Subtitle</span></div>
+                </div>
+                <div className="mtf-Modal--content">
+                    <div>
+                        <h4>MODAL</h4>
+                        <p>
+                            Modal Content Text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sed tristique tellus. Morbi vel sodales urna. Duis felis leo, lacinia id imperdiet ac, molestie ut neque.
+                        </p>
+                    </div>
+                </div>
+                <div className="mtf-Modal--actions">
+                    <button className="mtf-Button mtf-Button--primary mtf-Button--solid mtf-Button--md mtf-Button--pill"
+                            type="button"><span>Action</span></button>
+                    <button
+                        className="mtf-Button mtf-Button--secondary mtf-Button--outline mtf-Button--md mtf-Button--pill"
+                        type="button"><span>Close</span></button>
+                </div>
+            </div>
+        </div>
+)
+    ;
 }
 
 
 function TreeRow({
-	level,
-	label,
-	expanded = false,
-	checked = false,
-	folder = false,
-	highlight = false,
-	focus = false,
-}: {
+                     level,
+                     label,
+                     expanded = false,
+                     checked = false,
+                     folder = false,
+                     highlight = false,
+                     focus = false,
+                 }: {
 	level: number;
 	label: string;
 	expanded?: boolean;
@@ -842,41 +800,22 @@ function MiniAccordion() {
 	const [open, setOpen] = useState(1);
 
 	const items = [
-		{ id: 1, title: "Accordion 1", body: "" },
-		{
-			id: 2,
-			title: "Accordion 2",
-			body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae fermentum arcu, vitae dignissim quam.",
-		},
-		{ id: 3, title: "Accordion 3", body: "" },
+		{ id: 1, title: "Accordion 1" },
+		{ id: 2, title: "Accordion 2" },
+		{ id: 3, title: "Accordion 3" },
 	];
 
 	return (
-		<div className="w-full max-w-[380px] overflow-hidden rounded-2xl border border-slate-300 bg-white">
-			{items.map((item) => (
-				<div
-					key={item.id}
-					className="border-b border-slate-300 last:border-b-0">
-					<button
-						onClick={() => setOpen(open === item.id ? 0 : item.id)}
-						className="flex w-full items-center justify-between px-5 py-4 text-left">
-						<span className="text-lg font-semibold text-slate-900">
-							{item.title}
-						</span>
-						<ChevronDown
-							className={[
-								"h-6 w-6 transition",
-								open === item.id ? "rotate-180" : "",
-							].join(" ")}
-						/>
-					</button>
-					{open === item.id && item.body && (
-						<div className="px-6 pb-6 text-lg leading-9 text-slate-600">
-							{item.body}
-						</div>
-					)}
-				</div>
+		<div className="w-full max-w-[380px] overflow-hidden">
+            <Accordion.Group>
+			{items.map((item, index) => (
+                <Accordion
+                    index={index}
+                    key={item.id}
+                    title={item.title}
+                    text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae fermentum arcu, vitae dignissim quam." />
 			))}
+            </Accordion.Group>
 		</div>
 	);
 }

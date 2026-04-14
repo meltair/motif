@@ -400,6 +400,8 @@ function PreviewFrame({ children }: { children: React.ReactNode }) {
 function LiveMotifTimePicker() {
 	return (
         <TimePicker
+            style={{minWidth: "auto"}}
+            className="w-full"
             value={{hours: 12, minutes: 12, seconds: 8}}
             secondsEnabled
             size="md"

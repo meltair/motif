@@ -25,6 +25,7 @@ import {
   Home,
   RefreshCw,
 } from "lucide-react";
+import Image from "next/image";
 
 const leftShowcaseItems = [
   { id: "card", node: <MiniCardPreview /> },
@@ -66,14 +67,16 @@ export default function HeroVerticalShowcase() {
         <ShowcaseColumn
           items={leftItems}
           direction="up"
-          duration={60}
+          duration={30}
           isMobileStatic={isMobileStatic}
+          order={1}
         />
         <ShowcaseColumn
           items={rightItems}
           direction="down"
           duration={60}
           isMobileStatic={isMobileStatic}
+          order={2}
         />
       </div>
     </div>
@@ -85,11 +88,13 @@ function ShowcaseColumn({
   direction,
   duration,
   isMobileStatic,
+  order
 }: {
   items: { id: string; node: ReactNode }[];
   direction: "up" | "down";
   duration: number;
   isMobileStatic: boolean;
+  order: number;
 }) {
   return (
     <div className="relative h-full min-w-[260px] flex-1 overflow-hidden rounded-[12px]">
@@ -112,26 +117,15 @@ function ShowcaseColumn({
               }
         }
       >
-        {items.map((item, index) => (
-          <motion.div
-            key={`${item.id}-${index}`}
-            animate={isMobileStatic ? undefined : { y: [0, -4, 0] }}
-            transition={
-              isMobileStatic
-                ? undefined
-                : {
-                    duration: 4 + (index % 3),
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }
-            }
-            className="relative w-full"
-          >
-            <div className="relative w-full overflow-hidden rounded-[12px] border border-white/80">
-              {item.node}
-            </div>
-          </motion.div>
-        ))}
+          <div className="relative w-full overflow-hidden rounded-[12px] border border-white/80">
+
+              <Image
+                  src={`/vertical_showcase_${order}.png`}
+                  alt="Showcase preview"
+                  width={260}
+                  height={38}
+              />
+          </div>
       </motion.div>
     </div>
   );

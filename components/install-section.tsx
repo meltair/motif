@@ -1,4 +1,4 @@
-import { Boxes, Code2, TerminalSquare } from "lucide-react";
+import { Boxes, Code2 } from "lucide-react";
 
 const installCode = `npm i @motif-ui/react
 
@@ -29,7 +29,7 @@ npm run dev
 npm run storybook
 npm run build:lib`;
 
-export default function QuickStartSection() {
+export default function InstallSection() {
 	return (
 		<section className="mx-auto max-w-7xl px-4 py-16 lg:px-8">
 			<div className="mx-auto mb-10 max-w-5xl text-center">

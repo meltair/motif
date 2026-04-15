@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import type { ReactNode } from "react";
 import { useMediaQuery } from "@/hooks/use-media-query";
 
 const motifPalette = {
@@ -409,7 +408,7 @@ const ornaments: Ornament[] = [
 
 	...orangeOrnaments,
 ];
-export default function HeroMotifOrnaments({
+export default function HeroOrnaments({
 	className = "",
 }: {
 	className?: string;

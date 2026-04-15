@@ -1,63 +1,46 @@
-import {useRef, useState} from "react";
+"use client";
+import { useRef, useState } from "react";
 import { ListViewSurface } from "./list-view";
 import {
-	Home,
-	CalendarDays,
-	ChevronRight,
-	ChevronLeft,
-	ChevronDown,
-	Folder,
-	Download,
-	Boxes,
-	Info,
-	Check,
-	House,
-	RotateCcw,
-	Bold,
-	Italic,
-	Underline,
-	AlignLeft,
-	AlignCenter,
-	AlignRight,
-	List,
-	ListOrdered,
-	Link as LinkIcon,
-	Image as ImageIcon,
-	Table2,
-	Strikethrough,
-	X,
-	Mail,
-	Briefcase,
-	CircleHelp,
-} from "lucide-react";
-import {
-    Accordion,
-    Alert, Avatar,
-    Breadcrumb, BusinessCard, Button, Card,
-    DateRangePicker, Dropdown,
-    Form, Grid,
-    Icon,
-    InputPassword,
-    InputText, MenuList, Panel, Popover,
-    Radio,
-    RadioGroup, Select, Slider, SliderRange,
-    Switch, Tab,
-    Text,
-    UploadInput, UploadList,
-    Validations
+	Accordion,
+	Alert,
+	Avatar,
+	Breadcrumb,
+	BusinessCard,
+	Button,
+	Card,
+	DateRangePicker,
+	Dropdown,
+	Form,
+	Grid,
+	Icon,
+	InputPassword,
+	InputText,
+	MenuList,
+	Panel,
+	Popover,
+	Radio,
+	RadioGroup,
+	Select,
+	Slider,
+	SliderRange,
+	Switch,
+	Tab,
+	Text,
+	UploadInput,
+	UploadList,
+	Validations,
 } from "@motif-ui/react";
 
 export default function MotifComponentMatrixSection() {
 	const tabs = [
-        { id: "forms", label: "Forms", icon: "description" },
-        { id: "navigation", label: "Navigation", icon: "home" },
-        { id: "feedback", label: "Feedback", icon: "info_outline" },
-        { id: "surfaces", label: "Surfaces", icon: "border_all" },
+		{ id: "forms", label: "Forms", icon: "description" },
+		{ id: "navigation", label: "Navigation", icon: "home" },
+		{ id: "feedback", label: "Feedback", icon: "info_outline" },
+		{ id: "surfaces", label: "Surfaces", icon: "border_all" },
 	] as const;
 
-
-	const [activeTab, setActiveTab] =
-		useState<string>("forms");
+	const [activeTab, setActiveTab] = useState<string>("forms");
 
 	return (
 		<section className="mx-auto w-full max-w-[1480px] px-4 py-16 lg:px-8">
@@ -76,9 +59,10 @@ export default function MotifComponentMatrixSection() {
 			</div>
 
 			<div className="mb-2 flex justify-center">
-                <Tab
-                    onTabChange={setActiveTab}
-                    tabs={tabs.map(({id, label, icon}) => ({id, icon, title: label}))} />
+				<Tab
+					onTabChange={setActiveTab}
+					tabs={tabs.map(({ id, label, icon }) => ({ id, icon, title: label }))}
+				/>
 			</div>
 
 			<div className="overflow-visible rounded-[28px] border border-slate-200 bg-white">
@@ -124,7 +108,7 @@ function Cell({
 				</p>
 			</div>
 
-			<div className="flex min-h-[220px] items-start rounded-2xl p-6 backdrop-blur-[1px]">
+			<div className="flex min-h-[220px] items-start rounded-2xl p-3 sm:p-6 backdrop-blur-[1px]">
 				{children}
 			</div>
 		</div>
@@ -134,12 +118,9 @@ function Cell({
 /* ---------------- FORMS ---------------- */
 
 function FormsMatrix() {
-	const [radio, setRadio] = useState("black");
-	const [terms, setTerms] = useState(false);
-	const [distance, setDistance] = useState(35);
-    const today = new Date();
-    const tenDaysLater = new Date();
-    tenDaysLater.setDate(today.getDate() + 10);
+	const today = new Date();
+	const tenDaysLater = new Date();
+	tenDaysLater.setDate(today.getDate() + 10);
 
 	return (
 		<MatrixShell>
@@ -147,62 +128,111 @@ function FormsMatrix() {
 				title="Date Range Picker"
 				description="Large date-range selection surfaces support filtering, scheduling, and reporting flows in enterprise interfaces."
 				className="md:col-span-2 xl:col-span-2">
-                <DateRangePicker variant="bordered" value={[today, tenDaysLater]} />
+				<div className="w-full overflow-x-auto overscroll-x-contain pb-2 touch-pan-x">
+					<div className="min-w-[720px]">
+						<DateRangePicker variant="bordered" value={[today, tenDaysLater]} />
+					</div>
+				</div>
 			</Cell>
 
 			<Cell
 				title="Selection Controls"
 				description="Radio buttons and switches present form decisions with a clean hierarchy and clear emphasis.">
-                <Form onSubmit={() => {}} className="w-full">
-                    <Form.Field name="username" label="Username" helperText="Please enter your username.">
-                        <InputText value="Motif UI" />
-                    </Form.Field>
-                    <Form.Field name="password" label="Password" helperText="Please enter your password.">
-                        <InputPassword toggleMask value="password" />
-                    </Form.Field>
-                    <Form.Field name="blackwhite" label="Black or White" validations={[Validations.Required]} helperText="You have to choose one">
-                        <RadioGroup name="blackwhite" orientation="horizontal">
-                            <Radio value="black" label="Black" />
-                            <Radio value="white" label="White" />
-                        </RadioGroup>
-                    </Form.Field>
-                    <Form.Field name="terms" label="Terms and Conditions" validations={[Validations.Required]} helperText="I agree to the terms and conditions.">
-                        <Switch />
-                    </Form.Field>
-                </Form>
+				<Form onSubmit={() => {}} className="w-full">
+					<Form.Field
+						name="username"
+						label="Username"
+						helperText="Please enter your username.">
+						<InputText value="Motif UI" />
+					</Form.Field>
+					<Form.Field
+						name="password"
+						label="Password"
+						helperText="Please enter your password.">
+						<InputPassword toggleMask value="password" />
+					</Form.Field>
+					<Form.Field
+						name="blackwhite"
+						label="Black or White"
+						validations={[Validations.Required]}
+						helperText="You have to choose one">
+						<RadioGroup name="blackwhite" orientation="horizontal">
+							<Radio value="black" label="Black" />
+							<Radio value="white" label="White" />
+						</RadioGroup>
+					</Form.Field>
+					<Form.Field
+						name="terms"
+						label="Terms and Conditions"
+						validations={[Validations.Required]}
+						helperText="I agree to the terms and conditions.">
+						<Switch />
+					</Form.Field>
+				</Form>
 			</Cell>
 
 			<Cell
 				title="Upload Inputs"
 				description="Browse and drag-and-drop file flows can live within the same visual language.">
-                <Form onSubmit={() => {}} submitButtonLabel="" className="w-full -mb-12" style={{minWidth: "auto"}}>
-                    <Form.Field name="personaldocument" label="Personal Document" helperText="Upload any type of personal document">
-                        <UploadInput uploadRequest={{method: "POST", url: "https://"}} deleteRequest={{method: "POST", url: "https://"}} maxSize={1} />
-                    </Form.Field>
-                    <Form.Field name="identityregister" label="Identitiy Register Copy" helperText="Upload any type of file, max size 1 MB"  validations={[Validations.RequiredUploadedFile]}>
-                        <UploadList uploadRequest={{method: "POST", url: "https://"}} deleteRequest={{method: "POST", url: "https://"}} maxSize={1} />
-                    </Form.Field>
-                </Form>
+				<Form
+					onSubmit={() => {}}
+					submitButtonLabel=""
+					className="w-full -mb-12"
+					style={{ minWidth: "auto" }}>
+					<Form.Field
+						name="personaldocument"
+						label="Personal Document"
+						helperText="Upload any type of personal document">
+						<UploadInput
+							uploadRequest={{ method: "POST", url: "https://" }}
+							deleteRequest={{ method: "POST", url: "https://" }}
+							maxSize={1}
+						/>
+					</Form.Field>
+					<Form.Field
+						name="identityregister"
+						label="Identitiy Register Copy"
+						helperText="Upload any type of file, max size 1 MB"
+						validations={[Validations.RequiredUploadedFile]}>
+						<UploadList
+							uploadRequest={{ method: "POST", url: "https://" }}
+							deleteRequest={{ method: "POST", url: "https://" }}
+							maxSize={1}
+						/>
+					</Form.Field>
+				</Form>
 			</Cell>
 
 			<Cell
 				title="Range Slider"
 				description="Single-value sliders remain clean and readable on dense data entry screens.">
-                <Form onSubmit={() => {}} submitButtonLabel="" className="w-full -mb-12">
-                    <Form.Field name="slider" label="Minimum Distance" helperText="Please choose a minimum distance: 30">
-                        <Slider value={30} />
-                    </Form.Field>
-                </Form>
+				<Form
+					onSubmit={() => {}}
+					submitButtonLabel=""
+					className="w-full -mb-12">
+					<Form.Field
+						name="slider"
+						label="Minimum Distance"
+						helperText="Please choose a minimum distance: 30">
+						<Slider value={30} />
+					</Form.Field>
+				</Form>
 			</Cell>
 
 			<Cell
 				title="Range Between"
 				description="Dual-handle range selection works well for filters such as age, price, or distance.">
-                <Form onSubmit={() => {}} submitButtonLabel="" className="w-full -mb-12">
-                    <Form.Field name="range" label="Age Between" helperText="Please choose an age range">
-                        <SliderRange value={[30, 80]} min={20} max={90} />
-                    </Form.Field>
-                </Form>
+				<Form
+					onSubmit={() => {}}
+					submitButtonLabel=""
+					className="w-full -mb-12">
+					<Form.Field
+						name="range"
+						label="Age Between"
+						helperText="Please choose an age range">
+						<SliderRange value={[30, 80]} min={20} max={90} />
+					</Form.Field>
+				</Form>
 			</Cell>
 		</MatrixShell>
 	);
@@ -211,8 +241,6 @@ function FormsMatrix() {
 /* ---------------- NAVIGATION ---------------- */
 
 function NavigationMatrix() {
-	const [active, setActive] = useState("home");
-
 	return (
 		<MatrixShell>
 			<Cell
@@ -225,28 +253,30 @@ function NavigationMatrix() {
 			<Cell
 				title="Sidebar Navigation"
 				description="Service-oriented side navigation supports active states, grouped actions, and status badges.">
-
 				<div className="w-full max-w-[360px] rounded-2xl border border-slate-200 bg-white p-1">
-                    <MenuList footerText="© All rights reserved." logo="https://cdn.e-devlet.gov.tr/downloads/kurumsal-kimlik/logo/e-devlet-logo.png"
-                              items={[
-                        { label: "Home", icon: "home", href: "/", active: true },
-                        { label: "About", icon: "info", disabled: true },
-                        {
-                            label: "Contact",
-                            icon: "person",
-                            targetBlank: true,
-                            href: "https://motif-ui.com/",
-                            chip: { label: "New", variant: "success" },
-                        },
-                        {
-                            label: "SubMenu",
-                            icon: "folder",
-                            items: [
-                                { label: "SubMenu 1", href: "#" },
-                                { label: "SubMenu 2", href: "#" },
-                            ],
-                        },
-                    ]} />
+					<MenuList
+						footerText="© All rights reserved."
+						logo="https://cdn.e-devlet.gov.tr/downloads/kurumsal-kimlik/logo/e-devlet-logo.png"
+						items={[
+							{ label: "Home", icon: "home", href: "/", active: true },
+							{ label: "About", icon: "info", disabled: true },
+							{
+								label: "Contact",
+								icon: "person",
+								targetBlank: true,
+								href: "https://motif-ui.com/",
+								chip: { label: "New", variant: "success" },
+							},
+							{
+								label: "SubMenu",
+								icon: "folder",
+								items: [
+									{ label: "SubMenu 1", href: "#" },
+									{ label: "SubMenu 2", href: "#" },
+								],
+							},
+						]}
+					/>
 				</div>
 			</Cell>
 
@@ -270,12 +300,14 @@ function NavigationMatrix() {
 				title="Breadcrumb"
 				description="Hierarchy links arranged inline help users understand location and navigate upward.">
 				<div className="w-full max-w-[800px] rounded-2xl bg-slate-100 px-4 py-5">
-                    <Breadcrumb items={[
-                        { label: "Link", path: "#" },
-                        { label: "Link", path: "#" },
-                        { label: "Link", path: "#" },
-                        { label: "Current Page", path: "#" },
-                    ]} />
+					<Breadcrumb
+						items={[
+							{ label: "Link", path: "#" },
+							{ label: "Link", path: "#" },
+							{ label: "Link", path: "#" },
+							{ label: "Current Page", path: "#" },
+						]}
+					/>
 				</div>
 			</Cell>
 		</MatrixShell>
@@ -290,12 +322,12 @@ function FeedbackMatrix() {
 			<Cell
 				title="Alert"
 				description="Information, warning, and status messages provide a simple feedback layer.">
-                <Alert
-                    message="This is a test message for the Alert component."
-                    title="Alert Title"
-                    className="w-full max-w-[420px]"
-                    variant="info"
-                />
+				<Alert
+					message="This is a test message for the Alert component."
+					title="Alert Title"
+					className="w-full max-w-[420px]"
+					variant="info"
+				/>
 			</Cell>
 
 			<Cell
@@ -339,62 +371,67 @@ function SurfacesMatrix() {
 			<Cell
 				title="Card"
 				description="Custom card components serve as the primary surface for services, navigation, and content emphasis.">
-                <Card
-                    className="w-full max-w-[360px]"
-                    contentText="Alternate text"
-                    contentTitle="Custom Card Title"
-                    contentSubtitle="This is a small text to describe the card"
-                    contentLink={{ text: "Link Item", href: "#" }}
-                    contentImage="https://picsum.photos/400/200"
-                    contentActionButton={{ text: "Action", onClick: () => {} }}
-                    contentAlternateButton={{ text: "Alternate", onClick: () => {} }}
-                />
+				<Card
+					className="w-full max-w-[360px]"
+					contentText="Alternate text"
+					contentTitle="Custom Card Title"
+					contentSubtitle="This is a small text to describe the card"
+					contentLink={{ text: "Link Item", href: "#" }}
+					contentImage="https://picsum.photos/400/200"
+					contentActionButton={{ text: "Action", onClick: () => {} }}
+					contentAlternateButton={{ text: "Alternate", onClick: () => {} }}
+				/>
 			</Cell>
 
 			<Cell
 				title="Simple Card"
 				description="Icon, title, subtitle, and actions arranged in a single row.">
-                <div className="w-full max-w-[420px] flex flex-col gap-6">
-                    <Card
-                        outlined
-                        title="Card Header Title"
-                        subtitle="Motif Card Subtitle"
-                        imagePosition="right"
-                        icon="folder"
-                        image="https://picsum.photos/100"
-                    />
-                    <Card
-                        elevated
-                        title="Card Header Title"
-                        subtitle="Motif Card Subtitle"
-                        imagePosition="left"
-                        avatarText="MA"
-                        image="https://picsum.photos/80"
-                        action={{ icon: "download", onClick: () => {} }}
-                    />
-                </div>
+				<div className="w-full max-w-[420px] flex flex-col gap-6">
+					<Card
+						outlined
+						title="Card Header Title"
+						subtitle="Motif Card Subtitle"
+						imagePosition="right"
+						icon="folder"
+						image="https://picsum.photos/100"
+					/>
+					<Card
+						elevated
+						title="Card Header Title"
+						subtitle="Motif Card Subtitle"
+						imagePosition="left"
+						avatarText="MA"
+						image="https://picsum.photos/80"
+						action={{ icon: "download", onClick: () => {} }}
+					/>
+				</div>
 			</Cell>
 
 			<Cell
 				title="Business Card"
 				description="A large call-to-action card combines iconography, strong hierarchy, and a single primary action within one branded surface.">
-                <BusinessCard
-                    className="w-full max-w-[420px]"
-                    title="Card Title"
-                    description="Business card description goes here. It can be a bit longer to show text wrapping behavior."
-                    solid
-                    variant="info"
-                    icon="check_circle"
-                    iconButton={{icon: "download", onClick: () => {}}}
-                />
+				<BusinessCard
+					className="w-full max-w-[420px]"
+					title="Card Title"
+					description="Business card description goes here. It can be a bit longer to show text wrapping behavior."
+					solid
+					variant="info"
+					icon="check_circle"
+					iconButton={{ icon: "download", onClick: () => {} }}
+				/>
 			</Cell>
 
 			<Cell
 				title="Panel"
 				description="Panels help users organize related content and actions within a distinct container, providing clear separation and structure within the interface.">
-                <Panel type="solid" className="w-full max-w-[780px]" title="Panel Title" titleIcon="home" bordered>
-                    <Text text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." />
-                </Panel>
+				<Panel
+					type="solid"
+					className="w-full max-w-[780px]"
+					title="Panel Title"
+					titleIcon="home"
+					bordered>
+					<Text text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." />
+				</Panel>
 			</Cell>
 
 			<Cell
@@ -406,29 +443,28 @@ function SurfacesMatrix() {
 			<Cell
 				title="Grid"
 				description="Grids help users display and navigate structured data in rows and columns, enabling efficient scanning, comparison, and interaction across multiple items.">
-                <div className="w-full max-w-[520px] rounded-[4px] bg-[#f3f4f6] text-center">
-                    <Grid colProps={{ style: { border: "solid 1px #CCC" } }} fluid>
-                        <Grid.Row>
-                            <Grid.Col size={3}>4 Cols</Grid.Col>
-                            <Grid.Col size={3}>4 Cols</Grid.Col>
-                            <Grid.Col size={3}>4 Cols</Grid.Col>
-                            <Grid.Col size={3}>4 Cols</Grid.Col>
-                        </Grid.Row>
-                        <Grid.Row>
-                            <Grid.Col size={4}>3 Cols</Grid.Col>
-                            <Grid.Col size={4}>3 Cols</Grid.Col>
-                            <Grid.Col size={4}>3 Cols</Grid.Col>
-                        </Grid.Row>
-                        <Grid.Row>
-                            <Grid.Col size={6}>2 Cols</Grid.Col>
-                            <Grid.Col size={6}>2 Cols</Grid.Col>
-                        </Grid.Row>
-                        <Grid.Row>
-                            <Grid.Col size={12}>1 Column</Grid.Col>
-                        </Grid.Row>
-                    </Grid>
-                </div>
-
+				<div className="w-full max-w-[520px] rounded-[4px] bg-[#f3f4f6] text-center">
+					<Grid colProps={{ style: { border: "solid 1px #CCC" } }} fluid>
+						<Grid.Row>
+							<Grid.Col size={3}>4 Cols</Grid.Col>
+							<Grid.Col size={3}>4 Cols</Grid.Col>
+							<Grid.Col size={3}>4 Cols</Grid.Col>
+							<Grid.Col size={3}>4 Cols</Grid.Col>
+						</Grid.Row>
+						<Grid.Row>
+							<Grid.Col size={4}>3 Cols</Grid.Col>
+							<Grid.Col size={4}>3 Cols</Grid.Col>
+							<Grid.Col size={4}>3 Cols</Grid.Col>
+						</Grid.Row>
+						<Grid.Row>
+							<Grid.Col size={6}>2 Cols</Grid.Col>
+							<Grid.Col size={6}>2 Cols</Grid.Col>
+						</Grid.Row>
+						<Grid.Row>
+							<Grid.Col size={12}>1 Column</Grid.Col>
+						</Grid.Row>
+					</Grid>
+				</div>
 			</Cell>
 		</MatrixShell>
 	);
@@ -438,357 +474,158 @@ function SurfacesMatrix() {
 
 function TooltipShowcase() {
 	return (
-        <div className="w-full max-w-[760px]">
-            <div className="flex items-center justify-center gap-10 text-slate-500">
-                <Icon name="home" size="xxl" />
-                <Icon name="mail" size="xxl" />
-                <Icon name="cases" size="xxl" />
-            </div>
-
-            <div className="relative mx-auto mt-2 flex w-[290px] justify-center">
-                <div
-                    className="mtf-Tooltip mtf-Tooltip--lg mtf-Tooltip--bottom mtf-Tooltip--visible mtf-Tooltip--dark"
-                    role="tooltip"
-                    style={{position: "relative"}}
-                >
-                    <div className="mtf-Tooltip--triangle"></div>
-                    <div className="mtf-Tooltip--textWrapper"><span className="mtf-Tooltip--title">Icon Name</span><span
-                        className="mtf-Tooltip--text">Mail</span></div>
-                </div>
-            </div>
-
-            <div className="relative mt-10 flex justify-center">
-                <div
-                    className="mtf-Tooltip mtf-Tooltip--md mtf-Tooltip--top mtf-Tooltip--visible mtf-Tooltip--light relative"
-                    role="tooltip"
-                >
-                    <div className="mtf-Tooltip--triangle"></div>
-                    <div className="mtf-Tooltip--textWrapper">
-                        <span className="mtf-Tooltip--text">This will submit your form information.</span>
-                    </div>
-                </div>
-            </div>
-
-            <div className="mt-12 flex justify-center">
-                <Button label="Submit Form" variant="success" size="xl" />
-            </div>
-        </div>
-    );
-}
-
-function ToastSurface() {
-    const toasts = [
-        {variant: "danger", icon: "priority_high"},
-        {variant: "secondary", icon: "info"},
-        {variant: "success", icon: "check"},
-    ];
-    return (
-        <div className="w-full max-w-[520px] space-y-4">
-            {toasts.map(({variant, icon}) =>
-                <div className={`mtf-Toast mtf-Toast--${variant}`} style={{width: "auto"}}>
-                    <span className={`mtf-Icon mtf-Icon--xxl mtf-Icon--${variant} mtf-ui-icons mtf-Toast--icon`}>{icon}</span>
-                    <div className="mtf-Toast--contentContainer">
-                        <span className="mtf-Toast--title">Toast Title</span>
-                        <span className="mtf-Toast--content">Toast content</span>
-                    </div>
-                    <button className="mtf-IconButton mtf-IconButton--lg mtf-IconButton--secondary mtf-MotifIcon--motifIconsDefault"
-                            type="button">close
-                    </button>
-                </div>
-            )}
-        </div>
-    );
-}
-
-function ModalSurface() {
-	return (
-        <div>
-            <div className="mtf-Modal--modal"
-            style={{
-                visibility: "visible",
-                opacity: 1,
-                transform: "none",
-                top: 0,
-                left: 0,
-                scale: 1,
-                position: "relative",
-                maxWidth: "initial",
-            }}>
-                <button className="mtf-IconButton mtf-IconButton--xxl mtf-IconButton--secondary mtf-MotifIcon--motifIconsDefault mtf-Modal--closeButton"
-                        type="button">close
-                </button>
-                <div className="mtf-Modal--header">
-                    <div className="mtf-Modal--headerContent"><span
-                        className="mtf-Modal--headerTitle">Modal Title</span><span
-                        className="mtf-Modal--headerSubtitle">Modal Subtitle</span></div>
-                </div>
-                <div className="mtf-Modal--content">
-                    <div>
-                        <h4>MODAL</h4>
-                        <p>
-                            Modal Content Text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sed tristique tellus. Morbi vel sodales urna. Duis felis leo, lacinia id imperdiet ac, molestie ut neque.
-                        </p>
-                    </div>
-                </div>
-                <div className="mtf-Modal--actions">
-                    <button className="mtf-Button mtf-Button--primary mtf-Button--solid mtf-Button--md mtf-Button--pill"
-                            type="button"><span>Action</span></button>
-                    <button
-                        className="mtf-Button mtf-Button--secondary mtf-Button--outline mtf-Button--md mtf-Button--pill"
-                        type="button"><span>Close</span></button>
-                </div>
-            </div>
-        </div>
-)
-    ;
-}
-
-
-function TreeRow({
-                     level,
-                     label,
-                     expanded = false,
-                     checked = false,
-                     folder = false,
-                     highlight = false,
-                     focus = false,
-                 }: {
-	level: number;
-	label: string;
-	expanded?: boolean;
-	checked?: boolean;
-	folder?: boolean;
-	highlight?: boolean;
-	focus?: boolean;
-}) {
-	return (
-		<div
-			className={[
-				"flex items-center gap-2 rounded-xl px-2 py-2",
-				highlight ? "bg-slate-100" : "bg-transparent",
-			].join(" ")}
-			style={{ paddingLeft: `${16 + level * 44}px` }}>
-			<div className="w-6 shrink-0">
-				{level === 0 ||
-				folder ||
-				label.includes("Guitars") ||
-				label.includes("Collection") ? (
-					expanded ? (
-						<ChevronDown className="h-4 w-4 text-slate-600" />
-					) : (
-						<ChevronRight className="h-4 w-4 text-slate-600" />
-					)
-				) : null}
+		<div className="w-full max-w-[760px]">
+			<div className="flex items-center justify-center gap-10 text-slate-500">
+				<Icon name="home" size="xxl" />
+				<Icon name="mail" size="xxl" />
+				<Icon name="cases" size="xxl" />
 			</div>
 
-			<div
-				className={[
-					"relative flex h-6 w-6 shrink-0 items-center justify-center rounded-md border-2",
-					checked ? "border-sky-600 bg-sky-600" : "border-slate-300 bg-white",
-				].join(" ")}>
-				{focus && (
-					<div className="absolute inset-[-6px] rounded-xl border-2 border-sky-400" />
-				)}
-				{checked && <Check className="h-4 w-4 text-white" strokeWidth={3} />}
+			<div className="relative mx-auto mt-2 flex w-[290px] justify-center">
+				<div
+					className="mtf-Tooltip mtf-Tooltip--lg mtf-Tooltip--bottom mtf-Tooltip--visible mtf-Tooltip--dark"
+					role="tooltip"
+					style={{ position: "relative" }}>
+					<div className="mtf-Tooltip--triangle"></div>
+					<div className="mtf-Tooltip--textWrapper">
+						<span className="mtf-Tooltip--title">Icon Name</span>
+						<span className="mtf-Tooltip--text">Mail</span>
+					</div>
+				</div>
 			</div>
 
-			{folder && <Folder className="h-6 w-6 shrink-0 text-slate-500" />}
+			<div className="relative mt-10 flex justify-center">
+				<div
+					className="mtf-Tooltip mtf-Tooltip--md mtf-Tooltip--top mtf-Tooltip--visible mtf-Tooltip--light relative"
+					role="tooltip">
+					<div className="mtf-Tooltip--triangle"></div>
+					<div className="mtf-Tooltip--textWrapper">
+						<span className="mtf-Tooltip--text">
+							This will submit your form information.
+						</span>
+					</div>
+				</div>
+			</div>
 
-			<span className="truncate text-[12px] text-slate-700">{label}</span>
+			<div className="mt-12 flex justify-center">
+				<Button label="Submit Form" variant="success" size="xl" />
+			</div>
 		</div>
 	);
 }
 
-/* ---------------- SURFACE MINI COMPONENTS ---------------- */
-
-function EditorSurface() {
-	const toolbarButton =
-		"flex h-8 w-8 items-center justify-center rounded-md text-slate-600 transition hover:bg-slate-100";
-	const divider = <div className="mx-1 h-6 w-px bg-slate-300" />;
-
+function ToastSurface() {
+	const toasts = [
+		{ variant: "danger", icon: "priority_high" },
+		{ variant: "secondary", icon: "info" },
+		{ variant: "success", icon: "check" },
+	];
 	return (
-		<div className="w-full max-w-[780px] overflow-hidden rounded-[14px] border border-slate-400 bg-white shadow-sm">
-			<div className="flex flex-wrap items-center border-b border-slate-300 bg-slate-50 px-3 py-2">
-				<button className={`${toolbarButton} w-auto gap-2 px-3 font-semibold`}>
-					H1 <ChevronDown className="h-4 w-4" />
-				</button>
-				<button className={`${toolbarButton} w-auto gap-2 px-3 font-semibold`}>
-					<span className="text-lg">T</span>
-					<ChevronDown className="h-4 w-4" />
-				</button>
-				<button className={`${toolbarButton} w-auto gap-2 px-3 font-semibold`}>
-					<span className="text-lg">A</span>
-					<ChevronDown className="h-4 w-4" />
-				</button>
+		<div className="w-full max-w-[520px] space-y-4">
+			{toasts.map(({ variant, icon }) => (
+				<div
+					key={`${variant}-${icon}`}
+					className={`mtf-Toast mtf-Toast--${variant}`}
+					style={{ width: "auto" }}>
+					<span
+						className={`mtf-Icon mtf-Icon--xxl mtf-Icon--${variant} mtf-ui-icons mtf-Toast--icon`}>
+						{icon}
+					</span>
+					<div className="mtf-Toast--contentContainer">
+						<span className="mtf-Toast--title">Toast Title</span>
+						<span className="mtf-Toast--content">Toast content</span>
+					</div>
+					<button
+						className="mtf-IconButton mtf-IconButton--lg mtf-IconButton--secondary mtf-MotifIcon--motifIconsDefault"
+						type="button">
+						close
+					</button>
+				</div>
+			))}
+		</div>
+	);
+}
 
-				{divider}
-
-				<button className={`${toolbarButton} bg-slate-200`}>
-					<Bold className="h-5 w-5" />
-				</button>
-				<button className={toolbarButton}>
-					<Italic className="h-5 w-5" />
-				</button>
-				<button className={toolbarButton}>
-					<Underline className="h-5 w-5" />
-				</button>
-
-				{divider}
-
+function ModalSurface() {
+	return (
+		<div>
+			<div
+				className="mtf-Modal--modal"
+				style={{
+					visibility: "visible",
+					opacity: 1,
+					transform: "none",
+					top: 0,
+					left: 0,
+					scale: 1,
+					position: "relative",
+					maxWidth: "initial",
+				}}>
 				<button
-					className={`${toolbarButton} w-auto gap-2 bg-sky-600 px-3 text-white hover:bg-sky-700`}>
-					<AlignLeft className="h-5 w-5" />
-					<ChevronDown className="h-4 w-4" />
+					className="mtf-IconButton mtf-IconButton--xxl mtf-IconButton--secondary mtf-MotifIcon--motifIconsDefault mtf-Modal--closeButton"
+					type="button">
+					close
 				</button>
-
-				<button className={toolbarButton}>
-					<List className="h-5 w-5" />
-				</button>
-				<button className={toolbarButton}>
-					<ListOrdered className="h-5 w-5" />
-				</button>
-				<button className={toolbarButton}>
-					<AlignCenter className="h-5 w-5" />
-				</button>
-				<button className={toolbarButton}>
-					<AlignRight className="h-5 w-5" />
-				</button>
-
-				{divider}
-
-				<button className={toolbarButton}>
-					<LinkIcon className="h-5 w-5" />
-				</button>
-				<button className={toolbarButton}>
-					<ImageIcon className="h-5 w-5" />
-				</button>
-				<button className={toolbarButton}>
-					<Table2 className="h-5 w-5" />
-				</button>
-				<button className={toolbarButton}>
-					<Strikethrough className="h-5 w-5" />
-				</button>
-			</div>
-
-			<div className="relative bg-white p-5">
-				<div className="space-y-4 text-slate-900">
+				<div className="mtf-Modal--header">
+					<div className="mtf-Modal--headerContent">
+						<span className="mtf-Modal--headerTitle">Modal Title</span>
+						<span className="mtf-Modal--headerSubtitle">Modal Subtitle</span>
+					</div>
+				</div>
+				<div className="mtf-Modal--content">
 					<div>
-						<h4 className="text-[18px] font-bold tracking-[-0.03em]">Title</h4>
-						<p className="mt-4 max-w-[92%] text-[12px] leading-6 text-slate-800">
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+						<h4>MODAL</h4>
+						<p>
+							Modal Content Text Lorem ipsum dolor sit amet, consectetur
+							adipiscing elit. Proin sed tristique tellus. Morbi vel sodales
+							urna. Duis felis leo, lacinia id imperdiet ac, molestie ut neque.
 						</p>
 					</div>
-
-					<div>
-						<h5 className="text-[18px] font-bold tracking-[-0.02em]">
-							Subtitle
-						</h5>
-
-						<div className="relative mt-4 w-full max-w-[240px] overflow-hidden rounded-sm bg-slate-800">
-							<div className="aspect-[4/2.5] bg-[linear-gradient(135deg,#111827_0%,#6b7280_40%,#1f2937_70%,#000_100%)]" />
-							<div className="absolute inset-0 flex items-center justify-center text-[72px] font-semibold text-white/95">
-								3:2
-							</div>
-						</div>
-					</div>
 				</div>
-
-				<div className="pointer-events-none absolute left-[10%] -top-[18px] hidden rounded-xl border border-slate-300 bg-white shadow-lg lg:block">
-					<div className="flex flex-col divide-y divide-slate-200">
-						<div className="flex h-10 w-[48px] items-center justify-center">
-							<AlignLeft className="h-5 w-5 text-slate-600" />
-						</div>
-						<div className="flex h-10 w-[48px] items-center justify-center">
-							<AlignCenter className="h-5 w-5 text-slate-600" />
-						</div>
-						<div className="flex h-10 w-[48px] items-center justify-center">
-							<AlignRight className="h-5 w-5 text-slate-600" />
-						</div>
-					</div>
-					<div className="absolute left-4 top-[-8px] h-4 w-4 rotate-45 border-l border-t border-slate-300 bg-white" />
+				<div className="mtf-Modal--actions">
+					<button
+						className="mtf-Button mtf-Button--primary mtf-Button--solid mtf-Button--md mtf-Button--pill"
+						type="button">
+						<span>Action</span>
+					</button>
+					<button
+						className="mtf-Button mtf-Button--secondary mtf-Button--outline mtf-Button--md mtf-Button--pill"
+						type="button">
+						<span>Close</span>
+					</button>
 				</div>
-
-				<div className="pointer-events-none absolute right-[5px] -top-[70px] hidden w-[190px] overflow-hidden rounded-xl border border-slate-300 bg-white shadow-lg lg:block">
-					<div className="border-b border-slate-200 px-3 py-2 text-[12px] text-slate-600">
-						Text Menu Sample
-					</div>
-					<div className="border-b border-slate-200 px-3 py-2 text-[16px] font-bold text-slate-700">
-						Header 2
-					</div>
-					<div className="border-b border-slate-200 px-3 py-2 text-[14px] font-semibold text-slate-700">
-						Header 3
-					</div>
-					<div className="border-b border-slate-200 px-3 py-2 text-[12px] font-semibold text-slate-700">
-						Header 4
-					</div>
-					<div className="px-3 py-3 text-[12px] text-slate-500">Paragraph</div>
-				</div>
-
-				<div className="pointer-events-none absolute left-[25%] top-[140px] hidden rounded-xl border border-slate-300 bg-white shadow-lg lg:flex">
-					<div className="flex items-center gap-2 px-4 py-3">
-						<AlignLeft className="h-5 w-5 text-slate-600" />
-						<AlignCenter className="h-5 w-5 text-slate-600" />
-						<ImageIcon className="h-5 w-5 text-slate-600" />
-					</div>
-					<div className="absolute left-8 top-full h-4 w-4 -translate-y-2 rotate-45 border-b border-r border-slate-300 bg-white" />
-				</div>
-			</div>
-
-			<div className="flex items-center justify-between border-t border-slate-300 px-3 py-2 text-sm text-slate-500">
-				<span>H1</span>
-				<span>28 Characters</span>
 			</div>
 		</div>
 	);
 }
 
 function PopoverSurface() {
-    const avatarRef = useRef(null);
-    const buttonRef = useRef(null);
+	const avatarRef = useRef(null);
+	const buttonRef = useRef(null);
 	return (
 		<div className="grid w-full max-w-[360px] grid-cols-1 gap-6 md:grid-cols-2 h-44">
-            <div className="flex flex-col justify-end items-center">
-                <Avatar letters="AB" ref={avatarRef} size="xxl" variant="primary" />
-                <Popover anchorRef={avatarRef} open placeOn="top" variant="primary">
-                    <div className="w-35 p-3">Lorem ipsum dolor sit amet, consectetur...</div>
-                </Popover>
+			<div className="flex flex-col justify-end items-center">
+				<Avatar letters="AB" ref={avatarRef} size="xxl" variant="primary" />
+				<Popover anchorRef={avatarRef} open placeOn="top" variant="primary">
+					<div className="w-35 p-3">
+						Lorem ipsum dolor sit amet, consectetur...
+					</div>
+				</Popover>
 			</div>
 
-            <div className="flex flex-col justify-start items-center">
-                <Button label="Back to Home" icon="home" ref={buttonRef} variant="secondary" pill  />
-                <Popover anchorRef={buttonRef} open placeOn="bottom" variant="light">
-                    <div className="w-35 p-3">Lorem ipsum dolor sit amet, consectetur...</div>
-                </Popover>
-            </div>
-		</div>
-	);
-}
-
-function ResultSurface() {
-	return (
-		<div className="w-full max-w-[520px] rounded-[24px] bg-[#f3f4f6] px-4 py-6 text-center">
-			<div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-emerald-500">
-				<Check className="h-6 w-6 text-white" strokeWidth={3.5} />
-			</div>
-
-			<h4 className="mt-4 text-[12px] font-semibold tracking-[-0.03em] text-slate-700 sm:text-[16px]">
-				Thank you for your purchase!
-			</h4>
-
-			<p className="mt-1 text-[12px] text-slate-500 sm:text-[12px]">
-				Your order was completed successfully.
-			</p>
-
-			<div className="mt-4 flex flex-col items-center justify-center gap-2 sm:flex-row">
-				<button className="inline-flex min-w-[160px] items-center justify-center gap-2 rounded-xl bg-sky-600 px-2 py-2 text-[12px] font-semibold text-white shadow-sm transition hover:bg-sky-700">
-					<Download className="h-6 w-6" />
-					Download Invoice
-				</button>
-
-				<button className="inline-flex min-w-[160px] items-center justify-center gap-2 rounded-xl bg-slate-200 px-2 py-2 text-[12px] font-semibold text-slate-600 transition hover:bg-slate-300">
-					<RotateCcw className="h-6 w-6" />
-					Buy Again
-				</button>
+			<div className="flex flex-col justify-start items-center">
+				<Button
+					label="Back to Home"
+					icon="home"
+					ref={buttonRef}
+					variant="secondary"
+					pill
+				/>
+				<Popover anchorRef={buttonRef} open placeOn="bottom" variant="light">
+					<div className="w-35 p-3">
+						Lorem ipsum dolor sit amet, consectetur...
+					</div>
+				</Popover>
 			</div>
 		</div>
 	);
@@ -797,8 +634,6 @@ function ResultSurface() {
 /* ---------------- MINI COMPONENTS ---------------- */
 
 function MiniAccordion() {
-	const [open, setOpen] = useState(1);
-
 	const items = [
 		{ id: 1, title: "Accordion 1" },
 		{ id: 2, title: "Accordion 2" },
@@ -807,15 +642,16 @@ function MiniAccordion() {
 
 	return (
 		<div className="w-full max-w-[380px] overflow-hidden">
-            <Accordion.Group>
-			{items.map((item, index) => (
-                <Accordion
-                    index={index}
-                    key={item.id}
-                    title={item.title}
-                    text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae fermentum arcu, vitae dignissim quam." />
-			))}
-            </Accordion.Group>
+			<Accordion.Group>
+				{items.map((item, index) => (
+					<Accordion
+						index={index}
+						key={item.id}
+						title={item.title}
+						text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae fermentum arcu, vitae dignissim quam."
+					/>
+				))}
+			</Accordion.Group>
 		</div>
 	);
 }
@@ -851,481 +687,88 @@ function WideTopTabs() {
 	return (
 		<div className="w-full max-w-[920px]">
 			<div className="overflow-x-auto">
-                <style>
-                    {`
+				<style>
+					{`
                     .tabsPlayground > div:last-child {
-                        display: flex;
-                        align-self: stretch;
-                        margin-top: .5rem;
-                        border-top: solid 1px #DDD;
-                        border-b border-slate-300 px-1 pb-2"
+						display: flex;
+						align-self: stretch;
+						margin-top: 0.5rem;
+						border-top: 1px solid #ddd;
+						padding: 0 0.25rem 0.5rem;
                     }
                     `}
-                </style>
-                <Tab type="solid" position="left" onTabChange={setTopTab} className="tabsPlayground" tabs={[
-                    { id: "tab1", label: "Tab 1", icon: "home" },
-                    { id: "tab2", label: "Tab 2", icon: "person" },
-                    { id: "tab3", label: "Tab 3", icon: "border_all" },
-                    { id: "tab4", label: "Tab 4", icon: "description" },
-                ].map(({id, label, icon}) => ({id, icon, title: label}))}>
-                    {["1", "2", "3", "4"].map(item => <Tab.Panel id={`tab${item}`}>
-                        <div className="mt-4 flex flex-1 flex-col gap-4 md:flex-row md:items-start">
-                            <div className={`h-[120px] w-full max-w-[180px] rounded-md ${current.visual}`} />
-                            <p className="max-w-[620px] text-[14px] leading-7 text-slate-800">
-                                {current.title}
-                            </p>
-                        </div>
-                    </Tab.Panel>)}
-                </Tab>
+				</style>
+				<Tab
+					type="solid"
+					position="left"
+					onTabChange={setTopTab}
+					className="tabsPlayground"
+					tabs={[
+						{ id: "tab1", label: "Tab 1", icon: "home" },
+						{ id: "tab2", label: "Tab 2", icon: "person" },
+						{ id: "tab3", label: "Tab 3", icon: "border_all" },
+						{ id: "tab4", label: "Tab 4", icon: "description" },
+					].map(({ id, label, icon }) => ({ id, icon, title: label }))}>
+					{["1", "2", "3", "4"].map((item) => (
+						<Tab.Panel key={item} id={`tab${item}`}>
+							<div className="mt-4 flex flex-1 flex-col gap-4 md:flex-row md:items-start">
+								<div
+									className={`h-[120px] w-full max-w-[180px] rounded-md ${current.visual}`}
+								/>
+								<p className="max-w-[620px] text-[14px] leading-7 text-slate-800">
+									{current.title}
+								</p>
+							</div>
+						</Tab.Panel>
+					))}
+				</Tab>
 			</div>
 		</div>
 	);
 }
 
 function DropdownShowcase() {
-	const [open, setOpen] = useState(false);
-	const [selected, setSelected] = useState("item-colored");
-
-	const items = [
-		{ id: "header", label: "This Is A Header", type: "header" },
-		{ id: "item-icon", label: "Item With Icon", icon: Home },
-		{ id: "item-action", label: "Item With Action" },
-		{ id: "item-disabled", label: "Item Disabled", icon: Home, disabled: true },
-		{ id: "item-colored", label: "Item With Colored Icon", color: "red" },
-		{ id: "item-success", label: "Item Success", color: "green" },
-	];
-
 	return (
-        <Dropdown className="w-[320px]"
-                  label="Dropdown Menu"
-                  variant="secondary"
-                  items={[
-                      { header: "This Is A Header" },
-                      { label: "Item With Icon", icon: "home" },
-                      { label: "Item With Action", action: () => alert("Item Clicked") },
-                      { label: "Item Disabled", icon: "home", disabled: true },
-                      { label: "Item With Colored Icon", icon: "warning", iconColor: "red" },
-                      { label: "Item Success", icon: "check_circle", iconColor: "green" },
-                  ]}
-        />
+		<Dropdown
+			className="w-[320px]"
+			label="Dropdown Menu"
+			variant="secondary"
+			items={[
+				{ header: "This Is A Header" },
+				{ label: "Item With Icon", icon: "home" },
+				{ label: "Item With Action", action: () => alert("Item Clicked") },
+				{ label: "Item Disabled", icon: "home", disabled: true },
+				{ label: "Item With Colored Icon", icon: "warning", iconColor: "red" },
+				{ label: "Item Success", icon: "check_circle", iconColor: "green" },
+			]}
+		/>
 	);
 }
 
 function SelectShowcase() {
 	return (
-        <Select className="w-[320px]" data={[
-            { label: "Item 1", value: "i1" },
-            { label: "Item 2", value: "i2" },
-            {
-                groupLabel: "Cities",
-                groupKey: "cities",
-                items: [
-                    { label: "İstanbul", value: "34" },
-                    { label: "Ankara", value: "06" },
-                ],
-            },
-            {
-                groupLabel: "Districts",
-                groupKey: "districs",
-                items: [
-                    { label: "Gölbaşı", value: "golbasi" },
-                    { label: "Çankaya", value: "cankaya" },
-                ],
-            },
-        ]} />
-	);
-}
-
-function RangeBetween() {
-	const MIN = 0;
-	const MAX = 100;
-
-	const [minVal, setMinVal] = useState(20);
-	const [maxVal, setMaxVal] = useState(80);
-
-	const handleMinChange = (value: number) => {
-		setMinVal(Math.min(value, maxVal - 1));
-	};
-
-	const handleMaxChange = (value: number) => {
-		setMaxVal(Math.max(value, minVal + 1));
-	};
-
-	const leftPercent = ((minVal - MIN) / (MAX - MIN)) * 100;
-	const rightPercent = ((maxVal - MIN) / (MAX - MIN)) * 100;
-
-	return (
-		<div className="w-full">
-			<p className="mb-4 text-sm font-semibold text-slate-800">Age Between</p>
-
-			<div className="relative h-10">
-				<div className="absolute left-0 right-0 top-4 h-2 rounded-full bg-slate-200" />
-
-				<div
-					className="absolute top-4 h-2 rounded-full bg-sky-600"
-					style={{
-						left: `${leftPercent}%`,
-						width: `${rightPercent - leftPercent}%`,
-					}}
-				/>
-
-				<div
-					className="absolute top-1.5 h-7 w-7 -translate-x-1/2 rounded-full border-4 border-sky-600 bg-white shadow"
-					style={{ left: `${leftPercent}%` }}
-				/>
-
-				<div
-					className="absolute top-1.5 h-7 w-7 -translate-x-1/2 rounded-full border-4 border-sky-600 bg-white shadow"
-					style={{ left: `${rightPercent}%` }}
-				/>
-
-				<input
-					type="range"
-					min={MIN}
-					max={MAX}
-					value={minVal}
-					onChange={(e) => handleMinChange(Number(e.target.value))}
-					className="range-thumb absolute inset-0 h-10 w-full opacity-0"
-				/>
-
-				<input
-					type="range"
-					min={MIN}
-					max={MAX}
-					value={maxVal}
-					onChange={(e) => handleMaxChange(Number(e.target.value))}
-					className="range-thumb absolute inset-0 h-10 w-full opacity-0"
-				/>
-			</div>
-
-			<div className="mt-4 flex items-center justify-between text-sm text-slate-600">
-				<span>{minVal}</span>
-				<span>{maxVal}</span>
-			</div>
-
-			<p className="mt-3 text-sm text-slate-500">Please choose an age range</p>
-
-			<style jsx>{`
-				.range-thumb {
-					-webkit-appearance: none;
-					appearance: none;
-					background: transparent;
-					pointer-events: none;
-				}
-
-				.range-thumb::-webkit-slider-thumb {
-					-webkit-appearance: none;
-					appearance: none;
-					height: 28px;
-					width: 28px;
-					border-radius: 9999px;
-					background: transparent;
-					cursor: pointer;
-					pointer-events: auto;
-				}
-
-				.range-thumb::-moz-range-thumb {
-					height: 28px;
-					width: 28px;
-					border: none;
-					border-radius: 9999px;
-					background: transparent;
-					cursor: pointer;
-					pointer-events: auto;
-				}
-			`}</style>
-		</div>
-	);
-}
-
-function MiniDateRangePicker() {
-	const [leftMonth, setLeftMonth] = useState(new Date(2026, 2, 1));
-	const [startDate, setStartDate] = useState<Date | null>(
-		new Date(2026, 2, 10),
-	);
-	const [endDate, setEndDate] = useState<Date | null>(new Date(2026, 3, 30));
-
-	const rightMonth = new Date(
-		leftMonth.getFullYear(),
-		leftMonth.getMonth() + 1,
-		1,
-	);
-
-	const handleDayClick = (date: Date) => {
-		if (!startDate || (startDate && endDate)) {
-			setStartDate(date);
-			setEndDate(null);
-			return;
-		}
-
-		if (date < startDate) {
-			setStartDate(date);
-			return;
-		}
-
-		setEndDate(date);
-	};
-
-	const clear = () => {
-		setStartDate(null);
-		setEndDate(null);
-	};
-
-	return (
-		<div className="w-full rounded-2xl border border-slate-200 bg-white p-4">
-			<div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
-				<button className="flex items-center justify-between rounded-xl bg-slate-100 px-4 py-3 text-sm font-medium text-slate-800 lg:min-w-[120px]">
-					Today
-					<ChevronDown className="ml-3 h-4 w-4" />
-				</button>
-
-				<div className="flex flex-wrap gap-2">
-					<DateInput value={startDate} />
-					<DateInput value={endDate} />
-				</div>
-			</div>
-
-			<div className="my-4 h-px bg-slate-200" />
-
-			<div className="grid grid-cols-1 gap-4 xl:grid-cols-[48px_1fr_1fr_48px] xl:items-start">
-				<div className="hidden justify-center pt-10 xl:flex">
-					<button
-						onClick={() =>
-							setLeftMonth(
-								new Date(leftMonth.getFullYear(), leftMonth.getMonth() - 1, 1),
-							)
-						}
-						className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-slate-600">
-						<ChevronLeft className="h-5 w-5" />
-					</button>
-				</div>
-
-				<MonthBlockInteractive
-					monthDate={leftMonth}
-					startDate={startDate}
-					endDate={endDate}
-					onDayClick={handleDayClick}
-				/>
-
-				<MonthBlockInteractive
-					monthDate={rightMonth}
-					startDate={startDate}
-					endDate={endDate}
-					onDayClick={handleDayClick}
-				/>
-
-				<div className="hidden justify-center pt-10 xl:flex">
-					<button
-						onClick={() =>
-							setLeftMonth(
-								new Date(leftMonth.getFullYear(), leftMonth.getMonth() + 1, 1),
-							)
-						}
-						className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-slate-600">
-						<ChevronRight className="h-5 w-5" />
-					</button>
-				</div>
-			</div>
-
-			<div className="mt-4 flex justify-end gap-2">
-				<button
-					onClick={clear}
-					className="rounded-xl bg-slate-200 px-4 py-2 font-semibold text-slate-700">
-					Clear
-				</button>
-
-				<button className="rounded-xl bg-sky-600 px-4 py-2 font-semibold text-white">
-					OK
-				</button>
-			</div>
-		</div>
-	);
-}
-
-function DateInput({ value }: { value: Date | null }) {
-	const formatted = value
-		? `${String(value.getDate()).padStart(2, "0")}/${String(
-				value.getMonth() + 1,
-			).padStart(2, "0")}/${value.getFullYear()}`
-		: "--/--/----";
-
-	return (
-		<div className="flex items-center gap-2 rounded-xl border border-slate-300 px-3 py-3 text-sm text-slate-700">
-			<CalendarDays className="h-4 w-4 text-slate-400" />
-			{formatted}
-		</div>
-	);
-}
-
-function MonthBlockInteractive({
-	monthDate,
-	startDate,
-	endDate,
-	onDayClick,
-}: {
-	monthDate: Date;
-	startDate: Date | null;
-	endDate: Date | null;
-	onDayClick: (date: Date) => void;
-}) {
-	const labels = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
-	const monthNames = [
-		"January",
-		"February",
-		"March",
-		"April",
-		"May",
-		"June",
-		"July",
-		"August",
-		"September",
-		"October",
-		"November",
-		"December",
-	];
-
-	const year = monthDate.getFullYear();
-	const month = monthDate.getMonth();
-
-	const firstDay = new Date(year, month, 1);
-	const lastDay = new Date(year, month + 1, 0);
-
-	const firstWeekDay = (firstDay.getDay() + 6) % 7;
-	const totalDays = lastDay.getDate();
-
-	const cells: (Date | null)[] = [];
-
-	for (let i = 0; i < firstWeekDay; i++) cells.push(null);
-	for (let day = 1; day <= totalDays; day++) {
-		cells.push(new Date(year, month, day));
-	}
-	while (cells.length % 7 !== 0) cells.push(null);
-
-	const isSameDay = (a: Date | null, b: Date | null) =>
-		!!a &&
-		!!b &&
-		a.getFullYear() === b.getFullYear() &&
-		a.getMonth() === b.getMonth() &&
-		a.getDate() === b.getDate();
-
-	const isInRange = (date: Date) =>
-		startDate && endDate && date > startDate && date < endDate;
-
-	return (
-		<div>
-			<div className="mb-3 flex items-center justify-center gap-3 text-sm font-semibold text-slate-700">
-				<span>{monthNames[month]}</span>
-				<span>{year}</span>
-			</div>
-
-			<div className="mb-2 grid grid-cols-7 gap-1">
-				{labels.map((label) => (
-					<div
-						key={label}
-						className="flex h-7 items-center justify-center text-[11px] font-semibold text-slate-400">
-						{label}
-					</div>
-				))}
-			</div>
-
-			<div className="grid grid-cols-7 gap-1">
-				{cells.map((date, index) => {
-					if (!date) {
-						return <div key={index} className="h-8" />;
-					}
-
-					const isStart = isSameDay(date, startDate);
-					const isEnd = isSameDay(date, endDate);
-					const between = isInRange(date);
-
-					return (
-						<button
-							key={index}
-							onClick={() => onDayClick(date)}
-							className={[
-								"flex h-8 items-center justify-center rounded-[6px] text-xs font-semibold transition",
-								isStart
-									? "border-2 border-sky-300 bg-sky-100 text-slate-700"
-									: isEnd
-										? "bg-sky-600 text-white"
-										: between
-											? "bg-[#EAF4FB] text-slate-700"
-											: "text-slate-600 hover:bg-slate-100",
-							].join(" ")}>
-							{date.getDate()}
-						</button>
-					);
-				})}
-			</div>
-		</div>
-	);
-}
-
-function MonthBlock({
-	title,
-	year,
-	days,
-	startDay,
-	endDay,
-	inRange = [],
-}: {
-	title: string;
-	year: string;
-	days: string[][];
-	startDay?: string;
-	endDay?: string;
-	inRange?: string[];
-}) {
-	const labels = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
-
-	return (
-		<div>
-			<div className="mb-3 flex items-center justify-center gap-3 text-sm font-semibold text-slate-700">
-				<span>{title}</span>
-				<span>{year}</span>
-			</div>
-
-			<div className="mb-2 grid grid-cols-7 gap-1">
-				{labels.map((label) => (
-					<div
-						key={label}
-						className="flex h-7 items-center justify-center text-[11px] font-semibold text-slate-400">
-						{label}
-					</div>
-				))}
-			</div>
-
-			<div className="grid gap-1">
-				{days.map((week, i) => (
-					<div key={i} className="grid grid-cols-7 gap-1">
-						{week.map((day, j) => {
-							const isEmpty = !day;
-							const isStart = day === startDay;
-							const isEnd = day === endDay;
-							const isRangeDay = inRange.includes(day);
-
-							return (
-								<div
-									key={`${i}-${j}`}
-									className={[
-										"flex h-8 items-center justify-center rounded-[6px] text-xs font-semibold",
-										isEmpty
-											? "text-transparent"
-											: isStart
-												? "border-2 border-sky-300 bg-sky-100 text-slate-700"
-												: isEnd
-													? "bg-sky-600 text-white"
-													: isRangeDay
-														? "bg-[#EAF4FB] text-slate-600"
-														: "text-slate-600",
-									].join(" ")}>
-									{day || "."}
-								</div>
-							);
-						})}
-					</div>
-				))}
-			</div>
-		</div>
+		<Select
+			className="w-[320px]"
+			data={[
+				{ label: "Item 1", value: "i1" },
+				{ label: "Item 2", value: "i2" },
+				{
+					groupLabel: "Cities",
+					groupKey: "cities",
+					items: [
+						{ label: "İstanbul", value: "34" },
+						{ label: "Ankara", value: "06" },
+					],
+				},
+				{
+					groupLabel: "Districts",
+					groupKey: "districts",
+					items: [
+						{ label: "Gölbaşı", value: "golbasi" },
+						{ label: "Çankaya", value: "cankaya" },
+					],
+				},
+			]}
+		/>
 	);
 }

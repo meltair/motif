@@ -1,10 +1,10 @@
-import { ChevronsRight, Copy, Github, Check, Rocket } from "lucide-react";
+"use client";
+import { Copy, Github, Check, Rocket } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import HeroVerticalShowcase from "@/components/hero-vertical-showcase";
 import HeroOrnaments from "@/components/hero-ornaments";
 export default function TopSection() {
-	const [activeItem, setActiveItem] = useState("react");
 	const [copied, setCopied] = useState(false);
 
 	return (

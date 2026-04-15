@@ -4,39 +4,13 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
-	BookOpen,
-	Boxes,
-	Building2,
-	CalendarRange,
-	Check,
-	ChevronRight,
-	ChevronDown,
-	ChevronsRight,
-	Code2,
-	Component,
-	Copy,
 	FileText,
-	Github,
-	Home,
-	Layers3,
 	Menu,
-	MoonStar,
-	MousePointerClick,
-	Palette,
 	PanelRightClose,
-	PanelTop,
-	Play,
-	ShieldCheck,
-	SlidersHorizontal,
-	Sparkles,
-	SwatchBook,
-	TerminalSquare,
-	User,
-	Workflow,
 } from "lucide-react";
 type NavItem = [string, string];
 
-export default function Navbar() {
+export default function HeaderSection() {
 	const [mobileMenu, setMobileMenu] = useState<boolean>(false);
 
 	const navItems: NavItem[] = [

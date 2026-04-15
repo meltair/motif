@@ -1,10 +1,9 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import {
   Boxes,
   ChevronRight,
-  Component,
   LayoutGrid,
   MessageSquareWarning,
   MousePointerSquareDashed,

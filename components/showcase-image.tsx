@@ -1,5 +1,3 @@
-"use client";
-
 import {Carousel, Icon} from "@motif-ui/react";
 
 const slides = [
@@ -45,11 +43,11 @@ const slides = [
 	},
 ];
 
-export default function ShowcaseCarousel() {
+export default function ShowcaseImage() {
 	return (
         <div className="mt-20 p-4">
             <Carousel className="rounded-lg">
-                {slides.map((slide, index) => (
+                {slides.map((slide) => (
                     <Carousel.Item title={slide.label} subtitle={slide.description} key={slide.id}>
                         <div className="min-h-[396px]" style={{
                             backgroundColor: `var(--theme-color-surface-success-${slide.type})`,

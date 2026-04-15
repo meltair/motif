@@ -1,19 +1,17 @@
 "use client";
 import { useMemo, useState } from "react";
+import { useMediaQuery } from "@/hooks/use-media-query";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import {
-	ChevronLeft,
-	ChevronRight,
-
-} from "lucide-react";
-import {
-    Accordion,
-    Card,
-    DataView,
-    Pagination,
-    PinCode,
-    Select, Table,
-    TimePicker,
-    UploadDragger
+	Accordion,
+	Card,
+	DataView,
+	Pagination,
+	PinCode,
+	Select,
+	Table,
+	TimePicker,
+	UploadDragger,
 } from "@motif-ui/react";
 type ComponentKey =
 	| "card"
@@ -48,8 +46,14 @@ const componentLabels: Record<ComponentKey, string> = {
 	pagination: "Pagination",
 };
 export default function CompactDesignToCodeSection() {
+	const isMobile = useMediaQuery("(max-width: 640px)");
 	const [activeIndex, setActiveIndex] = useState(0);
-	const [selectItems, setSelectItems] = useState<string[]>(["06", "34", "golbasi", "cankaya" ]);
+	const [selectItems, setSelectItems] = useState<string[]>([
+		"06",
+		"34",
+		"golbasi",
+		"cankaya",
+	]);
 	const [pinValues, setPinValues] = useState(["X", "Y", "", "", "T", "M"]);
 	const [paginationPage, setPaginationPage] = useState(3);
 	const activeComponent = componentOrder[activeIndex];
@@ -157,7 +161,7 @@ export default function CompactDesignToCodeSection() {
                   { label: "Ankara", value: "06" },
                   { label: "İzmir", value: "35" }]
               },
-              { groupLabel: "Districts", groupKey: "districs", 
+              { groupLabel: "Districts", groupKey: "districts", 
                 items: [
                   { label: "Gölbaşı", value: "golbasi" },
                   { label: "Polatlı", value: "polatli" },
@@ -212,12 +216,7 @@ export default function CompactDesignToCodeSection() {
 };`,
 		};
 		return codeMap[activeComponent];
-	}, [
-		activeComponent,
-		selectItems,
-		pinValues,
-		paginationPage,
-	]);
+	}, [activeComponent, selectItems, pinValues, paginationPage]);
 	return (
 		<section className="mx-auto w-full max-w-6xl px-4 py-16 lg:px-8">
 			<div className="mx-auto mb-8 max-w-3xl text-center">
@@ -227,14 +226,15 @@ export default function CompactDesignToCodeSection() {
 					</span>
 				</h2>
 				<p className="mt-3 text-base leading-7 text-slate-600">
-                    React components are the precise reflection of Motif UI design. It is this easy to check out
-                    the interactive design previews and inspect the matching React implementation beside them.
+					React components are the precise reflection of Motif UI design. It is
+					this easy to check out the interactive design previews and inspect the
+					matching React implementation beside them.
 				</p>
 			</div>
 			<div className="grid gap-5 lg:grid-cols-[0.92fr_1.08fr]">
-				<div className="rounded-[24px] border border-slate-200 bg-white p-4 shadow-[0_10px_30px_rgba(15,23,42,0.06)]">
-					<div className="mb-4 flex items-center justify-between gap-3">
-						<div className="text-center lg:text-left">
+				<div className="min-w-0 rounded-[24px] border border-slate-200 bg-white p-4 shadow-[0_10px_30px_rgba(15,23,42,0.06)]">
+					<div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+						<div className="min-w-0 flex-1 text-left">
 							<p className="text-xs font-semibold uppercase tracking-[0.18em] text-sky-700">
 								Figma Design
 							</p>
@@ -258,7 +258,13 @@ export default function CompactDesignToCodeSection() {
 						</div>
 					</div>
 					<div className="rounded-[20px] p-4">
-						<div className="flex h-[560px] items-start justify-center overflow-hidden">
+						<div
+							className={[
+								"flex h-[560px] items-start",
+								activeComponent === "pincode"
+									? "justify-start overflow-x-auto overflow-y-hidden touch-pan-x [-webkit-overflow-scrolling:touch]"
+									: "justify-center overflow-hidden",
+							].join(" ")}>
 							{activeComponent === "card" && (
 								<PreviewFrame>
 									<LiveMotifCard />
@@ -286,10 +292,7 @@ export default function CompactDesignToCodeSection() {
 							)}
 							{activeComponent === "select" && (
 								<PreviewFrame>
-									<LiveSelect
-										values={selectItems}
-										setValues={setSelectItems}
-									/>
+									<LiveSelect values={selectItems} setValues={setSelectItems} />
 								</PreviewFrame>
 							)}
 							{activeComponent === "table" && (
@@ -299,7 +302,11 @@ export default function CompactDesignToCodeSection() {
 							)}
 							{activeComponent === "pincode" && (
 								<PreviewFrame>
-									<LivePinCode values={pinValues} setValues={setPinValues} />
+									<LivePinCode
+										values={pinValues}
+										setValues={setPinValues}
+										isMobile={isMobile}
+									/>
 								</PreviewFrame>
 							)}
 							{activeComponent === "pagination" && (
@@ -307,6 +314,7 @@ export default function CompactDesignToCodeSection() {
 									<LivePagination
 										page={paginationPage}
 										setPage={setPaginationPage}
+										isMobile={isMobile}
 									/>
 								</PreviewFrame>
 							)}
@@ -350,22 +358,25 @@ export default function CompactDesignToCodeSection() {
 	);
 }
 function LiveMotifCard() {
-	return (<div className="mx-auto w-full max-w-[420px]">
-        <Card
-        title="Card Header Title"
-        subtitle="Motif Card Subtitle"
-        icon="folder"
-        action={{icon: "download", onClick: () => {}}}
-        contentImage="https://picsum.photos/500/220"
-        contentTitle="Card Content Title"
-        contentSubtitle="Card Content Subtitle"
-        contentText="Motif Card Supporting Text"
-        contentLink={{text: "Motif Link", href: "#"}}
-        contentActionButton={{text: "Action", onClick: () => {}}}
-        contentAlternateButton={{text: "Alternate", onClick: () => {}}}
-        contentActionLink={{text: "Motif Link", href: "#"}}
-        elevated />
-    </div>);
+	return (
+		<div className="mx-auto w-full max-w-[420px]">
+			<Card
+				title="Card Header Title"
+				subtitle="Motif Card Subtitle"
+				icon="folder"
+				action={{ icon: "download", onClick: () => {} }}
+				contentImage="https://picsum.photos/500/220"
+				contentTitle="Card Content Title"
+				contentSubtitle="Card Content Subtitle"
+				contentText="Motif Card Supporting Text"
+				contentLink={{ text: "Motif Link", href: "#" }}
+				contentActionButton={{ text: "Action", onClick: () => {} }}
+				contentAlternateButton={{ text: "Alternate", onClick: () => {} }}
+				contentActionLink={{ text: "Motif Link", href: "#" }}
+				elevated
+			/>
+		</div>
+	);
 }
 function LiveMotifDataView() {
 	const rows = [
@@ -375,18 +386,19 @@ function LiveMotifDataView() {
 		["Website", "motif-ui.com"],
 		["Country", "Türkiye"],
 		["Developer", "Türksat"],
-        ["Failure", "N/A"],
+		["Failure", "N/A"],
 	];
 	return (
 		<div className="mx-auto w-full max-w-[520px] overflow-hidden border border-slate-300 ">
-            <DataView rowVariant="solid">
-                {rows.map(([label, value], index) => (
-                    <DataView.Item
-                        key={`${label}-${index}`}
-                        label={label}
-                        value={value} />
-                ))}
-            </DataView>
+			<DataView rowVariant="solid">
+				{rows.map(([label, value], index) => (
+					<DataView.Item
+						key={`${label}-${index}`}
+						label={label}
+						value={value}
+					/>
+				))}
+			</DataView>
 		</div>
 	);
 }
@@ -399,112 +411,225 @@ function PreviewFrame({ children }: { children: React.ReactNode }) {
 }
 function LiveMotifTimePicker() {
 	return (
-        <TimePicker
-            style={{minWidth: "auto"}}
-            className="w-full"
-            value={{hours: 12, minutes: 12, seconds: 8}}
-            secondsEnabled
-            size="md"
-            onOkClick={time => alert(JSON.stringify(time))}
-            onClearClick={() => console.log("cleared...")}
-            variant="bordered"
-            format="12h"
-        />
+		<TimePicker
+			style={{ minWidth: "auto" }}
+			className="w-full"
+			value={{ hours: 12, minutes: 12, seconds: 8 }}
+			secondsEnabled
+			size="md"
+			onOkClick={(time) => alert(JSON.stringify(time))}
+			onClearClick={() => console.log("cleared...")}
+			variant="bordered"
+			format="12h"
+		/>
 	);
 }
 function LiveMotifUpload() {
 	return (
 		<div className="mx-auto w-full max-w-[520px] overflow-hidden">
 			<UploadDragger
-                size="lg"
-                uploadRequest={{method: "POST", url: "https://my.url"}}
-                deleteRequest={{method: "POST", url: "https://my.url"}}
-                maxSize={10}
-                maxFile={1}
-                autoUpload={false} />
+				size="lg"
+				uploadRequest={{ method: "POST", url: "https://my.url" }}
+				deleteRequest={{ method: "POST", url: "https://my.url" }}
+				maxSize={10}
+				maxFile={1}
+				autoUpload={false}
+			/>
 		</div>
 	);
 }
 function LiveMotifAccordion() {
 	return (
-        <Accordion.Group multiExpand={false} condensed>
-            <Accordion index={0} icon="folder" title="Accordion 1" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae fermentum arcu, vitae dignissim quam. Suspendisse eu nisi semper, congue augue tincidunt, porttitor dui." />
-            <Accordion index={1} expanded title="Accordion 2" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque porta eu orci non varius. Sed ac orci suscipit turpis tristique feugiat. Maecenas vitae diam elit. Donec ac mi blandit, vehicula tellus sed, iaculis turpis. Integer in odio ut metus imperdiet pulvinar. Sed lobortis, sem in egestas ornare, lectus metus ultrices erat, vel interdum ante libero vitae ante. Morbi ut interdum eros, ac sollicitudin turpis. Nullam augue metus, blandit ut ligula vitae, posuere condimentum purus. Ut facilisis dui a sapien pharetra facilisis. Fusce placerat sem ut magna mattis, sit amet porta purus pretium. Quisque libero turpis, facilisis non tempor nec, egestas vitae odio." />
-            <Accordion index={2} title="Accordion 3">
-                <div className="py-12 font-bold text-amber-700 bg-purple-100 text-center">Custom HTML content</div>
-            </Accordion>
-        </Accordion.Group>
+		<Accordion.Group multiExpand={false} condensed>
+			<Accordion
+				index={0}
+				icon="folder"
+				title="Accordion 1"
+				text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae fermentum arcu, vitae dignissim quam. Suspendisse eu nisi semper, congue augue tincidunt, porttitor dui."
+			/>
+			<Accordion
+				index={1}
+				expanded
+				title="Accordion 2"
+				text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque porta eu orci non varius. Sed ac orci suscipit turpis tristique feugiat. Maecenas vitae diam elit. Donec ac mi blandit, vehicula tellus sed, iaculis turpis. Integer in odio ut metus imperdiet pulvinar. Sed lobortis, sem in egestas ornare, lectus metus ultrices erat, vel interdum ante libero vitae ante. Morbi ut interdum eros, ac sollicitudin turpis. Nullam augue metus, blandit ut ligula vitae, posuere condimentum purus. Ut facilisis dui a sapien pharetra facilisis. Fusce placerat sem ut magna mattis, sit amet porta purus pretium. Quisque libero turpis, facilisis non tempor nec, egestas vitae odio."
+			/>
+			<Accordion index={2} title="Accordion 3">
+				<div className="py-12 font-bold text-amber-700 bg-purple-100 text-center">
+					Custom HTML content
+				</div>
+			</Accordion>
+		</Accordion.Group>
 	);
 }
-function LiveSelect({values, setValues }: {values: string[]; setValues: (value: string[]) => void;}) {
+function LiveSelect({
+	values,
+	setValues,
+}: {
+	values: string[];
+	setValues: (value: string[]) => void;
+}) {
 	return (
-        <Select
-            className="mx-auto w-full max-w-[560px] relative"
-            multiple
-            filterable
-            value={values}
-            size="lg"
-            onChange={val => setValues((val as {value: string}[]).map((v:{value: string}) => v.value) )}
-            data={[
-                {groupLabel: "Cities", groupKey: "cities",
-                    items: [
-                        { label: "İstanbul", value: "34" },
-                        { label: "Ankara", value: "06" },
-                        { label: "İzmir", value: "35" }
-                    ]
-                },
-                {groupLabel: "Districts", groupKey: "districs",
-                    items: [
-                        { label: "Gölbaşı", value: "golbasi" },
-                        { label: "Polatlı", value: "polatli" },
-                        { label: "Çankaya", value: "cankaya" }
-                    ]
-                }
-            ]}/>
+		<Select
+			className="mx-auto w-full max-w-[560px] relative"
+			multiple
+			filterable
+			value={values}
+			size="lg"
+			onChange={(val) =>
+				setValues(
+					(val as { value: string }[]).map((v: { value: string }) => v.value),
+				)
+			}
+			data={[
+				{
+					groupLabel: "Cities",
+					groupKey: "cities",
+					items: [
+						{ label: "İstanbul", value: "34" },
+						{ label: "Ankara", value: "06" },
+						{ label: "İzmir", value: "35" },
+					],
+				},
+				{
+					groupLabel: "Districts",
+					groupKey: "districts",
+					items: [
+						{ label: "Gölbaşı", value: "golbasi" },
+						{ label: "Polatlı", value: "polatli" },
+						{ label: "Çankaya", value: "cankaya" },
+					],
+				},
+			]}
+		/>
 	);
 }
-function LivePagination({ page, setPage,}: { page: number; setPage: (value: number) => void; }) {
+function LivePagination({
+	page,
+	setPage,
+	isMobile,
+}: {
+	page: number;
+	setPage: (value: number) => void;
+	isMobile: boolean;
+}) {
 	return (
-        <div className="mx-auto w-full max-w-[420px] text-center">
-            <Pagination total={50} current={page} pageSize={10} size="lg" onChange={setPage} />
-        </div>
+		<div className="mx-auto flex w-full max-w-full justify-center overflow-hidden px-2">
+			<div
+				className={["origin-top", isMobile ? "scale-[0.88]" : "scale-100"].join(
+					" ",
+				)}>
+				<Pagination
+					total={50}
+					current={page}
+					pageSize={10}
+					size={isMobile ? "md" : "lg"}
+					onChange={setPage}
+				/>
+			</div>
+		</div>
 	);
 }
-function LivePinCode({values, setValues,}: { values: string[]; setValues: (value: string[]) => void; }) {
-	return (<PinCode style={{padding: 12}} size="lg" circle value={values} onChange={newVals => setValues(newVals as string[])}>
-            <PinCode.Item />
-            <PinCode.Item masked />
-            <PinCode.Item />
-            <PinCode.Item space />
-            <PinCode.Item disabled />
-            <PinCode.Item />
-        </PinCode>
+function LivePinCode({
+	values,
+	setValues,
+	isMobile,
+}: {
+	values: string[];
+	setValues: (value: string[]) => void;
+	isMobile: boolean;
+}) {
+	return (
+		<div className="mx-auto w-full max-w-full overflow-hidden px-2">
+			<div
+				className={[
+					"mx-auto origin-top",
+					isMobile ? "w-max scale-[0.82]" : "w-max scale-100",
+				].join(" ")}>
+				<PinCode
+					style={{ padding: isMobile ? 0 : 12 }}
+					size={isMobile ? "md" : "lg"}
+					circle
+					value={values}
+					onChange={(newVals) => setValues(newVals as string[])}>
+					<PinCode.Item />
+					<PinCode.Item masked />
+					<PinCode.Item />
+					<PinCode.Item space />
+					<PinCode.Item disabled />
+					<PinCode.Item />
+				</PinCode>
+			</div>
+		</div>
 	);
 }
 function LiveTable() {
 	return (
-        <div className="flex h-full w-full">
-            <Table
-                fluid
-                hoverable
-                selectable
-                data={[
-                    { "name": "Ahmet", "surname": "Yılmaz", "age": 28, "address": { "city": "Istanbul" } },
-                    { "name": "Ayşe", "surname": "Demir", "age": 34, "address": { "city": "Ankara" } },
-                    { "name": "Mehmet", "surname": "Kaya", "age": 45, "address": { "city": "Izmir" } },
-                    { "name": "Elif", "surname": "Çelik", "age": 22, "address": { "city": "Bursa" } },
-                    { "name": "Can", "surname": "Şahin", "age": 31, "address": { "city": "Antalya" } },
-                    { "name": "Zeynep", "surname": "Koç", "age": 27, "address": { "city": "Adana" } },
-                    { "name": "Burak", "surname": "Aydın", "age": 39, "address": { "city": "Gaziantep" } },
-                    { "name": "Selin", "surname": "Arslan", "age": 25, "address": { "city": "Eskişehir" } }
-                ]}
-                columns={[
-                    { title: "Name", dataKey: "name", sorting: {} },
-                    { title: "Surname", dataKey: "surname" },
-                    { title: "Age", dataKey: "age", footer:{type: "avg", title:"Avg"} },
-                    { title: "City", dataKey: "address.city" },
-                ]}
-            />
-        </div>
+		<div className="flex h-full w-full">
+			<Table
+				fluid
+				hoverable
+				selectable
+				data={[
+					{
+						name: "Ahmet",
+						surname: "Yılmaz",
+						age: 28,
+						address: { city: "Istanbul" },
+					},
+					{
+						name: "Ayşe",
+						surname: "Demir",
+						age: 34,
+						address: { city: "Ankara" },
+					},
+					{
+						name: "Mehmet",
+						surname: "Kaya",
+						age: 45,
+						address: { city: "Izmir" },
+					},
+					{
+						name: "Elif",
+						surname: "Çelik",
+						age: 22,
+						address: { city: "Bursa" },
+					},
+					{
+						name: "Can",
+						surname: "Şahin",
+						age: 31,
+						address: { city: "Antalya" },
+					},
+					{
+						name: "Zeynep",
+						surname: "Koç",
+						age: 27,
+						address: { city: "Adana" },
+					},
+					{
+						name: "Burak",
+						surname: "Aydın",
+						age: 39,
+						address: { city: "Gaziantep" },
+					},
+					{
+						name: "Selin",
+						surname: "Arslan",
+						age: 25,
+						address: { city: "Eskişehir" },
+					},
+				]}
+				columns={[
+					{ title: "Name", dataKey: "name", sorting: {} },
+					{ title: "Surname", dataKey: "surname" },
+					{
+						title: "Age",
+						dataKey: "age",
+						footer: { type: "avg", title: "Avg" },
+					},
+					{ title: "City", dataKey: "address.city" },
+				]}
+			/>
+		</div>
 	);
 }

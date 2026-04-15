@@ -262,7 +262,7 @@ export default function CompactDesignToCodeSection() {
 							className={[
 								"flex h-[560px] items-start",
 								activeComponent === "pincode"
-									? "justify-start overflow-x-auto overflow-y-hidden touch-pan-x [-webkit-overflow-scrolling:touch]"
+									? "justify-start overflow-x-auto overflow-y-visible touch-pan-x [-webkit-overflow-scrolling:touch]"
 									: "justify-center overflow-hidden",
 							].join(" ")}>
 							{activeComponent === "card" && (
@@ -513,7 +513,7 @@ function LivePagination({
 	isMobile: boolean;
 }) {
 	return (
-		<div className="mx-auto flex w-full max-w-full justify-center overflow-hidden px-2">
+		<div className="mx-auto flex w-full max-w-full justify-center overflow-visible px-2 pt-3">
 			<div
 				className={["origin-top", isMobile ? "scale-[0.88]" : "scale-100"].join(
 					" ",
@@ -530,37 +530,39 @@ function LivePagination({
 	);
 }
 function LivePinCode({
-	values,
-	setValues,
-	isMobile,
+  values,
+  setValues,
+  isMobile,
 }: {
-	values: string[];
-	setValues: (value: string[]) => void;
-	isMobile: boolean;
+  values: string[];
+  setValues: (value: string[]) => void;
+  isMobile: boolean;
 }) {
-	return (
-		<div className="mx-auto w-full max-w-full overflow-hidden px-2">
-			<div
-				className={[
-					"mx-auto origin-top",
-					isMobile ? "w-max scale-[0.82]" : "w-max scale-100",
-				].join(" ")}>
-				<PinCode
-					style={{ padding: isMobile ? 0 : 12 }}
-					size={isMobile ? "md" : "lg"}
-					circle
-					value={values}
-					onChange={(newVals) => setValues(newVals as string[])}>
-					<PinCode.Item />
-					<PinCode.Item masked />
-					<PinCode.Item />
-					<PinCode.Item space />
-					<PinCode.Item disabled />
-					<PinCode.Item />
-				</PinCode>
-			</div>
-		</div>
-	);
+  return (
+    <div className="mx-auto w-full max-w-full overflow-visible px-2 pt-3">
+      <div
+        className={[
+          "mx-auto w-max origin-center",
+          isMobile ? "scale-[0.82]" : "scale-100",
+        ].join(" ")}
+      >
+        <PinCode
+          style={{ padding: isMobile ? 0 : 12 }}
+          size={isMobile ? "md" : "lg"}
+          circle
+          value={values}
+          onChange={(newVals) => setValues(newVals as string[])}
+        >
+          <PinCode.Item />
+          <PinCode.Item masked />
+          <PinCode.Item />
+          <PinCode.Item space />
+          <PinCode.Item disabled />
+          <PinCode.Item />
+        </PinCode>
+      </div>
+    </div>
+  );
 }
 function LiveTable() {
 	return (

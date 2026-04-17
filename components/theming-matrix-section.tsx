@@ -138,37 +138,59 @@ function FormsMatrix() {
 			<Cell
 				title="Selection Controls"
 				description="Radio buttons and switches present form decisions with a clean hierarchy and clear emphasis.">
-				<Form onSubmit={() => {}} className="w-full">
-					<Form.Field
-						name="username"
-						label="Username"
-						helperText="Please enter your username.">
-						<InputText value="Motif UI" />
-					</Form.Field>
-					<Form.Field
-						name="password"
-						label="Password"
-						helperText="Please enter your password.">
-						<InputPassword toggleMask value="password" />
-					</Form.Field>
-					<Form.Field
-						name="blackwhite"
-						label="Black or White"
-						validations={[Validations.Required]}
-						helperText="You have to choose one">
-						<RadioGroup name="blackwhite" orientation="horizontal">
-							<Radio value="black" label="Black" />
-							<Radio value="white" label="White" />
-						</RadioGroup>
-					</Form.Field>
-					<Form.Field
-						name="terms"
-						label="Terms and Conditions"
-						validations={[Validations.Required]}
-						helperText="I agree to the terms and conditions.">
-						<Switch />
-					</Form.Field>
-				</Form>
+				<div className="w-full">
+					<div className="w-full space-y-4">
+						<div className="w-full">
+							<label className="mb-2 block text-sm font-medium text-slate-700">
+								Text Input
+							</label>
+							<InputText
+								className="!w-full"
+								style={{ width: "100%" }}
+								placeholder="Type something..."
+							/>
+							<p className="mt-2 text-sm text-slate-500">
+								Example text input component.
+							</p>
+						</div>
+
+						<div className="w-full">
+							<label className="mb-2 block text-sm font-medium text-slate-700">
+								Password Input
+							</label>
+							<InputPassword
+								className="!w-full"
+								style={{ width: "100%" }}
+								toggleMask
+								placeholder="Enter secure value..."
+							/>
+							<p className="mt-2 text-sm text-slate-500">
+								Example password input component.
+							</p>
+						</div>
+					</div>
+
+					<Form onSubmit={() => {}} className="mt-4 w-full">
+						<Form.Field
+							name="blackwhite"
+							label="Black or White"
+							validations={[Validations.Required]}
+							helperText="You have to choose one">
+							<RadioGroup name="blackwhite" orientation="horizontal">
+								<Radio value="black" label="Black" />
+								<Radio value="white" label="White" />
+							</RadioGroup>
+						</Form.Field>
+
+						<Form.Field
+							name="terms"
+							label="Terms and Conditions"
+							validations={[Validations.Required]}
+							helperText="I agree to the terms and conditions.">
+							<Switch />
+						</Form.Field>
+					</Form>
+				</div>
 			</Cell>
 
 			<Cell
